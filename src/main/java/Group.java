@@ -11,44 +11,68 @@ public class Group {
     private Integer yearOfFoundation;
     private String mainGenre;
     private List<GroupMember> listOfMembers = new ArrayList<>();
-    private List<String> repertoire;
+    private List<Song> repertoire;
     private Integer placeInChart;
     private List<Tour> upcomingTours = new ArrayList<>();
     private Tour currentTour;
     private Tour lastTour;
-    
-    public Group(String name,Integer yearOfFoundation,String mainGenre) {
-        this.name = name;
-        this.yearOfFoundation = yearOfFoundation;
-        this.mainGenre = mainGenre;
+
+    public Group(){
+
     }
+
     @Column(name = "group_name")
     public String getName() {
         return name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
+    @Column(name = "group_year_of_foundation")
     public Integer getYearOfFoundation() {
         return yearOfFoundation;
     }
+    public void setYearOfFoundation(Integer yearOfFoundation) {
+        this.yearOfFoundation = yearOfFoundation;
+    }
+    @OneToMany
+    @JoinColumn(name = "group_id")
     public List<GroupMember> getListOfMembers() {
         return listOfMembers;
     }
-    public List<String> getRepertoire() {
+    public void setListOfMembers(List<GroupMember> members) {
+        this.listOfMembers = members;
+    }
+    @OneToMany
+    @JoinColumn(name = "group_id")
+    public List<Song> getRepertoire() {
         return repertoire;
     }
+    public void setRepertoire(List<Song> repertoire) {
+        this.repertoire = repertoire;
+    }
+    @Transient
     public Integer getPlaceInChart() {
         return placeInChart;
     }
+    public void setPlaceInChart(Integer placeInChart){this.placeInChart = placeInChart;}
+    @OneToMany()
+    @JoinColumn(name = "group_id")
     public List<Tour> getUpcomingTours() {
         return upcomingTours;
     }
+    public void setUpcomingTours(List<Tour> upcomingTours){this.upcomingTours = upcomingTours;}
+    @Transient
     public Tour getCurrentTour() {
         return currentTour;
     }
-
+    public void setCurrentTour(Tour currentTour) {this.currentTour = currentTour;}
+    @Transient
     public String getMainGenre() {
         return mainGenre;
     }
-
+    public void setMainGenre(String mainGenre) {this.mainGenre = mainGenre;}
+    @Transient
     public Tour getLastTour() {
         return lastTour;
     }
@@ -64,5 +88,9 @@ public class Group {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setLastTour(Tour lastTour) {
+        this.lastTour = lastTour;
     }
 }
