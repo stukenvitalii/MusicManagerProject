@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:controller="AppController" xmlns:fx="http://javafx.com/fxml">
+    <HBox>
+        <Button fx:id="addButton" text="Add band">
+            <graphic>
+                <ImageView>
+                    <Image url="icons/add_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="removeButton" text="Remove band">
+            <graphic>
+                <ImageView>
+                    <Image url="icons/remove_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="listButton" text="List all bands">
+            <graphic>
+                <ImageView>
+                    <Image url="icons/list_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+
+    <TextField fx:id="searchField" promptText="Search band"/>
+    <Button fx:id="searchButton" text="Search">
+        <graphic>
+            <ImageView>
+                <Image url="icons/search_icon.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+
+</VBox>
