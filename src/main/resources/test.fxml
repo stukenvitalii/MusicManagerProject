@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane fx:controller="AppController" maxHeight="-400" maxWidth="-300" minHeight="-400" minWidth="-300"
+            prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <VBox layoutX="193.0" layoutY="94.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+        <HBox>
+            <Button fx:id="saveButton" text="Save">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/save_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="addButton" text="Add band">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/add_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="removeButton" text="Remove band">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/remove_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="listButton" text="List all bands">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/list_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+        <ScrollPane prefHeight="600.0" prefWidth="800.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
+                <TableView prefHeight="358.4" prefWidth="602.4" AnchorPane.bottomAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                           AnchorPane.topAnchor="0.0">
+                    <columns>
+                        <TableColumn prefWidth="75.0" text="GroupName"/>
+                        <TableColumn prefWidth="114" text="YearOfFoundation"/>
+                        <TableColumn prefWidth="75.0" text="Genre"/>
+                        <TableColumn prefWidth="75.0" text="Members"/>
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </ScrollPane>
+    </VBox>
+</AnchorPane>
