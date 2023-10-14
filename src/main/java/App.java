@@ -11,11 +11,10 @@ import java.util.Objects;
 import javafx.fxml.*;
 
 
-public class App extends Application{
+public class App extends Application {
     public static void main(String[] args) {
 //        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 //        EntityManager em = emf.createEntityManager();
-
 //        System.out.println("Start a hibernate test");
 //
 //        em.getTransaction().begin();
