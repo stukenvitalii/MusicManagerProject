@@ -58,6 +58,8 @@
             </AnchorPane>
         </ScrollPane>
         <TextField fx:id="searchField" promptText="Let's search..."/>
+
+
         <Button fx:id="searchButton" text="Search">
             <graphic>
                 <ImageView>
