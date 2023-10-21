@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-@Table(name = "groups")
+@Table(name = "my_groups")
 public class Group {
 
     private Integer id;
