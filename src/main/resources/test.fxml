@@ -45,14 +45,14 @@
         </HBox>
         <ScrollPane prefHeight="600.0" prefWidth="800.0">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                <TableView prefHeight="358.4" prefWidth="602.4" AnchorPane.bottomAnchor="0.0"
+                <TableView fx:id="groupTableView" prefHeight="358.4" prefWidth="602.4" AnchorPane.bottomAnchor="0.0"
                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                            AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="GroupName"/>
-                        <TableColumn prefWidth="114" text="YearOfFoundation"/>
-                        <TableColumn prefWidth="75.0" text="Genre"/>
-                        <TableColumn prefWidth="75.0" text="Members"/>
+                        <TableColumn fx:id="groupNameColumn" prefWidth="75.0" text="GroupName"/>
+                        <TableColumn fx:id="groupYearOfFoundationColumn" prefWidth="114" text="YearOfFoundation"/>
+                        <TableColumn fx:id="groupMainGenreColumn" prefWidth="75.0" text="Genre"/>
+                        <TableColumn fx:id="groupPlaceInChartColumn" prefWidth="75.0" text="Place in chart"/>
                     </columns>
                 </TableView>
             </AnchorPane>

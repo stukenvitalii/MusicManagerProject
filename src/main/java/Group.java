@@ -1,4 +1,5 @@
 import jakarta.persistence.*;
+import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class Group {
     public void setRepertoire(List<Song> repertoire) {
         this.repertoire = repertoire;
     }
-    @Transient
+    @Column(name = "group_place_in_chart")
     public Integer getPlaceInChart() {
         return placeInChart;
     }
@@ -67,7 +68,7 @@ public class Group {
         return currentTour;
     }
     public void setCurrentTour(Tour currentTour) {this.currentTour = currentTour;}
-    @Transient
+    @Column(name = "group_main_genre")
     public String getMainGenre() {
         return mainGenre;
     }
