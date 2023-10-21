@@ -1,1 +1,1 @@
-# Lab1 OOP ETU LETI
+# Labs OOP ETU LETI
