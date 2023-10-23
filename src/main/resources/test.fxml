@@ -49,10 +49,11 @@
                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                            AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn fx:id="groupNameColumn" prefWidth="75.0" text="GroupName"/>
-                        <TableColumn fx:id="groupYearOfFoundationColumn" prefWidth="114" text="YearOfFoundation"/>
-                        <TableColumn fx:id="groupMainGenreColumn" prefWidth="75.0" text="Genre"/>
-                        <TableColumn fx:id="groupPlaceInChartColumn" prefWidth="75.0" text="Place in chart"/>
+                        <TableColumn fx:id="groupId" prefWidth="75" text="ID"/>
+                        <TableColumn fx:id="groupNameColumn" prefWidth="150" text="GroupName"/>
+                        <TableColumn fx:id="groupYearOfFoundationColumn" prefWidth="150" text="YearOfFoundation"/>
+                        <TableColumn fx:id="groupMainGenreColumn" prefWidth="75" text="Genre"/>
+                        <TableColumn fx:id="groupPlaceInChartColumn" prefWidth="100" text="Place in chart"/>
                     </columns>
                 </TableView>
             </AnchorPane>

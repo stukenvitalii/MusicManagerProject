@@ -8,8 +8,11 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.apache.velocity.exception.ParseErrorException;
+
 import java.util.List;
 
 public class AppController {
@@ -41,6 +44,8 @@ public class AppController {
     @FXML
     private TableColumn<Group,Integer> groupPlaceInChartColumn;
     @FXML
+    private TableColumn<Group,Integer> groupId;
+    @FXML
     private ObservableList<Group> data = FXCollections.observableArrayList();
 
     @FXML
@@ -59,7 +64,7 @@ public class AppController {
             entityManager.getTransaction().commit();
             entityManager.close();
             groupTableView.setItems(data);
-
+            groupId.setCellValueFactory(new PropertyValueFactory<>("id"));
             groupNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
             groupYearOfFoundationColumn.setCellValueFactory(new PropertyValueFactory<>("yearOfFoundation"));
             groupMainGenreColumn.setCellValueFactory(new PropertyValueFactory<>("mainGenre"));
@@ -69,29 +74,30 @@ public class AppController {
 
     private void addBand() {
         final String[] name = new String[1];
-        final Integer[] year = new Integer[1];
+        final String[] year = new String[1];
         final String[] genre = new String[1];
-        final Integer[] place = new Integer[1];
-        // logic for adding a band
+        final String[] place = new String[1];
+
         Stage newStage = new Stage();
+        newStage.getIcons().add(new Image("icons/add_group.png"));
         System.out.println("Adding band...");
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(10));
         gridPane.setHgap(10);
         gridPane.setVgap(10);
-        Scene scene = new Scene(gridPane, 400, 300);
+        Scene scene = new Scene(gridPane, 300, 200);
 
         // Create labels and text fields for each form
         Label nameLabel = new Label("Name:");
         TextField nameTextField = new TextField();
 
-        Label yearLabel = new Label("Year:");
+        Label yearLabel = new Label("Year of Foundation:");
         TextField yearTextField = new TextField();
 
         Label genreLabel = new Label("Genre:");
         TextField genreTextField = new TextField();
 
-        Label placeLabel = new Label("Place:");
+        Label placeLabel = new Label("Place in chart:");
         TextField placeTextField = new TextField();
         Button okButton = new Button("OK");
 
@@ -109,15 +115,31 @@ public class AppController {
         gridPane.add(placeTextField, 1, 3);
 
         gridPane.add(okButton,1,4);
-        // Set event handlers to save the entered text to variables
+
         okButton.setOnAction(event -> {
-            name[0] = nameTextField.getText();
-            year[0] = Integer.valueOf(yearTextField.getText());
-            genre[0] = genreTextField.getText();
-            place[0] = Integer.valueOf(placeTextField.getText());
-            saveBandToDB(name[0],year[0],genre[0],place[0]);
-            newStage.close();
+            try {
+                name[0] = validateInput(nameTextField.getText(), "Name");
+                year[0] = validateInput(yearTextField.getText(), "Year of foundation");
+                genre[0] = validateInput(genreTextField.getText(), "Genre");
+                place[0] = validateInput(placeTextField.getText(), "Place in chart");
+                saveBandToDB(name[0],Integer.valueOf(year[0]),genre[0],Integer.valueOf(place[0]));
+                newStage.close();
+            } catch (IllegalArgumentException iae) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Input error");
+                alert.setHeaderText(null);
+                alert.setContentText(iae.getMessage());
+                alert.showAndWait();
+            }
+            catch (NumberFormatException nfe) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Wrong number format");
+                alert.setHeaderText(null);
+                alert.setContentText("Error: " + nfe.getMessage().toLowerCase());
+                alert.showAndWait();
+            }
         });
+
         newStage.setScene(scene);
         newStage.setTitle("Add Band");
         newStage.show();
@@ -127,7 +149,7 @@ public class AppController {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
 
-        System.out.println("Savin new band to DataBase");
+        System.out.println("Saving new band to DataBase");
 
         em.getTransaction().begin();
         Group gr = new Group();
@@ -138,8 +160,12 @@ public class AppController {
         em.persist(gr);
         em.getTransaction().commit();
         initialize();
-        System.out.println("Band saved successfully!");
-        System.out.println("New group ID is: " + gr.getId());
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success!");
+        alert.setHeaderText(null);
+        alert.setContentText("Band successfully added, " + "id is " + gr.getId());
+        alert.showAndWait();
     }
     private void removeBand() {
         // logic for removing a band
@@ -156,5 +182,17 @@ public class AppController {
     private void showList() {
         // logic for showing List of bands
         System.out.println("Showing list of bands...");
+    }
+
+    public static class IllegalArgumentException extends Exception {
+        public IllegalArgumentException(String message) {
+            super(message);
+        }
+    }
+    private String validateInput(String input, String fieldName) throws IllegalArgumentException {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("Field " + fieldName + " is empty. Try again.");
+        }
+        return input;
     }
 }
