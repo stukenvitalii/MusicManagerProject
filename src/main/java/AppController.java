@@ -11,8 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import org.apache.velocity.exception.ParseErrorException;
-
 import java.util.List;
 
 public class AppController {
@@ -55,22 +53,14 @@ public class AppController {
         saveButton.setOnAction((event -> save()));
         searchButton.setOnAction(event -> search());
         listButton.setOnAction(event -> showList());
-
-        try (EntityManager entityManager = Persistence.createEntityManagerFactory("test").createEntityManager()) {
+        try(EntityManager entityManager = Persistence.createEntityManagerFactory("test").createEntityManager()) {
             entityManager.getTransaction().begin();
             List<Group> groups = entityManager.createQuery("from Group",Group.class).getResultList();
             data.clear();
             data.addAll(groups);
             entityManager.getTransaction().commit();
-            entityManager.close();
-            groupTableView.setItems(data);
-            groupId.setCellValueFactory(new PropertyValueFactory<>("id"));
-            groupNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-            groupYearOfFoundationColumn.setCellValueFactory(new PropertyValueFactory<>("yearOfFoundation"));
-            groupMainGenreColumn.setCellValueFactory(new PropertyValueFactory<>("mainGenre"));
-            groupPlaceInChartColumn.setCellValueFactory(new PropertyValueFactory<>("placeInChart"));
-            }
         }
+    }
 
     private void addBand() {
         final String[] name = new String[1];
@@ -122,20 +112,20 @@ public class AppController {
                 year[0] = validateInput(yearTextField.getText(), "Year of foundation");
                 genre[0] = validateInput(genreTextField.getText(), "Genre");
                 place[0] = validateInput(placeTextField.getText(), "Place in chart");
-                saveBandToDB(name[0],Integer.valueOf(year[0]),genre[0],Integer.valueOf(place[0]));
+                saveBandToDB(name[0], Integer.valueOf(year[0]), genre[0], Integer.valueOf(place[0]));
                 newStage.close();
-            } catch (IllegalArgumentException iae) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Input error");
-                alert.setHeaderText(null);
-                alert.setContentText(iae.getMessage());
-                alert.showAndWait();
-            }
-            catch (NumberFormatException nfe) {
+            }catch (NumberFormatException nfe) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Wrong number format");
                 alert.setHeaderText(null);
                 alert.setContentText("Error: " + nfe.getMessage().toLowerCase());
+                alert.showAndWait();
+            }
+            catch (IllegalArgumentException iae) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Input error");
+                alert.setHeaderText(null);
+                alert.setContentText(iae.getMessage());
                 alert.showAndWait();
             }
         });
@@ -168,20 +158,24 @@ public class AppController {
         alert.showAndWait();
     }
     private void removeBand() {
-        // logic for removing a band
+        // TODO add logic for removing
         System.out.println("Removing band...");
     }
     private void save() {
-        // logic for saving everything
+        // TODO add logic for saving
         System.out.println("Saving...");
     }
     private void search() {
-        // logic for searching
+        // TODO add logic for searching
         System.out.println("Searching...");
     }
     private void showList() {
-        // logic for showing List of bands
-        System.out.println("Showing list of bands...");
+        groupTableView.setItems(data);
+        groupId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        groupNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        groupYearOfFoundationColumn.setCellValueFactory(new PropertyValueFactory<>("yearOfFoundation"));
+        groupMainGenreColumn.setCellValueFactory(new PropertyValueFactory<>("mainGenre"));
+        groupPlaceInChartColumn.setCellValueFactory(new PropertyValueFactory<>("placeInChart"));
     }
 
     public static class IllegalArgumentException extends Exception {
