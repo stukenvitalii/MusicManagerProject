@@ -10,7 +10,20 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AppController {
@@ -25,6 +38,8 @@ public class AppController {
     private Button removeButton;
     @FXML
     private Button saveButton;
+    @FXML
+    private Button importXMLbutton;
     @FXML
     private Label bandInfoLabel;
     @FXML
@@ -53,6 +68,14 @@ public class AppController {
         saveButton.setOnAction((event -> save()));
         searchButton.setOnAction(event -> search());
         listButton.setOnAction(event -> showList());
+        importXMLbutton.setOnAction(event -> {
+            try {
+                importXML();
+            } catch (ParserConfigurationException | SAXException | IOException e) {
+                System.out.println(e.getMessage());
+            }
+        });
+
         try(EntityManager entityManager = Persistence.createEntityManagerFactory("test").createEntityManager()) {
             entityManager.getTransaction().begin();
             List<Group> groups = entityManager.createQuery("from Group",Group.class).getResultList();
@@ -60,6 +83,7 @@ public class AppController {
             data.addAll(groups);
             entityManager.getTransaction().commit();
         }
+
     }
 
     private void addBand() {
@@ -112,7 +136,12 @@ public class AppController {
                 year[0] = validateInput(yearTextField.getText(), "Year of foundation");
                 genre[0] = validateInput(genreTextField.getText(), "Genre");
                 place[0] = validateInput(placeTextField.getText(), "Place in chart");
-                saveBandToDB(name[0], Integer.valueOf(year[0]), genre[0], Integer.valueOf(place[0]));
+                Group newGroup = new Group();
+                newGroup.setName(name[0]);
+                newGroup.setYearOfFoundation(Integer.valueOf(year[0]));
+                newGroup.setMainGenre(genre[0]);
+                newGroup.setPlaceInChart(Integer.valueOf(place[0]));
+                saveBandToDB(newGroup);
                 newStage.close();
             }catch (NumberFormatException nfe) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -135,26 +164,21 @@ public class AppController {
         newStage.show();
 
     }
-    private void saveBandToDB(String name,Integer year,String genre,Integer place) {
+    private void saveBandToDB(Group group) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
 
         System.out.println("Saving new band to DataBase");
 
         em.getTransaction().begin();
-        Group gr = new Group();
-        gr.setName(name);
-        gr.setYearOfFoundation(year);
-        gr.setMainGenre(genre);
-        gr.setPlaceInChart(place);
-        em.persist(gr);
+        em.persist(group);
         em.getTransaction().commit();
         initialize();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success!");
         alert.setHeaderText(null);
-        alert.setContentText("Band successfully added, " + "id is " + gr.getId());
+        alert.setContentText("Band " + group.getName() + " successfully added, " + "id is " + group.getId());
         alert.showAndWait();
     }
     private void removeBand() {
@@ -189,4 +213,60 @@ public class AppController {
         }
         return input;
     }
+
+    public void importXML() throws ParserConfigurationException, IOException, SAXException {
+        Stage chooseFileStage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open XML File");
+        File xml = fileChooser.showOpenDialog(chooseFileStage);
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = factory.newDocumentBuilder();
+        Document document = documentBuilder.parse(xml);
+
+        NodeList groupsNodeList = document.getElementsByTagName("group");
+
+
+        for (int i = 0; i < groupsNodeList.getLength(); i++) {
+            Group group = new Group();
+            if(groupsNodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                Element groupElement = (Element) groupsNodeList.item(i);
+
+                NodeList childNodes = groupElement.getChildNodes();
+                for (int j = 0; j < childNodes.getLength(); j++) {
+
+                    if(childNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                        Element childElement = (Element) childNodes.item(j);
+                        switch (childElement.getNodeName()) {
+                            case "name": {
+                                group.setName(childElement.getTextContent());
+                                break;
+                            }
+
+                            case "yearOfFoundation": {
+                                group.setYearOfFoundation(Integer.valueOf(childElement.getTextContent()));
+                                break;
+                            }
+
+                            case "genre": {
+                                group.setMainGenre(childElement.getTextContent());
+                                break;
+                            }
+
+                            case "place": {
+                                group.setPlaceInChart(Integer.valueOf(childElement.getTextContent()));
+                                break;
+                            }
+
+                            default:
+                                System.out.println("Something is wrong");
+                        }
+                    }
+
+                }
+            }
+            saveBandToDB(group);
+        }
+    }
+
+
 }

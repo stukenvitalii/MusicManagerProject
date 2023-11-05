@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data>
+    <groups>
+        <group id="1">
+            <name>пися</name>
+            <yearOfFoundation>2004</yearOfFoundation>
+            <genre>секс</genre>
+            <place>1</place>
+        </group>
+        <group id="2">
+            <name>попа</name>
+            <yearOfFoundation>2004</yearOfFoundation>
+            <genre>химия</genre>
+            <place>2</place>
+        </group>
+    </groups>
+</data>
