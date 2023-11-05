@@ -21,7 +21,7 @@
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="addButton" text="Add band">
+            <Button fx:id="addButton" text="Add group">
                 <graphic>
                     <ImageView>
                         <Image url="@icons/add_icon.png"/>
@@ -45,7 +45,14 @@
             <Button fx:id="importXMLbutton" text="Import XML">
                 <graphic>
                     <ImageView>
-                        <Image url="@icons/list_icon.png"/>
+                        <Image url="@icons/import_xml_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="exportXMLbutton" text="Export XML">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/export_xml_icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>

@@ -12,18 +12,20 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AppController {
@@ -41,30 +43,27 @@ public class AppController {
     @FXML
     private Button importXMLbutton;
     @FXML
-    private Label bandInfoLabel;
-    @FXML
-    private ListView<String> membersListView;
-    @FXML
-    private ListView<String> tourListView;
+    private Button exportXMLbutton;
     @FXML
     private TableView<Group> groupTableView;
     @FXML
-    private TableColumn<Group,String> groupNameColumn;
+    private TableColumn<Group, String> groupNameColumn;
     @FXML
-    private TableColumn<Group,Integer> groupYearOfFoundationColumn;
+    private TableColumn<Group, Integer> groupYearOfFoundationColumn;
     @FXML
-    private TableColumn<Group,String> groupMainGenreColumn;
+    private TableColumn<Group, String> groupMainGenreColumn;
     @FXML
-    private TableColumn<Group,Integer> groupPlaceInChartColumn;
+    private TableColumn<Group, Integer> groupPlaceInChartColumn;
     @FXML
-    private TableColumn<Group,Integer> groupId;
+    private TableColumn<Group, Integer> groupId;
     @FXML
     private ObservableList<Group> data = FXCollections.observableArrayList();
+    List<Group> groups;
 
     @FXML
     public void initialize() {
-        addButton.setOnAction(event -> addBand());
-        removeButton.setOnAction(event -> removeBand());
+        addButton.setOnAction(event -> addGroup());
+        removeButton.setOnAction(event -> removeGroup());
         saveButton.setOnAction((event -> save()));
         searchButton.setOnAction(event -> search());
         listButton.setOnAction(event -> showList());
@@ -75,10 +74,21 @@ public class AppController {
                 System.out.println(e.getMessage());
             }
         });
-
-        try(EntityManager entityManager = Persistence.createEntityManagerFactory("test").createEntityManager()) {
+        exportXMLbutton.setOnAction(event -> {
+            try {
+                exportXML(groups);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success!");
+                alert.setHeaderText(null);
+                alert.setContentText("XML file {groups.xml} successfully exported!");
+                alert.showAndWait();
+            } catch (ParserConfigurationException | TransformerException | IOException e) {
+                System.out.println(e.getMessage());
+            }
+        });
+        try (EntityManager entityManager = Persistence.createEntityManagerFactory("test").createEntityManager()) {
             entityManager.getTransaction().begin();
-            List<Group> groups = entityManager.createQuery("from Group",Group.class).getResultList();
+            groups = entityManager.createQuery("from Group", Group.class).getResultList();
             data.clear();
             data.addAll(groups);
             entityManager.getTransaction().commit();
@@ -86,7 +96,7 @@ public class AppController {
 
     }
 
-    private void addBand() {
+    private void addGroup() {
         final String[] name = new String[1];
         final String[] year = new String[1];
         final String[] genre = new String[1];
@@ -101,7 +111,6 @@ public class AppController {
         gridPane.setVgap(10);
         Scene scene = new Scene(gridPane, 300, 200);
 
-        // Create labels and text fields for each form
         Label nameLabel = new Label("Name:");
         TextField nameTextField = new TextField();
 
@@ -128,7 +137,7 @@ public class AppController {
         gridPane.add(placeLabel, 0, 3);
         gridPane.add(placeTextField, 1, 3);
 
-        gridPane.add(okButton,1,4);
+        gridPane.add(okButton, 1, 4);
 
         okButton.setOnAction(event -> {
             try {
@@ -141,16 +150,15 @@ public class AppController {
                 newGroup.setYearOfFoundation(Integer.valueOf(year[0]));
                 newGroup.setMainGenre(genre[0]);
                 newGroup.setPlaceInChart(Integer.valueOf(place[0]));
-                saveBandToDB(newGroup);
+                saveGroupToDB(newGroup);
                 newStage.close();
-            }catch (NumberFormatException nfe) {
+            } catch (NumberFormatException nfe) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Wrong number format");
                 alert.setHeaderText(null);
                 alert.setContentText("Error: " + nfe.getMessage().toLowerCase());
                 alert.showAndWait();
-            }
-            catch (IllegalArgumentException iae) {
+            } catch (IllegalArgumentException iae) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input error");
                 alert.setHeaderText(null);
@@ -164,7 +172,8 @@ public class AppController {
         newStage.show();
 
     }
-    private void saveBandToDB(Group group) {
+
+    private void saveGroupToDB(Group group) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
 
@@ -181,18 +190,22 @@ public class AppController {
         alert.setContentText("Band " + group.getName() + " successfully added, " + "id is " + group.getId());
         alert.showAndWait();
     }
-    private void removeBand() {
+
+    private void removeGroup() {
         // TODO add logic for removing
         System.out.println("Removing band...");
     }
+
     private void save() {
         // TODO add logic for saving
         System.out.println("Saving...");
     }
+
     private void search() {
         // TODO add logic for searching
         System.out.println("Searching...");
     }
+
     private void showList() {
         groupTableView.setItems(data);
         groupId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -207,6 +220,7 @@ public class AppController {
             super(message);
         }
     }
+
     private String validateInput(String input, String fieldName) throws IllegalArgumentException {
         if (input.isEmpty()) {
             throw new IllegalArgumentException("Field " + fieldName + " is empty. Try again.");
@@ -219,54 +233,48 @@ public class AppController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open XML File");
         File xml = fileChooser.showOpenDialog(chooseFileStage);
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = factory.newDocumentBuilder();
-        Document document = documentBuilder.parse(xml);
+
+        DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        Document document = dBuilder.parse(xml);
+
+        document.getDocumentElement().normalize();
 
         NodeList groupsNodeList = document.getElementsByTagName("group");
 
+        for (int temp = 0; temp < groupsNodeList.getLength(); temp++) {
+            Node elem = groupsNodeList.item(temp);
+            NamedNodeMap attributes = elem.getAttributes();
+            String name = attributes.getNamedItem("name").getNodeValue();
+            String yearOfFoundation = attributes.getNamedItem("yearOfFoundation").getNodeValue();
+            String genre = attributes.getNamedItem("genre").getNodeValue();
+            String place = attributes.getNamedItem("place").getNodeValue();
 
-        for (int i = 0; i < groupsNodeList.getLength(); i++) {
             Group group = new Group();
-            if(groupsNodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                Element groupElement = (Element) groupsNodeList.item(i);
-
-                NodeList childNodes = groupElement.getChildNodes();
-                for (int j = 0; j < childNodes.getLength(); j++) {
-
-                    if(childNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
-                        Element childElement = (Element) childNodes.item(j);
-                        switch (childElement.getNodeName()) {
-                            case "name": {
-                                group.setName(childElement.getTextContent());
-                                break;
-                            }
-
-                            case "yearOfFoundation": {
-                                group.setYearOfFoundation(Integer.valueOf(childElement.getTextContent()));
-                                break;
-                            }
-
-                            case "genre": {
-                                group.setMainGenre(childElement.getTextContent());
-                                break;
-                            }
-
-                            case "place": {
-                                group.setPlaceInChart(Integer.valueOf(childElement.getTextContent()));
-                                break;
-                            }
-
-                            default:
-                                System.out.println("Something is wrong");
-                        }
-                    }
-
-                }
-            }
-            saveBandToDB(group);
+            group.setName(name);
+            group.setYearOfFoundation(Integer.valueOf(yearOfFoundation));
+            group.setMainGenre(genre);
+            group.setPlaceInChart(Integer.valueOf(place));
+            saveGroupToDB(group);
         }
     }
 
 
+    public void exportXML(List<Group> groupsSaved) throws ParserConfigurationException, IOException, TransformerException {
+        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        Document document = builder.newDocument();
+        Node groupsList = document.createElement("groups");
+        document.appendChild(groupsList);
+        for (Group group : groupsSaved) {
+            Element groupEl = document.createElement("group");
+            groupsList.appendChild(groupEl);
+            groupEl.setAttribute("name", group.getName());
+            groupEl.setAttribute("yearOfFoundation", group.getYearOfFoundation().toString());
+            groupEl.setAttribute("genre", group.getMainGenre());
+            groupEl.setAttribute("place", group.getPlaceInChart().toString());
+        }
+        Transformer trans = TransformerFactory.newInstance().newTransformer();
+        try(FileWriter fileWriter = new FileWriter("groups.xml")) {
+            trans.transform(new DOMSource(document), new StreamResult(fileWriter));
+        }
+    }
 }
