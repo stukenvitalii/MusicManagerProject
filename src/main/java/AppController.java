@@ -14,7 +14,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -26,12 +25,12 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AppController {
-    public Button listButton;
     @FXML
-    private TextField searchField;
+    public Button listButton;
     @FXML
     private Button searchButton;
     @FXML
@@ -58,7 +57,7 @@ public class AppController {
     private TableColumn<Group, Integer> groupId;
     @FXML
     private ObservableList<Group> data = FXCollections.observableArrayList();
-    List<Group> groups;
+    List<Group> groups = new ArrayList<>();
 
     @FXML
     public void initialize() {
@@ -241,8 +240,8 @@ public class AppController {
 
         NodeList groupsNodeList = document.getElementsByTagName("group");
 
-        for (int temp = 0; temp < groupsNodeList.getLength(); temp++) {
-            Node elem = groupsNodeList.item(temp);
+        for (int i = 0; i < groupsNodeList.getLength(); i++) {
+            Node elem = groupsNodeList.item(i);
             NamedNodeMap attributes = elem.getAttributes();
             String name = attributes.getNamedItem("name").getNodeValue();
             String yearOfFoundation = attributes.getNamedItem("yearOfFoundation").getNodeValue();
