@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<groups>
+    <group genre="Rock" name="Rolling Stones" place="3" yearOfFoundation="1962"/>
+    <group genre="Rock" name="Pink Floyd" place="1" yearOfFoundation="1965"/>
+    <group genre="Rock" name="Picnic" place="2" yearOfFoundation="1978"/>
+    <group genre="Rock" name="Led Zepellin" place="4" yearOfFoundation="1968"/>
+    <group genre="Prog rock" name="Tool" place="5" yearOfFoundation="1990"/>
+    <group genre="Alt Rock" name="Linkin Park" place="8" yearOfFoundation="1996"/>
+    <group genre="Alt Metal" name="System Of a Down" place="6" yearOfFoundation="1994"/>
+    <group genre="Black metal" name="Burzum" place="10" yearOfFoundation="1991"/>
+    <group genre="Black metal" name="Ulver" place="11" yearOfFoundation="1993"/>
+</groups>
