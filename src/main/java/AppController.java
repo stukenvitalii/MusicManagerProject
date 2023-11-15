@@ -44,6 +44,8 @@ public class AppController {
     @FXML
     private Button exportXMLbutton;
     @FXML
+    private Button generateReport;
+    @FXML
     private TableView<Group> groupTableView;
     @FXML
     private TableColumn<Group, String> groupNameColumn;
@@ -84,6 +86,14 @@ public class AppController {
             } catch (ParserConfigurationException | TransformerException | IOException e) {
                 System.out.println(e.getMessage());
             }
+        });
+        generateReport.setOnAction(event -> {
+            new XMLtoPDFReporter().createReport("groups.xml");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success!");
+            alert.setHeaderText(null);
+            alert.setContentText("Report file {report.pdf} created");
+            alert.showAndWait();
         });
         try (EntityManager entityManager = Persistence.createEntityManagerFactory("test").createEntityManager()) {
             entityManager.getTransaction().begin();

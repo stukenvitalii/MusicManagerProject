@@ -56,6 +56,13 @@
                     </ImageView>
                 </graphic>
             </Button>
+            <Button fx:id="generateReport" text="Generate report">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/generate_report.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
         </HBox>
         <ScrollPane prefHeight="600.0" prefWidth="800.0">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">

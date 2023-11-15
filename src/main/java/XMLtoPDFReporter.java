@@ -4,16 +4,21 @@ import net.sf.jasperreports.engine.export.HtmlExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.export.*;
 import net.sf.jasperreports.view.JasperViewer;
-public class XMLtoPDFReporter{
-        static String outputFilePath = "./reports/report.html";
 
-        public void createReport(String dataFilePath) throws Exception
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class XMLtoPDFReporter{
+        static String outputFilePath = "./reports/report.pdf";
+
+        public void createReport(String dataFilePath)
         {
             try {
                 JRXmlDataSource dataSource = new JRXmlDataSource(dataFilePath, "/groups/group");
                 JasperReport jasperReport = JasperCompileManager.compileReport("./jrxml/report4.jrxml");
                 JasperPrint print = JasperFillManager.fillReport(jasperReport, null, dataSource);
-                if (outputFilePath.toLowerCase().endsWith("html")) {
+                if (outputFilePath.toLowerCase().endsWith("pdf")) {
                     JRPdfExporter exporter = new JRPdfExporter();
                     exporter.setExporterInput(new SimpleExporterInput(print));
                     exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputFilePath));

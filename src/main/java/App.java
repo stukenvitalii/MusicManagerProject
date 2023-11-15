@@ -8,8 +8,7 @@ import java.util.Objects;
 import javafx.fxml.*;
 
 public class App extends Application {
-    public static void main(String[] args) throws Exception {
-        new XMLtoPDFReporter().createReport("groups.xml");
+    public static void main(String[] args) {
         launch(args);
     }
 
