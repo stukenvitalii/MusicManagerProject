@@ -38,8 +38,6 @@ public class AppController {
     @FXML
     private Button removeButton;
     @FXML
-    private Button saveButton;
-    @FXML
     private Button importXMLbutton;
     @FXML
     private Button exportXMLbutton;
@@ -65,7 +63,6 @@ public class AppController {
     public void initialize() {
         addButton.setOnAction(event -> addGroup());
         removeButton.setOnAction(event -> removeGroup());
-        saveButton.setOnAction((event -> save()));
         searchButton.setOnAction(event -> search());
         listButton.setOnAction(event -> showList());
         importXMLbutton.setOnAction(event -> {
@@ -203,11 +200,6 @@ public class AppController {
     private void removeGroup() {
         // TODO add logic for removing
         System.out.println("Removing band...");
-    }
-
-    private void save() {
-        // TODO add logic for saving
-        System.out.println("Saving...");
     }
 
     private void search() {

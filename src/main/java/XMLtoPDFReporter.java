@@ -5,12 +5,8 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.export.*;
 import net.sf.jasperreports.view.JasperViewer;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 public class XMLtoPDFReporter{
-        static String outputFilePath = "./reports/report.pdf";
+        static String outputFilePath = "./reports/report.html";
 
         public void createReport(String dataFilePath)
         {
