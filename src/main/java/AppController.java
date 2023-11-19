@@ -1,6 +1,3 @@
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,20 +7,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.w3c.dom.*;
 import org.xml.sax.SAXException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,39 +54,25 @@ public class AppController {
         listButton.setOnAction(event -> showList());
         importXMLbutton.setOnAction(event -> {
             try {
-                importXML();
+                XMLfilesHandler.importXML(this);
             } catch (ParserConfigurationException | SAXException | IOException e) {
                 System.out.println(e.getMessage());
             }
         });
         exportXMLbutton.setOnAction(event -> {
             try {
-                exportXML(groups);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success!");
-                alert.setHeaderText(null);
-                alert.setContentText("XML file {groups.xml} successfully exported!");
-                alert.showAndWait();
+                XMLfilesHandler.exportXML(groups);
+                AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION,"Success!",null,"XML file {groups.xml} successfully exported!");
             } catch (ParserConfigurationException | TransformerException | IOException e) {
                 System.out.println(e.getMessage());
             }
         });
         generateReport.setOnAction(event -> {
-            new XMLtoPDFReporter().createReport("groups.xml");
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success!");
-            alert.setHeaderText(null);
-            alert.setContentText("Report file {report.pdf} created");
-            alert.showAndWait();
-        });
-        try (EntityManager entityManager = Persistence.createEntityManagerFactory("test").createEntityManager()) {
-            entityManager.getTransaction().begin();
-            groups = entityManager.createQuery("from Group", Group.class).getResultList();
-            data.clear();
-            data.addAll(groups);
-            entityManager.getTransaction().commit();
-        }
+            XMLtoPDFReporter.createReport("groups.xml");
+            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION,"Success!",null,"Report file {report.pdf} created");
 
+        });
+        DataBaseHandler.getDataFromDB("test",groups,data);
     }
 
     private void addGroup() {
@@ -130,7 +103,6 @@ public class AppController {
         TextField placeTextField = new TextField();
         Button okButton = new Button("OK");
 
-        // Add labels and text fields to the grid pane
         gridPane.add(nameLabel, 0, 0);
         gridPane.add(nameTextField, 1, 0);
 
@@ -156,20 +128,13 @@ public class AppController {
                 newGroup.setYearOfFoundation(Integer.valueOf(year[0]));
                 newGroup.setMainGenre(genre[0]);
                 newGroup.setPlaceInChart(Integer.valueOf(place[0]));
-                saveGroupToDB(newGroup);
+                DataBaseHandler.saveGroupToDB(newGroup,this);
                 newStage.close();
             } catch (NumberFormatException nfe) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Wrong number format");
-                alert.setHeaderText(null);
-                alert.setContentText("Error: " + nfe.getMessage().toLowerCase());
-                alert.showAndWait();
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR,"Wrong number format!",null,"Error: " + nfe.getMessage().toLowerCase());
+
             } catch (IllegalArgumentException iae) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Input error");
-                alert.setHeaderText(null);
-                alert.setContentText(iae.getMessage());
-                alert.showAndWait();
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR,"Input Error!",null,iae.getMessage());
             }
         });
 
@@ -178,25 +143,6 @@ public class AppController {
         newStage.show();
 
     }
-
-    private void saveGroupToDB(Group group) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
-
-        System.out.println("Saving new band to DataBase");
-
-        em.getTransaction().begin();
-        em.persist(group);
-        em.getTransaction().commit();
-        initialize();
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success!");
-        alert.setHeaderText(null);
-        alert.setContentText("Band " + group.getName() + " successfully added, " + "id is " + group.getId());
-        alert.showAndWait();
-    }
-
     private void removeGroup() {
         // TODO add logic for removing
         System.out.println("Removing band...");
@@ -227,55 +173,5 @@ public class AppController {
             throw new IllegalArgumentException("Field " + fieldName + " is empty. Try again.");
         }
         return input;
-    }
-
-    public void importXML() throws ParserConfigurationException, IOException, SAXException {
-        Stage chooseFileStage = new Stage();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open XML File");
-        File xml = fileChooser.showOpenDialog(chooseFileStage);
-
-        DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document document = dBuilder.parse(xml);
-
-        document.getDocumentElement().normalize();
-
-        NodeList groupsNodeList = document.getElementsByTagName("group");
-
-        for (int i = 0; i < groupsNodeList.getLength(); i++) {
-            Node elem = groupsNodeList.item(i);
-            NamedNodeMap attributes = elem.getAttributes();
-            String name = attributes.getNamedItem("name").getNodeValue();
-            String yearOfFoundation = attributes.getNamedItem("yearOfFoundation").getNodeValue();
-            String genre = attributes.getNamedItem("genre").getNodeValue();
-            String place = attributes.getNamedItem("place").getNodeValue();
-
-            Group group = new Group();
-            group.setName(name);
-            group.setYearOfFoundation(Integer.valueOf(yearOfFoundation));
-            group.setMainGenre(genre);
-            group.setPlaceInChart(Integer.valueOf(place));
-            saveGroupToDB(group);
-        }
-    }
-
-
-    public void exportXML(List<Group> groupsSaved) throws ParserConfigurationException, IOException, TransformerException {
-        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document document = builder.newDocument();
-        Node groupsList = document.createElement("groups");
-        document.appendChild(groupsList);
-        for (Group group : groupsSaved) {
-            Element groupEl = document.createElement("group");
-            groupsList.appendChild(groupEl);
-            groupEl.setAttribute("name", group.getName());
-            groupEl.setAttribute("yearOfFoundation", group.getYearOfFoundation().toString());
-            groupEl.setAttribute("genre", group.getMainGenre());
-            groupEl.setAttribute("place", group.getPlaceInChart().toString());
-        }
-        Transformer trans = TransformerFactory.newInstance().newTransformer();
-        try(FileWriter fileWriter = new FileWriter("groups.xml")) {
-            trans.transform(new DOMSource(document), new StreamResult(fileWriter));
-        }
     }
 }

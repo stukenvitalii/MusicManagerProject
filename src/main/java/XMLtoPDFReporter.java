@@ -8,7 +8,7 @@ import net.sf.jasperreports.view.JasperViewer;
 public class XMLtoPDFReporter{
         static String outputFilePath = "./reports/report.html";
 
-        public void createReport(String dataFilePath)
+        public static void createReport(String dataFilePath)
         {
             try {
                 JRXmlDataSource dataSource = new JRXmlDataSource(dataFilePath, "/groups/group");
