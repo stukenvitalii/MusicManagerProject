@@ -2,7 +2,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -17,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class XMLfilesHandler {
-    public static void importXML(AppController appController) throws ParserConfigurationException, IOException, SAXException {
+    public static void importXML() throws ParserConfigurationException, IOException, SAXException {
         Stage chooseFileStage = new Stage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open XML File");
@@ -43,7 +42,7 @@ public class XMLfilesHandler {
             group.setYearOfFoundation(Integer.valueOf(yearOfFoundation));
             group.setMainGenre(genre);
             group.setPlaceInChart(Integer.valueOf(place));
-            DataBaseHandler.saveGroupToDB(group,appController);
+            DataBaseHandler.saveGroupToDB(group);
         }
     }
     public static void exportXML(List<Group> groupsSaved) throws ParserConfigurationException, IOException, TransformerException {

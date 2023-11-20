@@ -46,15 +46,17 @@ public class AppController {
     private ObservableList<Group> data = FXCollections.observableArrayList();
     List<Group> groups = new ArrayList<>();
 
+
     @FXML
     public void initialize() {
         addButton.setOnAction(event -> addGroup());
         removeButton.setOnAction(event -> removeGroup());
         searchButton.setOnAction(event -> search());
-        listButton.setOnAction(event -> showList());
+        listButton.setOnAction(event -> fillInTable(data));
+        removeButton.setOnAction(event -> removeGroup());
         importXMLbutton.setOnAction(event -> {
             try {
-                XMLfilesHandler.importXML(this);
+                XMLfilesHandler.importXML();
             } catch (ParserConfigurationException | SAXException | IOException e) {
                 System.out.println(e.getMessage());
             }
@@ -72,7 +74,8 @@ public class AppController {
             AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION,"Success!",null,"Report file {report.pdf} created");
 
         });
-        DataBaseHandler.getDataFromDB("test",groups,data);
+        DataBaseHandler.getDataFromDB("test", data);
+        groups = data;
     }
 
     private void addGroup() {
@@ -128,7 +131,8 @@ public class AppController {
                 newGroup.setYearOfFoundation(Integer.valueOf(year[0]));
                 newGroup.setMainGenre(genre[0]);
                 newGroup.setPlaceInChart(Integer.valueOf(place[0]));
-                DataBaseHandler.saveGroupToDB(newGroup,this);
+                DataBaseHandler.saveGroupToDB(newGroup);
+                initialize();
                 newStage.close();
             } catch (NumberFormatException nfe) {
                 AlertHandler.makeAlertWindow(Alert.AlertType.ERROR,"Wrong number format!",null,"Error: " + nfe.getMessage().toLowerCase());
@@ -144,16 +148,21 @@ public class AppController {
 
     }
     private void removeGroup() {
-        // TODO add logic for removing
-        System.out.println("Removing band...");
+        Group selectedGroup = groupTableView.getSelectionModel().getSelectedItem();
+        int selectedGroupId = selectedGroup.getId();
+        DataBaseHandler.deleteGroupById(selectedGroupId,data,"test");
+        AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION,"Deleted successfully",null,"Group " + selectedGroup.getName() + " was successfully delted from database!");
+        initialize();
     }
 
     private void search() {
-        // TODO add logic for searching
-        System.out.println("Searching...");
+        ObservableList<Group> resultData = FXCollections.observableArrayList();
+        ;
+        DataBaseHandler.selectDataFromDB("test", "group_main_genre", "Rock", resultData);
+        fillInTable(resultData);
     }
 
-    private void showList() {
+    private void fillInTable(ObservableList<Group> data) {
         groupTableView.setItems(data);
         groupId.setCellValueFactory(new PropertyValueFactory<>("id"));
         groupNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
