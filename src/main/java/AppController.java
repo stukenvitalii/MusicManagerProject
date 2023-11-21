@@ -1,5 +1,6 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -47,6 +48,10 @@ public class AppController {
     @FXML
     private TableColumn<Group, Integer> groupId;
     @FXML
+    private ComboBox<String> comboBoxParameters;
+    @FXML
+    private TextField searchField;
+    @FXML
     private ObservableList<Group> data = FXCollections.observableArrayList();
     List<Group> groups = new ArrayList<>();
 
@@ -79,6 +84,13 @@ public class AppController {
             AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION,"Success!",null,"Report file {report.pdf} created");
 
         });
+        comboBoxParameters.getItems().setAll(
+                "ID",
+                "Название",
+                "Год",
+                "Жанр",
+                "Место"
+        );
         DataBaseHandler.getDataFromDB("test", data);
         groups = data;
     }
@@ -239,10 +251,24 @@ public class AppController {
         });
     }
 
+    public String getSelectedFromComboBox() {
+        System.out.println(comboBoxParameters.getSelectionModel().getSelectedItem());
+        return comboBoxParameters.getSelectionModel().getSelectedItem();
+
+    }
     private void search() {
         ObservableList<Group> resultData = FXCollections.observableArrayList();
 
-        DataBaseHandler.selectDataFromDB("test", "group_main_genre", "Rock", resultData);
+        String selectedParameter = getSelectedFromComboBox();
+
+        Map<String,String> selectedParamMap = new HashMap<>();
+        selectedParamMap.put("ID","group_id");
+        selectedParamMap.put("Название","group_name");
+        selectedParamMap.put("Год","group_year_of_foundation");
+        selectedParamMap.put("Жанр","group_main_genre");
+        selectedParamMap.put("Место","group_place_in_chart");
+
+        DataBaseHandler.selectDataFromDB("test", selectedParamMap.get(selectedParameter), searchField.getText(), resultData);
         fillInTable(resultData);
     }
 
@@ -254,6 +280,7 @@ public class AppController {
         groupMainGenreColumn.setCellValueFactory(new PropertyValueFactory<>("mainGenre"));
         groupPlaceInChartColumn.setCellValueFactory(new PropertyValueFactory<>("placeInChart"));
     }
+
 
     public static class IllegalArgumentException extends Exception {
         public IllegalArgumentException(String message) {

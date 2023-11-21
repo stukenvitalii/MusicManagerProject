@@ -79,8 +79,11 @@
                 </TableView>
             </AnchorPane>
         </ScrollPane>
-        <TextField fx:id="searchField" promptText="Let's search..."/>
-        <Button fx:id="searchButton" text="Search">
+        <HBox>
+            <ComboBox fx:id="comboBoxParameters" onAction="#getSelectedFromComboBox" prefWidth="100.0"/>
+            <TextField fx:id="searchField" promptText="Let's search..." prefWidth="700.0"/>
+        </HBox>
+        <Button fx:id="searchButton" text="Search" prefWidth="100.0">
             <graphic>
                 <ImageView>
                     <Image url="icons/search_icon.png"/>

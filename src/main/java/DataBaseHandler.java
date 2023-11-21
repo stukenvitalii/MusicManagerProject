@@ -48,9 +48,13 @@ public class DataBaseHandler {
                 default -> null;
             };
 
-            resultData.clear();
-            assert groups != null;
-            resultData.addAll(groups);
+            if (groups == null) {
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR,"Error",null,"Group with " + parameter + " = " + value + "doesn't exist!");
+            }
+            else {
+                resultData.clear();
+                resultData.addAll(groups);
+            }
             entityManager.getTransaction().commit();
         }
     }
