@@ -1,6 +1,5 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -10,6 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
+
+import javax.script.Bindings;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
@@ -55,12 +56,11 @@ public class AppController {
     private ObservableList<Group> data = FXCollections.observableArrayList();
     List<Group> groups = new ArrayList<>();
 
-
     @FXML
     public void initialize() {
         addButton.setOnAction(event -> addGroup());
         removeButton.setOnAction(event -> removeGroup());
-        editButton.setOnAction(event ->  editInfo());
+        editButton.setOnAction(event -> editInfo());
         searchButton.setOnAction(event -> search());
         listButton.setOnAction(event -> fillInTable(data));
         removeButton.setOnAction(event -> removeGroup());
@@ -74,14 +74,14 @@ public class AppController {
         exportXMLbutton.setOnAction(event -> {
             try {
                 XMLfilesHandler.exportXML(groups);
-                AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION,"Success!",null,"XML file {groups.xml} successfully exported!");
+                AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "XML file {groups.xml} successfully exported!");
             } catch (ParserConfigurationException | TransformerException | IOException e) {
                 System.out.println(e.getMessage());
             }
         });
         generateReport.setOnAction(event -> {
             XMLtoPDFReporter.createReport("groups.xml");
-            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION,"Success!",null,"Report file {report.pdf} created");
+            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Report file {report.pdf} created");
 
         });
         comboBoxParameters.getItems().setAll(
@@ -152,10 +152,10 @@ public class AppController {
                 initialize();
                 newStage.close();
             } catch (NumberFormatException nfe) {
-                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR,"Wrong number format!",null,"Error: " + nfe.getMessage().toLowerCase());
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Wrong number format!", null, "Error: " + nfe.getMessage().toLowerCase());
 
             } catch (IllegalArgumentException iae) {
-                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR,"Input Error!",null,iae.getMessage());
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Input Error!", null, iae.getMessage());
             }
         });
 
@@ -164,91 +164,104 @@ public class AppController {
         newStage.show();
 
     }
+
     private void removeGroup() {
         Group selectedGroup = groupTableView.getSelectionModel().getSelectedItem();
-        int selectedGroupId = selectedGroup.getId();
-        DataBaseHandler.deleteGroupById(selectedGroupId,data,"test");
-        AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION,"Deleted successfully",null,"Group " + selectedGroup.getName() + " was successfully delted from database!");
-        initialize();
+        if (selectedGroup == null) {
+            AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "You should select a group!");
+        }
+        else {
+            int selectedGroupId = selectedGroup.getId();
+            DataBaseHandler.deleteGroupById(selectedGroupId, data, "test");
+            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Deleted successfully", null, "Group " + selectedGroup.getName() + " was successfully delted from database!");
+            initialize();
+        }
+
     }
+
     private void editInfo() {
         Group selectedGroup = groupTableView.getSelectionModel().getSelectedItem();
-        int selectedGroupId = selectedGroup.getId();
-        Map<String,String> newInfo = new HashMap<>();
+        if (selectedGroup == null) {
+            AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "You should select a group!");
+        } else {
+            int selectedGroupId = selectedGroup.getId();
+            Map<String, String> newInfo = new HashMap<>();
 
-        final String[] name = new String[1];
-        final String[] year = new String[1];
-        final String[] genre = new String[1];
-        final String[] place = new String[1];
+            final String[] name = new String[1];
+            final String[] year = new String[1];
+            final String[] genre = new String[1];
+            final String[] place = new String[1];
 
-        Stage newStage = new Stage();
-        newStage.getIcons().add(new Image("icons/edit_icon.png"));
+            Stage newStage = new Stage();
+            newStage.getIcons().add(new Image("icons/edit_icon.png"));
 
-        GridPane gridPane = new GridPane();
-        gridPane.setPadding(new Insets(10));
-        gridPane.setHgap(10);
-        gridPane.setVgap(10);
-        Scene scene = new Scene(gridPane, 300, 200);
+            GridPane gridPane = new GridPane();
+            gridPane.setPadding(new Insets(10));
+            gridPane.setHgap(10);
+            gridPane.setVgap(10);
+            Scene scene = new Scene(gridPane, 300, 200);
 
-        Label nameLabel = new Label("Name:");
-        TextField nameTextField = new TextField(selectedGroup.getName());
+            Label nameLabel = new Label("Name:");
+            TextField nameTextField = new TextField(selectedGroup.getName());
 
-        Label yearLabel = new Label("Year of Foundation:");
-        TextField yearTextField = new TextField(selectedGroup.getYearOfFoundation().toString());
+            Label yearLabel = new Label("Year of Foundation:");
+            TextField yearTextField = new TextField(selectedGroup.getYearOfFoundation().toString());
 
-        Label genreLabel = new Label("Genre:");
-        TextField genreTextField = new TextField(selectedGroup.getMainGenre());
+            Label genreLabel = new Label("Genre:");
+            TextField genreTextField = new TextField(selectedGroup.getMainGenre());
 
-        Label placeLabel = new Label("Place in chart:");
-        TextField placeTextField = new TextField(selectedGroup.getPlaceInChart().toString());
-        Button okButton = new Button("Edit");
+            Label placeLabel = new Label("Place in chart:");
+            TextField placeTextField = new TextField(selectedGroup.getPlaceInChart().toString());
+            Button okButton = new Button("Edit");
 
-        gridPane.add(nameLabel, 0, 0);
-        gridPane.add(nameTextField, 1, 0);
+            gridPane.add(nameLabel, 0, 0);
+            gridPane.add(nameTextField, 1, 0);
 
-        gridPane.add(yearLabel, 0, 1);
-        gridPane.add(yearTextField, 1, 1);
+            gridPane.add(yearLabel, 0, 1);
+            gridPane.add(yearTextField, 1, 1);
 
-        gridPane.add(genreLabel, 0, 2);
-        gridPane.add(genreTextField, 1, 2);
+            gridPane.add(genreLabel, 0, 2);
+            gridPane.add(genreTextField, 1, 2);
 
-        gridPane.add(placeLabel, 0, 3);
-        gridPane.add(placeTextField, 1, 3);
+            gridPane.add(placeLabel, 0, 3);
+            gridPane.add(placeTextField, 1, 3);
 
-        gridPane.add(okButton, 1, 4);
+            gridPane.add(okButton, 1, 4);
 
-        newStage.setScene(scene);
-        newStage.setTitle("Edit info");
-        newStage.show();
+            newStage.setScene(scene);
+            newStage.setTitle("Edit info");
+            newStage.show();
 
-        okButton.setOnAction(event -> {
+            okButton.setOnAction(event -> {
 
-            try {
-                name[0] = validateInput(nameTextField.getText(), "Name");
-                year[0] = validateInput(yearTextField.getText(), "Year of foundation");
-                genre[0] = validateInput(genreTextField.getText(), "Genre");
-                place[0] = validateInput(placeTextField.getText(), "Place in chart");
+                try {
+                    name[0] = validateInput(nameTextField.getText(), "Name");
+                    year[0] = validateInput(yearTextField.getText(), "Year of foundation");
+                    genre[0] = validateInput(genreTextField.getText(), "Genre");
+                    place[0] = validateInput(placeTextField.getText(), "Place in chart");
 
-                newInfo.put("name",name[0]);
-                newInfo.put("year",year[0]);
-                newInfo.put("genre",genre[0]);
-                newInfo.put("place",place[0]);
+                    newInfo.put("name", name[0]);
+                    newInfo.put("year", year[0]);
+                    newInfo.put("genre", genre[0]);
+                    newInfo.put("place", place[0]);
 
-                selectedGroup.setName(newInfo.get("name"));
-                selectedGroup.setYearOfFoundation(Integer.valueOf(newInfo.get("year")));
-                selectedGroup.setMainGenre(newInfo.get("genre"));
-                selectedGroup.setPlaceInChart(Integer.valueOf(newInfo.get("place")));
+                    selectedGroup.setName(newInfo.get("name"));
+                    selectedGroup.setYearOfFoundation(Integer.valueOf(newInfo.get("year")));
+                    selectedGroup.setMainGenre(newInfo.get("genre"));
+                    selectedGroup.setPlaceInChart(Integer.valueOf(newInfo.get("place")));
 
-                DataBaseHandler.editData(selectedGroupId,newInfo,"test");
+                    DataBaseHandler.editData(selectedGroupId, newInfo, "test");
 
-                AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION,"Success!",null,"Data edited successfully! Group " + selectedGroup.getName() + " ");
+                    AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Data edited successfully! Group " + selectedGroup.getName() + " ");
 
-                newStage.close();
-                initialize();
-            } catch (IllegalArgumentException e) {
-                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR,"Error!",null,e.getMessage());
-            }
-        });
+                    newStage.close();
+                    initialize();
+                } catch (IllegalArgumentException e) {
+                    AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, e.getMessage());
+                }
+            });
+        }
+
     }
 
     public String getSelectedFromComboBox() {
@@ -256,17 +269,18 @@ public class AppController {
         return comboBoxParameters.getSelectionModel().getSelectedItem();
 
     }
+
     private void search() {
         ObservableList<Group> resultData = FXCollections.observableArrayList();
 
         String selectedParameter = getSelectedFromComboBox();
 
-        Map<String,String> selectedParamMap = new HashMap<>();
-        selectedParamMap.put("ID","group_id");
-        selectedParamMap.put("Название","group_name");
-        selectedParamMap.put("Год","group_year_of_foundation");
-        selectedParamMap.put("Жанр","group_main_genre");
-        selectedParamMap.put("Место","group_place_in_chart");
+        Map<String, String> selectedParamMap = new HashMap<>();
+        selectedParamMap.put("ID", "group_id");
+        selectedParamMap.put("Название", "group_name");
+        selectedParamMap.put("Год", "group_year_of_foundation");
+        selectedParamMap.put("Жанр", "group_main_genre");
+        selectedParamMap.put("Место", "group_place_in_chart");
 
         DataBaseHandler.selectDataFromDB("test", selectedParamMap.get(selectedParameter), searchField.getText(), resultData);
         fillInTable(resultData);
@@ -281,16 +295,18 @@ public class AppController {
         groupPlaceInChartColumn.setCellValueFactory(new PropertyValueFactory<>("placeInChart"));
     }
 
-
     public static class IllegalArgumentException extends Exception {
         public IllegalArgumentException(String message) {
             super(message);
         }
     }
 
-    private String validateInput(String input, String fieldName) throws IllegalArgumentException {
+    public String validateInput(String input, String fieldName) throws IllegalArgumentException, NumberFormatException {
         if (input.isEmpty()) {
             throw new IllegalArgumentException("Field " + fieldName + " is empty. Try again.");
+        }
+        if ((fieldName.equals("Year of foundation") || fieldName.equals("Place in chart")) && !input.matches("-?\\d+(\\.\\d+)?")) {
+            throw new NumberFormatException("Field " + fieldName + " should be an integer!");
         }
         return input;
     }
