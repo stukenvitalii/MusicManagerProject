@@ -9,4 +9,12 @@
     <group genre="Alt Metal" name="System Of a Down" place="6" yearOfFoundation="1994"/>
     <group genre="Black metal" name="Burzum" place="10" yearOfFoundation="1991"/>
     <group genre="Black metal" name="Ulver" place="11" yearOfFoundation="1993"/>
+    <group genre="Doom metal" name="Katatonia" place="1" yearOfFoundation="1991"/>
+    <group genre="Hard rock" name="Ghost" place="5" yearOfFoundation="2006"/>
+    <group genre="Prog rock" name="King Crimson" place="4" yearOfFoundation="1968"/>
+    <group genre="Alt rock" name="Muse" place="6" yearOfFoundation="1994"/>
+    <group genre="Industrial metal" name="Rammstein" place="2" yearOfFoundation="1994"/>
+    <group genre="Ambient" name="Enigma" place="3" yearOfFoundation="1990"/>
+    <group genre="Alt metal" name="Deftones" place="4" yearOfFoundation="1988"/>
+    <group genre="Prog rock" name="Porcupine tree" place="1" yearOfFoundation="1987"/>
 </groups>

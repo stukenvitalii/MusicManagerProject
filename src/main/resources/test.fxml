@@ -14,13 +14,6 @@
           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
         <HBox>
-            <Button fx:id="saveButton" text="Save">
-                <graphic>
-                    <ImageView>
-                        <Image url="@icons/save_icon.png"/>
-                    </ImageView>
-                </graphic>
-            </Button>
             <Button fx:id="addButton" text="Add group">
                 <graphic>
                     <ImageView>
@@ -35,7 +28,14 @@
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="listButton" text="List all bands">
+            <Button fx:id="editButton" text="Edit info">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/edit_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="listButton" text="List">
                 <graphic>
                     <ImageView>
                         <Image url="@icons/list_icon.png"/>
@@ -56,7 +56,7 @@
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="generateReport" text="Generate report">
+            <Button fx:id="generateReport" text="Report">
                 <graphic>
                     <ImageView>
                         <Image url="@icons/generate_report.png"/>

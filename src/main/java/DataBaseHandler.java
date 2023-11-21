@@ -4,6 +4,7 @@ import jakarta.persistence.Persistence;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import java.util.List;
+import java.util.Map;
 
 public class DataBaseHandler {
     public static void saveGroupToDB(Group group) {
@@ -67,6 +68,19 @@ public class DataBaseHandler {
                 }
             }
             data.remove(selectedGroup);
+            entityManager.getTransaction().commit();
+        }
+    }
+    public static void editData(int selectedGroupId, Map<String,String> paramValue, String persistenceUnitName) {
+        try (EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager()) {
+            entityManager.getTransaction().begin();
+            entityManager.createQuery("UPDATE Group SET name = ?1 , yearOfFoundation = ?2, mainGenre = ?3, placeInChart = ?4 WHERE id = ?5")
+                    .setParameter(1, paramValue.get("name"))
+                    .setParameter(2,paramValue.get("year"))
+                    .setParameter(3,paramValue.get("genre"))
+                    .setParameter(4,paramValue.get("place"))
+                    .setParameter(5,selectedGroupId)
+                    .executeUpdate();
             entityManager.getTransaction().commit();
         }
     }
