@@ -256,3 +256,21 @@ java.lang.NumberFormatException: Field Year of foundation should be an integer!
 2023-11-24 10:28:21,926 INFO mainLogger [JavaFX Application Thread] System initialized
 2023-11-24 10:28:28,697 INFO mainLogger [JavaFX Application Thread] Report ./reports/report.pdf successfully created
 2023-11-24 10:28:38,128 INFO mainLogger [main] Application closed
+2023-11-24 10:33:40,889 INFO mainLogger [main] Application started
+2023-11-24 10:33:41,677 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-11-24 10:33:41,777 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-11-24 10:33:41,781 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-11-24 10:33:42,318 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-11-24 10:33:42,328 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-11-24 10:33:42,329 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-11-24 10:33:42,329 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-11-24 10:33:42,329 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-11-24 10:33:42,333 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-11-24 10:33:43,634 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-11-24 10:33:45,112 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-24 10:33:45,190 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-11-24 10:33:45,595 INFO mainLogger [JavaFX Application Thread] Fetching data from DB success
+2023-11-24 10:33:45,596 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-11-24 10:33:51,360 INFO mainLogger [JavaFX Application Thread] Report ./reports/report.pdf successfully created
+2023-11-24 10:33:59,813 INFO mainLogger [JavaFX Application Thread] XML file exported
+2023-11-24 10:34:04,822 INFO mainLogger [main] Application closed
