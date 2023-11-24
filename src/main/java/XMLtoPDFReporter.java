@@ -33,8 +33,9 @@ public class XMLtoPDFReporter {
                 exporter.exportReport();
             }
             JasperViewer.viewReport(print, false);
-        } catch (JRException e) {
             logger.info("Report {} successfully created", outputFilePath);
+        } catch (JRException e) {
+            logger.error(e.getMessage(),e);
         }
     }
 }

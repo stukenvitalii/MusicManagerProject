@@ -84,7 +84,6 @@ public class AppController {
         generateReport.setOnAction(event -> {
             XMLtoPDFReporter.createReport("groups.xml");
             AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Report file {report.pdf} created");
-            logger.info("Report created");
         });
         comboBoxParameters.getItems().setAll(
                 "ID",
