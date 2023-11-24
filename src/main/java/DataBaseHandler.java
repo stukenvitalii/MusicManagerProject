@@ -3,35 +3,43 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.List;
 import java.util.Map;
 
 public class DataBaseHandler {
+    private static final Logger logger = LogManager.getLogger("mainLogger");
     public static void saveGroupToDB(Group group) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
 
-        System.out.println("Saving new band to DataBase");
+        logger.info("Saving new band to DataBase");
 
         em.getTransaction().begin();
         em.persist(group);
         em.getTransaction().commit();
 
         AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Band " + group.getName() + " successfully added, " + "id is " + group.getId());
+        logger.info("Group " + group.getName() + " successfully saved to DB");
     }
 
     public static void getDataFromDB(String persistenceUnitName, ObservableList<Group> data) {
         try (EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager()) {
+            logger.info("Trying to get data from DB");
             entityManager.getTransaction().begin();
             List<Group> groups = entityManager.createQuery("from Group", Group.class).getResultList();
             data.clear();
             data.addAll(groups);
             entityManager.getTransaction().commit();
+            logger.info("Fetching data from DB success");
         }
     }
 
     public static void selectDataFromDB(String persistenceUnitName, String parameter, String value, ObservableList<Group> resultData) {
         try (EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager()) {
+            logger.info("Trying to select specified data from DB");
             entityManager.getTransaction().begin();
             List<Group> groups;
             groups = switch (parameter) {
@@ -56,10 +64,12 @@ public class DataBaseHandler {
                 resultData.addAll(groups);
             }
             entityManager.getTransaction().commit();
+            logger.info("Selecting specified data from DB success");
         }
     }
     public static void deleteGroupById(int selectedId,ObservableList<Group> data,String persistenceUnitName) {
         try (EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager()) {
+            logger.info("Trying to delete group");
             entityManager.getTransaction().begin();
             entityManager.createQuery("DELETE FROM Group WHERE id = ?1 ").setParameter(1, selectedId).executeUpdate();
 

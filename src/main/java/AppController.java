@@ -8,9 +8,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
-
-import javax.script.Bindings;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
@@ -55,6 +55,7 @@ public class AppController {
     @FXML
     private ObservableList<Group> data = FXCollections.observableArrayList();
     List<Group> groups = new ArrayList<>();
+    private static final Logger logger = LogManager.getLogger("mainLogger");
 
     @FXML
     public void initialize() {
@@ -68,21 +69,22 @@ public class AppController {
             try {
                 XMLfilesHandler.importXML();
             } catch (ParserConfigurationException | SAXException | IOException e) {
-                System.out.println(e.getMessage());
+                logger.error(e.getMessage(),e);
             }
         });
         exportXMLbutton.setOnAction(event -> {
             try {
                 XMLfilesHandler.exportXML(groups);
                 AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "XML file {groups.xml} successfully exported!");
+                logger.info("XML file exported");
             } catch (ParserConfigurationException | TransformerException | IOException e) {
-                System.out.println(e.getMessage());
+                logger.error(e.getMessage(),e);
             }
         });
         generateReport.setOnAction(event -> {
             XMLtoPDFReporter.createReport("groups.xml");
             AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Report file {report.pdf} created");
-
+            logger.info("Report created");
         });
         comboBoxParameters.getItems().setAll(
                 "ID",
@@ -93,9 +95,12 @@ public class AppController {
         );
         DataBaseHandler.getDataFromDB("test", data);
         groups = data;
+        logger.info("System initialized");
     }
 
     private void addGroup() {
+        logger.info("Started adding band");
+
         final String[] name = new String[1];
         final String[] year = new String[1];
         final String[] genre = new String[1];
@@ -103,7 +108,6 @@ public class AppController {
 
         Stage newStage = new Stage();
         newStage.getIcons().add(new Image("icons/add_group.png"));
-        System.out.println("Adding band...");
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(10));
         gridPane.setHgap(10);
@@ -153,27 +157,29 @@ public class AppController {
                 newStage.close();
             } catch (NumberFormatException nfe) {
                 AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Wrong number format!", null, "Error: " + nfe.getMessage().toLowerCase());
-
+                logger.error(nfe.getMessage(), nfe);
             } catch (IllegalArgumentException iae) {
                 AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Input Error!", null, iae.getMessage());
+                logger.error(iae.getMessage(),iae);
             }
         });
 
         newStage.setScene(scene);
         newStage.setTitle("Add Band");
         newStage.show();
-
     }
 
     private void removeGroup() {
         Group selectedGroup = groupTableView.getSelectionModel().getSelectedItem();
         if (selectedGroup == null) {
             AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "You should select a group!");
+            logger.warn("Trying to delete group, but no group was selected");
         }
         else {
             int selectedGroupId = selectedGroup.getId();
             DataBaseHandler.deleteGroupById(selectedGroupId, data, "test");
             AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Deleted successfully", null, "Group " + selectedGroup.getName() + " was successfully delted from database!");
+            logger.info("Group " + selectedGroup.getName() + " deleted successfully");
             initialize();
         }
 
@@ -183,6 +189,7 @@ public class AppController {
         Group selectedGroup = groupTableView.getSelectionModel().getSelectedItem();
         if (selectedGroup == null) {
             AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "You should select a group!");
+            logger.warn("Trying to edit group, but no group was selected");
         } else {
             int selectedGroupId = selectedGroup.getId();
             Map<String, String> newInfo = new HashMap<>();
@@ -253,26 +260,23 @@ public class AppController {
                     DataBaseHandler.editData(selectedGroupId, newInfo, "test");
 
                     AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Data edited successfully! Group " + selectedGroup.getName() + " ");
-
+                    logger.info("Group info successfully edited");
                     newStage.close();
                     initialize();
                 } catch (IllegalArgumentException e) {
                     AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, e.getMessage());
+                    logger.error(e.getMessage(),e);
                 }
             });
         }
-
     }
 
     public String getSelectedFromComboBox() {
-        System.out.println(comboBoxParameters.getSelectionModel().getSelectedItem());
         return comboBoxParameters.getSelectionModel().getSelectedItem();
-
     }
 
     private void search() {
         ObservableList<Group> resultData = FXCollections.observableArrayList();
-
         String selectedParameter = getSelectedFromComboBox();
 
         Map<String, String> selectedParamMap = new HashMap<>();
@@ -283,6 +287,7 @@ public class AppController {
         selectedParamMap.put("Место", "group_place_in_chart");
 
         DataBaseHandler.selectDataFromDB("test", selectedParamMap.get(selectedParameter), searchField.getText(), resultData);
+        logger.info("Group found");
         fillInTable(resultData);
     }
 
@@ -293,6 +298,7 @@ public class AppController {
         groupYearOfFoundationColumn.setCellValueFactory(new PropertyValueFactory<>("yearOfFoundation"));
         groupMainGenreColumn.setCellValueFactory(new PropertyValueFactory<>("mainGenre"));
         groupPlaceInChartColumn.setCellValueFactory(new PropertyValueFactory<>("placeInChart"));
+        logger.info("Table filled in");
     }
 
     public static class IllegalArgumentException extends Exception {

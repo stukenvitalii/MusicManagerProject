@@ -6,10 +6,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 import javafx.fxml.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class App extends Application {
+
+    private static final Logger logger = LogManager.getLogger("mainLogger");
     public static void main(String[] args) {
+        logger.info("Application started");
         launch(args);
+        logger.info("Application closed");
     }
 
     @Override
@@ -20,8 +26,4 @@ public class App extends Application {
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
-
-
-
-
 }

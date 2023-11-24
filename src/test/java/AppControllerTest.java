@@ -1,12 +1,16 @@
+import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 public class AppControllerTest {
     private AppController appController;
+    private String randomString;
     @BeforeEach
     void setUp() {
         appController = new AppController();
+        randomString = RandomStringUtils.randomAlphabetic(10);
     }
     @Test
     void validateInput_emptyFieldName() {
@@ -16,12 +20,13 @@ public class AppControllerTest {
     void validateInput_emptyFieldGenre() {
         Assertions.assertThrows(AppController.IllegalArgumentException.class, () -> appController.validateInput("","Genre"));
     }
-    @Test
+    @RepeatedTest(5)
     void validateInput_NaNYear() {
-        Assertions.assertThrows(NumberFormatException.class, () -> appController.validateInput("string","Year of foundation"));
+        Assertions.assertThrows(NumberFormatException.class, () -> appController.validateInput(randomString,"Year of foundation"));
     }
-    @Test
+
+    @RepeatedTest(5)
     void validateInput_NaNPlace() {
-        Assertions.assertThrows(NumberFormatException.class, () -> appController.validateInput("string","Place in chart"));
+        Assertions.assertThrows(NumberFormatException.class, () -> appController.validateInput(randomString,"Place in chart"));
     }
 }
