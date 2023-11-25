@@ -6,7 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,10 +17,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AppController {
     @FXML
@@ -92,8 +92,17 @@ public class AppController {
                 "Жанр",
                 "Место"
         );
+        groupTableView.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                Group selectedGroup = groupTableView.getSelectionModel().getSelectedItem();
+                if (selectedGroup != null) {
+                    showDetails(selectedGroup);
+                }
+            }
+        });
         DataBaseHandler.getDataFromDB("test", data);
         groups = data;
+        fillInTable(data);
         logger.info("System initialized");
     }
 
@@ -273,7 +282,101 @@ public class AppController {
     public String getSelectedFromComboBox() {
         return comboBoxParameters.getSelectionModel().getSelectedItem();
     }
+    private void showDetails(Group group) {
 
+        Stage groupDetailsStage = new Stage();
+
+        groupDetailsStage.getIcons().add(new Image("icons/info_icon.png"));
+
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(20));
+
+        Label nameLabel = new Label("Band Name: " + group.getName());
+        Label yearLabel = new Label("Formation Year: " + group.getYearOfFoundation().toString());
+        Label genreLabel = new Label("Genre: " + group.getMainGenre());
+        Label chartPositionLabel = new Label("Chart Position: " + group.getPlaceInChart());
+
+        Label membersLabel = new Label("Band Members: " + group.getMembersAsString());
+
+        TableView<Tour> concertTableView = new TableView<>();
+        TableColumn<Tour, String> nameColumn = new TableColumn<>("Name");
+        TableColumn<Tour, String> dateBeginColumn = new TableColumn<>("Begin");
+        TableColumn<Tour, String> dateEndColumn = new TableColumn<>("End");
+        concertTableView.getColumns().addAll(nameColumn, dateBeginColumn, dateEndColumn);
+
+        dateBeginColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfBeginningProperty());
+        dateEndColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfEndProperty());
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+
+        nameColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.20));
+        dateBeginColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.40));
+        dateEndColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.40));
+
+        ObservableList<Tour> tours = FXCollections.observableArrayList();
+        Tour tour = new Tour();
+        tour.setName("tour");
+        tour.setDateOfBeginning(new Date());
+        tour.setDateOfEnd(new Date());
+        tours.add(tour);
+        concertTableView.setItems(tours);
+
+        TableView<Song> repertoireTableView = new TableView<>();
+        TableColumn<Song, String> songNameColumn = new TableColumn<>("Name");
+        TableColumn<Song, String> songDurationColumn = new TableColumn<>("Duration");
+        TableColumn<Song, String> songAlbumColumn = new TableColumn<>("Album");
+        repertoireTableView.getColumns().addAll(songNameColumn, songDurationColumn, songAlbumColumn);
+
+        ObservableList<Song> repertoireList = FXCollections.observableArrayList();
+        repertoireList.addAll(group.getRepertoire());
+        repertoireTableView.setItems(repertoireList);
+
+        songNameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        songAlbumColumn.setCellValueFactory(cellData -> cellData.getValue().albumProperty());
+        songDurationColumn.setCellValueFactory(cellData -> cellData.getValue().durationProperty());
+
+        songAlbumColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.33));
+        songNameColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.33));
+        songDurationColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.33));
+
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        Separator separatorConcerts = new Separator();
+        Separator separatorRepertoire = new Separator();
+        columnConstraints.setPercentWidth(100);
+        gridPane.getColumnConstraints().add(columnConstraints);
+        // Add all components to the gridPane
+        gridPane.add(nameLabel, 0, 0);
+        gridPane.add(yearLabel, 0, 1);
+        gridPane.add(genreLabel, 0, 2);
+        gridPane.add(chartPositionLabel, 0, 3);
+        gridPane.add(membersLabel, 0, 4);
+        gridPane.add(separatorConcerts, 0, 5);
+        gridPane.add(new Label("Tours:"), 0, 6);
+        gridPane.add(concertTableView, 0,7);
+        GridPane.setColumnSpan(separatorConcerts, 2);
+        GridPane.setColumnSpan(separatorRepertoire, 2);
+        gridPane.add(separatorRepertoire, 0, 8);
+
+        gridPane.add(new Label("Repertoire:"), 0, 9);
+        gridPane.add(repertoireTableView, 0, 10);
+        VBox.setVgrow(repertoireTableView, Priority.ALWAYS);
+
+        // Set up the scene
+        Scene scene = new Scene(gridPane, 600, 800);
+
+        // Set up the stage
+        groupDetailsStage.setTitle("Band Information");
+        groupDetailsStage.setScene(scene);
+        groupDetailsStage.show();
+
+
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Person Details");
+//        alert.setHeaderText(null);
+//        alert.setContentText("Name: " + group.getName() + "\nAge: " + group.getMainGenre());
+//        alert.showAndWait();
+    }
     private void search() {
         ObservableList<Group> resultData = FXCollections.observableArrayList();
         String selectedParameter = getSelectedFromComboBox();

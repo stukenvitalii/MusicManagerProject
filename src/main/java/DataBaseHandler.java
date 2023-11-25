@@ -33,7 +33,7 @@ public class DataBaseHandler {
             data.clear();
             data.addAll(groups);
             entityManager.getTransaction().commit();
-            logger.info("Fetching data from DB success");
+            logger.info("Fetching data from DB successful");
         }
     }
 

@@ -1,88 +1,91 @@
 import jakarta.persistence.*;
-import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
 @Table(name = "my_groups")
 public class Group {
 
-    private Integer id;
-    private String name;
-    private Integer yearOfFoundation;
-    private String mainGenre;
-    private List<GroupMember> listOfMembers = new ArrayList<>();
-    private List<Song> repertoire;
-    private Integer placeInChart;
-    private List<Tour> upcomingTours = new ArrayList<>();
-    private Tour currentTour;
-    private Tour lastTour;
-
-    public Group(){
-
-    }
-
-    @Column(name = "group_name")
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    @Column(name = "group_year_of_foundation")
-    public Integer getYearOfFoundation() {
-        return yearOfFoundation;
-    }
-    public void setYearOfFoundation(Integer yearOfFoundation) {
-        this.yearOfFoundation = yearOfFoundation;
-    }
-    @OneToMany
-    @JoinColumn(name = "group_id")
-    public List<GroupMember> getListOfMembers() {
-        return listOfMembers;
-    }
-    public void setListOfMembers(List<GroupMember> members) {
-        this.listOfMembers = members;
-    }
-    @OneToMany
-    @JoinColumn(name = "group_id")
-    public List<Song> getRepertoire() {
-        return repertoire;
-    }
-    public void setRepertoire(List<Song> repertoire) {
-        this.repertoire = repertoire;
-    }
-    @Column(name = "group_place_in_chart")
-    public Integer getPlaceInChart() {
-        return placeInChart;
-    }
-    public void setPlaceInChart(Integer placeInChart){this.placeInChart = placeInChart;}
-    @OneToMany()
-    @JoinColumn(name = "group_id")
-    public List<Tour> getUpcomingTours() {
-        return upcomingTours;
-    }
-    public void setUpcomingTours(List<Tour> upcomingTours){this.upcomingTours = upcomingTours;}
-    @Transient
-    public Tour getCurrentTour() {
-        return currentTour;
-    }
-    public void setCurrentTour(Tour currentTour) {this.currentTour = currentTour;}
-    @Column(name = "group_main_genre")
-    public String getMainGenre() {
-        return mainGenre;
-    }
-    public void setMainGenre(String mainGenre) {this.mainGenre = mainGenre;}
-    @Transient
-    public Tour getLastTour() {
-        return lastTour;
-    }
-    public void getReportAboutLastTour() {
-
-    }
     @Id
     @Column(name = "group_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "group_name")
+    private String name;
+    @Column(name = "group_year_of_foundation")
+    private Integer yearOfFoundation;
+    @Column(name = "group_main_genre")
+    private String mainGenre;
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<GroupMember> listOfMembers = new ArrayList<>();
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Song> repertoire;
+    @Column(name = "group_place_in_chart")
+    private Integer placeInChart;
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Tour> tours = new ArrayList<>();
+
+    public Group() {
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getYearOfFoundation() {
+        return yearOfFoundation;
+    }
+
+    public void setYearOfFoundation(Integer yearOfFoundation) {
+        this.yearOfFoundation = yearOfFoundation;
+    }
+
+    public List<GroupMember> getListOfMembers() {
+        return listOfMembers;
+    }
+
+    public void setListOfMembers(List<GroupMember> members) {
+        this.listOfMembers = members;
+    }
+
+    public List<Song> getRepertoire() {
+        return repertoire;
+    }
+
+    public void setRepertoire(List<Song> repertoire) {
+        this.repertoire = repertoire;
+    }
+
+    public Integer getPlaceInChart() {
+        return placeInChart;
+    }
+
+    public void setPlaceInChart(Integer placeInChart) {
+        this.placeInChart = placeInChart;
+    }
+
+    public List<Tour> getTours() {
+        return tours;
+    }
+
+    public void setTours(List<Tour> upcomingTours) {
+        this.tours = upcomingTours;
+    }
+
+    public String getMainGenre() {
+        return mainGenre;
+    }
+
+    public void setMainGenre(String mainGenre) {
+        this.mainGenre = mainGenre;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -91,7 +94,11 @@ public class Group {
         this.id = id;
     }
 
-    public void setLastTour(Tour lastTour) {
-        this.lastTour = lastTour;
+    public String getMembersAsString() {
+        StringBuilder membersString = new StringBuilder();
+        for (GroupMember member : listOfMembers) {
+            membersString.append(member.getName()).append(", ");
+        }
+        return membersString.toString();
     }
 }
