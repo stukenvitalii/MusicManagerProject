@@ -420,7 +420,7 @@ public class AppController {
                 dialogStage.close();
             } else {
                 AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "Fill all the fields!");
-                logger.info("Tried to add tour, but some fields are empty");
+                logger.warn("Tried to add tour, but some fields are empty");
             }
         });
 
@@ -476,7 +476,7 @@ public class AppController {
                 dialogStage.close();
             } else {
                 AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "Fill all the fields!");
-                logger.info("Tried to add song, but some fields are empty");
+                logger.warn("Tried to add song, but some fields are empty");
             }
         });
 
