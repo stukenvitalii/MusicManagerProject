@@ -125,7 +125,7 @@ public class AppController {
         Label nameLabel = new Label("Name:");
         TextField nameTextField = new TextField();
 
-        Label yearLabel = new Label("Year of Foundation:");
+        Label yearLabel = new Label("Year of foundation:");
         TextField yearTextField = new TextField();
 
         Label genreLabel = new Label("Genre:");
@@ -202,85 +202,101 @@ public class AppController {
             int selectedGroupId = selectedGroup.getId();
             Map<String, String> newInfo = new HashMap<>();
 
-            final String[] name = new String[1];
-            final String[] year = new String[1];
-            final String[] genre = new String[1];
-            final String[] place = new String[1];
-
             Stage newStage = new Stage();
-            newStage.getIcons().add(new Image("icons/edit_icon.png"));
 
-            GridPane gridPane = new GridPane();
-            gridPane.setPadding(new Insets(10));
-            gridPane.setHgap(10);
-            gridPane.setVgap(10);
-            Scene scene = new Scene(gridPane, 300, 200);
+            List<String> labelsTextList = Arrays.asList("Name","Year of foundation","Genre","Place in chart");
 
-            Label nameLabel = new Label("Name:");
-            TextField nameTextField = new TextField(selectedGroup.getName());
 
-            Label yearLabel = new Label("Year of Foundation:");
-            TextField yearTextField = new TextField(selectedGroup.getYearOfFoundation().toString());
+            getWindowWithTextFields(newStage, "icons/edit_icon.png", 300, 200, labelsTextList, "Edit info", "Edit info", new WindowCallback() {
+                @Override
+                public void onSuccess(List<String> result) {
+                    newInfo.put("name", result.get(0));
+                    newInfo.put("year", result.get(1));
+                    newInfo.put("genre", result.get(2));
+                    newInfo.put("place", result.get(3));
+                }
 
-            Label genreLabel = new Label("Genre:");
-            TextField genreTextField = new TextField(selectedGroup.getMainGenre());
-
-            Label placeLabel = new Label("Place in chart:");
-            TextField placeTextField = new TextField(selectedGroup.getPlaceInChart().toString());
-            Button okButton = new Button("Edit");
-
-            gridPane.add(nameLabel, 0, 0);
-            gridPane.add(nameTextField, 1, 0);
-
-            gridPane.add(yearLabel, 0, 1);
-            gridPane.add(yearTextField, 1, 1);
-
-            gridPane.add(genreLabel, 0, 2);
-            gridPane.add(genreTextField, 1, 2);
-
-            gridPane.add(placeLabel, 0, 3);
-            gridPane.add(placeTextField, 1, 3);
-
-            gridPane.add(okButton, 1, 4);
-
-            newStage.setScene(scene);
-            newStage.setTitle("Edit info");
-            newStage.show();
-
-            okButton.setOnAction(event -> {
-
-                try {
-                    name[0] = validateInput(nameTextField.getText(), "Name");
-                    year[0] = validateInput(yearTextField.getText(), "Year of foundation");
-                    genre[0] = validateInput(genreTextField.getText(), "Genre");
-                    place[0] = validateInput(placeTextField.getText(), "Place in chart");
-
-                    newInfo.put("name", name[0]);
-                    newInfo.put("year", year[0]);
-                    newInfo.put("genre", genre[0]);
-                    newInfo.put("place", place[0]);
-
-                    selectedGroup.setName(newInfo.get("name"));
-                    selectedGroup.setYearOfFoundation(Integer.valueOf(newInfo.get("year")));
-                    selectedGroup.setMainGenre(newInfo.get("genre"));
-                    selectedGroup.setPlaceInChart(Integer.valueOf(newInfo.get("place")));
-
-                    DataBaseHandler.editData(selectedGroupId, newInfo, "test");
-
-                    AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Data edited successfully! Group " + selectedGroup.getName() + " ");
-                    logger.info("Group info successfully edited");
-                    newStage.close();
-                    initialize();
-                } catch (IllegalArgumentException e) {
-                    AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, e.getMessage());
-                    logger.error(e.getMessage(),e);
+                @Override
+                public void onError(Exception e) {
+                    if (e instanceof NumberFormatException) {
+                        System.err.println("Error: Wrong number format!");
+                    } else if (e instanceof IllegalArgumentException) {
+                        System.err.println("Error: " + e.getMessage());
+                    } else {
+                        System.err.println("Unexpected error: " + e.getMessage());
+                    }
                 }
             });
+
+            selectedGroup.setName(newInfo.get("name"));
+            selectedGroup.setYearOfFoundation(Integer.valueOf(newInfo.get("year")));
+            selectedGroup.setMainGenre(newInfo.get("genre"));
+            selectedGroup.setPlaceInChart(Integer.valueOf(newInfo.get("place")));
+
+            DataBaseHandler.editData(selectedGroupId, newInfo, "test");
+
+            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Data edited successfully! Group " + selectedGroup.getName() + " ");
+            logger.info("Group info successfully edited");
+            newStage.close();
+            initialize();
+
+            }
         }
-    }
 
     public String getSelectedFromComboBox() {
         return comboBoxParameters.getSelectionModel().getSelectedItem();
+    }
+    public interface WindowCallback {
+        void onSuccess(List<String> result);
+        void onError(Exception e);
+    }
+    private void getWindowWithTextFields(Stage newStage,String pathToIcon,int w,int h,List<String> labels,String buttonText,String title,WindowCallback callback) {
+        newStage.getIcons().add(new Image(pathToIcon));
+
+
+        GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(10));
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        Scene scene = new Scene(gridPane, w, h);
+
+        Map<String,TextField> placeholderTextFieldMap = new HashMap<>();
+        int k = 0;
+
+        for(String textLabel: labels) {
+            Label newLabel = new Label(textLabel);
+            TextField newTextField = new TextField();
+            gridPane.add(newLabel,0,k);
+            gridPane.add(newTextField,1,k);
+            placeholderTextFieldMap.put(textLabel,newTextField);
+            k++;
+        }
+
+        Button okButton = new Button(buttonText);
+
+        gridPane.add(okButton,0,k+1);
+
+        okButton.setOnAction(event -> {
+            try {
+                List<String> result = new ArrayList<>();
+                for(String label: placeholderTextFieldMap.keySet()) {
+                    result.add(validateInput(placeholderTextFieldMap.get(label).getText(), label));
+                }
+                callback.onSuccess(result);
+
+            } catch (NumberFormatException nfe) {
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Wrong number format!", null, "Error: " + nfe.getMessage().toLowerCase());
+                logger.error(nfe.getMessage(), nfe);
+            } catch (IllegalArgumentException iae) {
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Input Error!", null, iae.getMessage());
+                logger.error(iae.getMessage(),iae);
+            }
+        });
+
+        newStage.setScene(scene);
+        newStage.setTitle(title);
+        newStage.show();
+
     }
     private void showDetails(Group group) {
 
@@ -306,6 +322,8 @@ public class AppController {
         TableColumn<Tour, String> dateEndColumn = new TableColumn<>("End");
         concertTableView.getColumns().addAll(nameColumn, dateBeginColumn, dateEndColumn);
 
+        Button addNewTourButton = new Button("Add Tour");
+
         dateBeginColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfBeginningProperty());
         dateEndColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfEndProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
@@ -328,6 +346,8 @@ public class AppController {
         TableColumn<Song, String> songAlbumColumn = new TableColumn<>("Album");
         repertoireTableView.getColumns().addAll(songNameColumn, songDurationColumn, songAlbumColumn);
 
+        Button addNewSongButton = new Button("Add Song");
+
         ObservableList<Song> repertoireList = FXCollections.observableArrayList();
         repertoireList.addAll(group.getRepertoire());
         repertoireTableView.setItems(repertoireList);
@@ -345,7 +365,7 @@ public class AppController {
         Separator separatorRepertoire = new Separator();
         columnConstraints.setPercentWidth(100);
         gridPane.getColumnConstraints().add(columnConstraints);
-        // Add all components to the gridPane
+
         gridPane.add(nameLabel, 0, 0);
         gridPane.add(yearLabel, 0, 1);
         gridPane.add(genreLabel, 0, 2);
@@ -354,28 +374,19 @@ public class AppController {
         gridPane.add(separatorConcerts, 0, 5);
         gridPane.add(new Label("Tours:"), 0, 6);
         gridPane.add(concertTableView, 0,7);
-        GridPane.setColumnSpan(separatorConcerts, 2);
-        GridPane.setColumnSpan(separatorRepertoire, 2);
         gridPane.add(separatorRepertoire, 0, 8);
-
         gridPane.add(new Label("Repertoire:"), 0, 9);
         gridPane.add(repertoireTableView, 0, 10);
+
+        GridPane.setColumnSpan(separatorConcerts, 2);
+        GridPane.setColumnSpan(separatorRepertoire, 2);
         VBox.setVgrow(repertoireTableView, Priority.ALWAYS);
 
-        // Set up the scene
         Scene scene = new Scene(gridPane, 600, 800);
 
-        // Set up the stage
         groupDetailsStage.setTitle("Band Information");
         groupDetailsStage.setScene(scene);
         groupDetailsStage.show();
-
-
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Person Details");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Name: " + group.getName() + "\nAge: " + group.getMainGenre());
-//        alert.showAndWait();
     }
     private void search() {
         ObservableList<Group> resultData = FXCollections.observableArrayList();
