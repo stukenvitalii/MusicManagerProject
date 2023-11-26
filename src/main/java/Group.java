@@ -20,7 +20,7 @@ public class Group {
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<GroupMember> listOfMembers = new ArrayList<>();
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Song> repertoire;
+    private List<Song> songs;
     @Column(name = "group_place_in_chart")
     private Integer placeInChart;
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -54,12 +54,12 @@ public class Group {
         this.listOfMembers = members;
     }
 
-    public List<Song> getRepertoire() {
-        return repertoire;
+    public List<Song> getSongs() {
+        return songs;
     }
 
-    public void setRepertoire(List<Song> repertoire) {
-        this.repertoire = repertoire;
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
     public Integer getPlaceInChart() {

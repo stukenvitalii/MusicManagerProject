@@ -18,7 +18,7 @@
         <Logger name="mainLoggerConsoleOnly" level="info" additivity="false">
             <AppenderRef ref="LogToConsole"/>
         </Logger>
-        <logger name="org.hibernate" level="DEBUG"/>
+<!--        <logger name="org.hibernate" level="DEBUG"/>-->
         <Root level="info">
             <AppenderRef ref="LogToFile"/>
 <!--            <AppenderRef ref="LogToConsole"/>-->

@@ -14,8 +14,22 @@ public class Song {
 
     @Column(name = "song_duration")
     private Integer duration;
+
     @Column(name = "song_album")
     private String album;
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;

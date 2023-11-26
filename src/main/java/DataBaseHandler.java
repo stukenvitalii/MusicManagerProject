@@ -13,25 +13,65 @@ public class DataBaseHandler {
     private static final Logger logger = LogManager.getLogger("mainLogger");
     public static void saveGroupToDB(Group group) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
+        try (EntityManager em = emf.createEntityManager()) {
+            logger.info("Saving new band to DataBase");
 
-        logger.info("Saving new band to DataBase");
+            em.getTransaction().begin();
+            em.persist(group);
+            em.getTransaction().commit();
 
-        em.getTransaction().begin();
-        em.persist(group);
-        em.getTransaction().commit();
-
-        AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Band " + group.getName() + " successfully added, " + "id is " + group.getId());
-        logger.info("Group " + group.getName() + " successfully saved to DB");
+            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Band " + group.getName() + " successfully added, " + "id is " + group.getId());
+            logger.info("Group " + group.getName() + " successfully saved to DB");
+        }
     }
 
-    public static void getDataFromDB(String persistenceUnitName, ObservableList<Group> data) {
+    public static void saveSongToDB(Group group,Song song) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        try (EntityManager em = emf.createEntityManager()) {
+            logger.info("Saving new song to DataBase");
+
+            em.getTransaction().begin();
+            group.getSongs().add(song);
+            song.setGroup(group);
+            em.merge(group);
+            em.getTransaction().commit();
+
+            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Song " + song.getName() + " successfully added");
+            logger.info("Song " + song.getName() + " successfully saved to DB");
+        }
+    }
+
+    public static void saveTourToDB(Group group,Tour tour) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        try (EntityManager em = emf.createEntityManager()) {
+            logger.info("Saving new tour to DataBase");
+
+            em.getTransaction().begin();
+            group.getTours().add(tour);
+            tour.setGroup(group);
+            em.merge(group);
+            em.getTransaction().commit();
+
+            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Tour " + tour.getName() + " successfully added");
+            logger.info("Tour " + tour.getName() + " successfully saved to DB");
+        }
+    }
+
+    public static void getDataFromDB(String persistenceUnitName, ObservableList<Group> groupsData,ObservableList<Tour> toursData,ObservableList<Song> songsData) {
         try (EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager()) {
             logger.info("Trying to get data from DB");
             entityManager.getTransaction().begin();
             List<Group> groups = entityManager.createQuery("from Group", Group.class).getResultList();
-            data.clear();
-            data.addAll(groups);
+            groupsData.clear();
+            groupsData.addAll(groups);
+
+            List<Tour> tours = entityManager.createQuery("from Tour", Tour.class).getResultList();
+            toursData.clear();
+            toursData.addAll(tours);
+
+            List<Song> songs = entityManager.createQuery("from Song", Song.class).getResultList();
+            songsData.clear();
+            songsData.addAll(songs);
             entityManager.getTransaction().commit();
             logger.info("Fetching data from DB successful");
         }

@@ -1,6 +1,7 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,13 +11,16 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 public class AppController {
@@ -53,8 +57,14 @@ public class AppController {
     @FXML
     private TextField searchField;
     @FXML
-    private ObservableList<Group> data = FXCollections.observableArrayList();
+    private ObservableList<Group> groupsData = FXCollections.observableArrayList();
+    @FXML
+    private ObservableList<Tour> toursData = FXCollections.observableArrayList();
+    @FXML
+    private ObservableList<Song> songsData = FXCollections.observableArrayList();
     List<Group> groups = new ArrayList<>();
+    List<Tour> tours = new ArrayList<>();
+    List<Song> songs = new ArrayList<>();
     private static final Logger logger = LogManager.getLogger("mainLogger");
 
     @FXML
@@ -63,13 +73,13 @@ public class AppController {
         removeButton.setOnAction(event -> removeGroup());
         editButton.setOnAction(event -> editInfo());
         searchButton.setOnAction(event -> search());
-        listButton.setOnAction(event -> fillInTable(data));
+        listButton.setOnAction(event -> fillInTable(groupsData));
         removeButton.setOnAction(event -> removeGroup());
         importXMLbutton.setOnAction(event -> {
             try {
                 XMLfilesHandler.importXML();
             } catch (ParserConfigurationException | SAXException | IOException e) {
-                logger.error(e.getMessage(),e);
+                logger.error(e.getMessage(), e);
             }
         });
         exportXMLbutton.setOnAction(event -> {
@@ -78,7 +88,7 @@ public class AppController {
                 AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "XML file {groups.xml} successfully exported!");
                 logger.info("XML file exported");
             } catch (ParserConfigurationException | TransformerException | IOException e) {
-                logger.error(e.getMessage(),e);
+                logger.error(e.getMessage(), e);
             }
         });
         generateReport.setOnAction(event -> {
@@ -100,9 +110,11 @@ public class AppController {
                 }
             }
         });
-        DataBaseHandler.getDataFromDB("test", data);
-        groups = data;
-        fillInTable(data);
+        DataBaseHandler.getDataFromDB("test", groupsData, toursData, songsData);
+        groups = groupsData;
+        tours = toursData;
+        songs = songsData;
+        fillInTable(groupsData);
         logger.info("System initialized");
     }
 
@@ -168,7 +180,7 @@ public class AppController {
                 logger.error(nfe.getMessage(), nfe);
             } catch (IllegalArgumentException iae) {
                 AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Input Error!", null, iae.getMessage());
-                logger.error(iae.getMessage(),iae);
+                logger.error(iae.getMessage(), iae);
             }
         });
 
@@ -182,11 +194,10 @@ public class AppController {
         if (selectedGroup == null) {
             AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "You should select a group!");
             logger.warn("Trying to delete group, but no group was selected");
-        }
-        else {
+        } else {
             int selectedGroupId = selectedGroup.getId();
-            DataBaseHandler.deleteGroupById(selectedGroupId, data, "test");
-            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Deleted successfully", null, "Group " + selectedGroup.getName() + " was successfully delted from database!");
+            DataBaseHandler.deleteGroupById(selectedGroupId, groupsData, "test");
+            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Deleted successfully", null, "Group " + selectedGroup.getName() + " was successfully deleted from database!");
             logger.info("Group " + selectedGroup.getName() + " deleted successfully");
             initialize();
         }
@@ -273,7 +284,7 @@ public class AppController {
                     initialize();
                 } catch (IllegalArgumentException e) {
                     AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, e.getMessage());
-                    logger.error(e.getMessage(),e);
+                    logger.error(e.getMessage(), e);
                 }
             });
         }
@@ -282,6 +293,7 @@ public class AppController {
     public String getSelectedFromComboBox() {
         return comboBoxParameters.getSelectionModel().getSelectedItem();
     }
+
     private void showDetails(Group group) {
 
         Stage groupDetailsStage = new Stage();
@@ -306,6 +318,8 @@ public class AppController {
         TableColumn<Tour, String> dateEndColumn = new TableColumn<>("End");
         concertTableView.getColumns().addAll(nameColumn, dateBeginColumn, dateEndColumn);
 
+        Button addNewTourButton = new Button("Add tour");
+
         dateBeginColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfBeginningProperty());
         dateEndColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfEndProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
@@ -314,13 +328,7 @@ public class AppController {
         dateBeginColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.40));
         dateEndColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.40));
 
-        ObservableList<Tour> tours = FXCollections.observableArrayList();
-        Tour tour = new Tour();
-        tour.setName("tour");
-        tour.setDateOfBeginning(new Date());
-        tour.setDateOfEnd(new Date());
-        tours.add(tour);
-        concertTableView.setItems(tours);
+        concertTableView.setItems(toursData);
 
         TableView<Song> repertoireTableView = new TableView<>();
         TableColumn<Song, String> songNameColumn = new TableColumn<>("Name");
@@ -328,9 +336,9 @@ public class AppController {
         TableColumn<Song, String> songAlbumColumn = new TableColumn<>("Album");
         repertoireTableView.getColumns().addAll(songNameColumn, songDurationColumn, songAlbumColumn);
 
-        ObservableList<Song> repertoireList = FXCollections.observableArrayList();
-        repertoireList.addAll(group.getRepertoire());
-        repertoireTableView.setItems(repertoireList);
+        Button addNewSongButton = new Button("Add song");
+
+        repertoireTableView.setItems(songsData);
 
         songNameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         songAlbumColumn.setCellValueFactory(cellData -> cellData.getValue().albumProperty());
@@ -345,7 +353,7 @@ public class AppController {
         Separator separatorRepertoire = new Separator();
         columnConstraints.setPercentWidth(100);
         gridPane.getColumnConstraints().add(columnConstraints);
-        // Add all components to the gridPane
+
         gridPane.add(nameLabel, 0, 0);
         gridPane.add(yearLabel, 0, 1);
         gridPane.add(genreLabel, 0, 2);
@@ -353,30 +361,136 @@ public class AppController {
         gridPane.add(membersLabel, 0, 4);
         gridPane.add(separatorConcerts, 0, 5);
         gridPane.add(new Label("Tours:"), 0, 6);
-        gridPane.add(concertTableView, 0,7);
+        gridPane.add(concertTableView, 0, 7);
+        gridPane.add(addNewTourButton, 0, 8);
+        gridPane.add(separatorRepertoire, 0, 9);
+        gridPane.add(new Label("Repertoire:"), 0, 10);
+        gridPane.add(repertoireTableView, 0, 11);
+        gridPane.add(addNewSongButton, 0, 12);
+
         GridPane.setColumnSpan(separatorConcerts, 2);
         GridPane.setColumnSpan(separatorRepertoire, 2);
-        gridPane.add(separatorRepertoire, 0, 8);
-
-        gridPane.add(new Label("Repertoire:"), 0, 9);
-        gridPane.add(repertoireTableView, 0, 10);
         VBox.setVgrow(repertoireTableView, Priority.ALWAYS);
 
-        // Set up the scene
         Scene scene = new Scene(gridPane, 600, 800);
 
-        // Set up the stage
+        addNewTourButton.setOnAction(event -> openAddTourDialog(group, groupDetailsStage, toursData, concertTableView));
+        addNewSongButton.setOnAction(event -> openAddSongDialog(group, groupDetailsStage, songsData, repertoireTableView));
+
         groupDetailsStage.setTitle("Band Information");
         groupDetailsStage.setScene(scene);
         groupDetailsStage.show();
 
-
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Person Details");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Name: " + group.getName() + "\nAge: " + group.getMainGenre());
-//        alert.showAndWait();
     }
+
+    private void openAddTourDialog(Group group, Stage primaryStage, ObservableList<Tour> concertList, TableView<Tour> concertTableView) {
+        Stage dialogStage = new Stage();
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(primaryStage);
+
+        GridPane dialogGrid = new GridPane();
+        dialogGrid.setPadding(new Insets(20));
+        dialogGrid.setHgap(10);
+        dialogGrid.setVgap(10);
+
+        TextField nameField = new TextField();
+        DatePicker startDatePicker = new DatePicker();
+        DatePicker endDatePicker = new DatePicker();
+
+        dialogGrid.add(new Label("Concert Name:"), 0, 0);
+        dialogGrid.add(nameField, 1, 0);
+        dialogGrid.add(new Label("Start Date:"), 0, 1);
+        dialogGrid.add(startDatePicker, 1, 1);
+        dialogGrid.add(new Label("End Date:"), 0, 2);
+        dialogGrid.add(endDatePicker, 1, 2);
+
+        Button addButton = new Button("Add");
+        addButton.setOnAction(e -> {
+
+            //TODO add validation
+            if (validateInputTour(nameField.getText(), startDatePicker.getValue(), endDatePicker.getValue())) {
+                Tour tour = new Tour();
+                tour.setName(nameField.getText());
+                tour.setDateOfBeginning(startDatePicker.getValue());
+                tour.setDateOfEnd(endDatePicker.getValue());
+                DataBaseHandler.saveTourToDB(group, tour);
+
+                concertList.add(tour);
+                concertTableView.setItems(concertList);
+                dialogStage.close();
+            } else {
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "Fill all the fields!");
+                logger.info("Tried to add tour, but some fields are empty");
+            }
+        });
+
+        dialogGrid.add(addButton, 1, 3);
+
+        GridPane.setHalignment(new Label("Concert Name:"), HPos.RIGHT);
+        GridPane.setHalignment(new Label("Start Date:"), HPos.RIGHT);
+        GridPane.setHalignment(new Label("End Date:"), HPos.RIGHT);
+
+        Scene dialogScene = new Scene(dialogGrid, 400, 200);
+        dialogStage.setScene(dialogScene);
+        dialogStage.showAndWait();
+    }
+
+    private void openAddSongDialog(Group group, Stage primaryStage, ObservableList<Song> repertoireList, TableView<Song> repertoireTableView) {
+        Stage dialogStage = new Stage();
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(primaryStage);
+
+        GridPane dialogGrid = new GridPane();
+        dialogGrid.setPadding(new Insets(20));
+        dialogGrid.setHgap(10);
+        dialogGrid.setVgap(10);
+
+        TextField songNameField = new TextField();
+        TextField durationField = new TextField();
+        TextField albumField = new TextField();
+
+        dialogGrid.add(new Label("Song Name:"), 0, 0);
+        dialogGrid.add(songNameField, 1, 0);
+        dialogGrid.add(new Label("Duration:"), 0, 1);
+        dialogGrid.add(durationField, 1, 1);
+        dialogGrid.add(new Label("Album:"), 0, 2);
+        dialogGrid.add(albumField, 1, 2);
+
+        Button addButton = new Button("Add");
+        addButton.setOnAction(e -> {
+            String songName = songNameField.getText();
+            String duration = durationField.getText();
+            String album = albumField.getText();
+
+            //TODO add validation
+            if (!songName.isEmpty() && !duration.isEmpty() && !album.isEmpty()) {
+                Song newSong = new Song();
+                newSong.setName(songName);
+                newSong.setDuration(Integer.valueOf(duration));
+                newSong.setAlbum(album);
+
+                repertoireList.add(newSong);
+
+                repertoireTableView.setItems(repertoireList);
+                DataBaseHandler.saveSongToDB(group, newSong);
+                dialogStage.close();
+            } else {
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "Fill all the fields!");
+                logger.info("Tried to add song, but some fields are empty");
+            }
+        });
+
+        dialogGrid.add(addButton, 1, 3);
+
+        GridPane.setHalignment(new Label("Song Name:"), HPos.RIGHT);
+        GridPane.setHalignment(new Label("Duration:"), HPos.RIGHT);
+        GridPane.setHalignment(new Label("Album:"), HPos.RIGHT);
+
+        Scene dialogScene = new Scene(dialogGrid, 400, 200);
+        dialogStage.setScene(dialogScene);
+        dialogStage.showAndWait();
+    }
+
     private void search() {
         ObservableList<Group> resultData = FXCollections.observableArrayList();
         String selectedParameter = getSelectedFromComboBox();
@@ -417,5 +531,9 @@ public class AppController {
             throw new NumberFormatException("Field " + fieldName + " should be an integer!");
         }
         return input;
+    }
+
+    private boolean validateInputTour(String name, LocalDate startDate, LocalDate endDate) {
+        return name != null && !name.isEmpty() && startDate != null && endDate != null;
     }
 }

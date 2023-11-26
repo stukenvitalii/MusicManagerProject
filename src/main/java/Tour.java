@@ -1,8 +1,7 @@
 import jakarta.persistence.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tours")
@@ -18,13 +17,20 @@ public class Tour {
     private String name;
     @Column(name = "tour_date_of_beginning")
     @Temporal(TemporalType.DATE)
-    private Date dateOfBeginning;
+    private LocalDate dateOfBeginning;
     @Column(name = "tour_date_of_end")
     @Temporal(TemporalType.DATE)
-    private Date dateOfEnd;
+    private LocalDate dateOfEnd;
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
+
+
 
 
     public String getName() {
@@ -35,19 +41,19 @@ public class Tour {
         this.name = name;
     }
 
-    public Date getDateOfBeginning() {
+    public LocalDate getDateOfBeginning() {
         return dateOfBeginning;
     }
 
-    public void setDateOfBeginning(Date dateOfBeginning) {
+    public void setDateOfBeginning(LocalDate dateOfBeginning) {
         this.dateOfBeginning = dateOfBeginning;
     }
 
-    public Date getDateOfEnd() {
+    public LocalDate getDateOfEnd() {
         return dateOfEnd;
     }
 
-    public void setDateOfEnd(Date dateOfEnd) {
+    public void setDateOfEnd(LocalDate dateOfEnd) {
         this.dateOfEnd = dateOfEnd;
     }
 
