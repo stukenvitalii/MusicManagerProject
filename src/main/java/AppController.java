@@ -177,10 +177,10 @@ public class AppController {
                 newStage.close();
             } catch (NumberFormatException nfe) {
                 AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Wrong number format!", null, "Error: " + nfe.getMessage().toLowerCase());
-                logger.error(nfe.getMessage(), nfe);
+                logger.warn(nfe.getMessage(), nfe);
             } catch (IllegalArgumentException iae) {
                 AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Input Error!", null, iae.getMessage());
-                logger.error(iae.getMessage(), iae);
+                logger.warn(iae.getMessage(), iae);
             }
         });
 
@@ -284,7 +284,7 @@ public class AppController {
                     initialize();
                 } catch (IllegalArgumentException e) {
                     AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, e.getMessage());
-                    logger.error(e.getMessage(), e);
+                    logger.warn(e.getMessage(), e);
                 }
             });
         }
