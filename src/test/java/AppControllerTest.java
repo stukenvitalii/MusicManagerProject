@@ -13,20 +13,20 @@ public class AppControllerTest {
         randomString = RandomStringUtils.randomAlphabetic(10);
     }
     @Test
-    void validateInput_emptyFieldName() {
-        Assertions.assertThrows(AppController.IllegalArgumentException.class, () -> appController.validateInput("","Name"));
+    void validateInputGroup_emptyFieldName() {
+        Assertions.assertThrows(AppController.IllegalArgumentException.class, () -> appController.validateInputGroup("","Name"));
     }
     @Test
-    void validateInput_emptyFieldGenre() {
-        Assertions.assertThrows(AppController.IllegalArgumentException.class, () -> appController.validateInput("","Genre"));
+    void validateInputGroup_emptyFieldGenre() {
+        Assertions.assertThrows(AppController.IllegalArgumentException.class, () -> appController.validateInputGroup("","Genre"));
     }
     @RepeatedTest(5)
-    void validateInput_NaNYear() {
-        Assertions.assertThrows(NumberFormatException.class, () -> appController.validateInput(randomString,"Year of foundation"));
+    void validateInputGroup_NaNYear() {
+        Assertions.assertThrows(NumberFormatException.class, () -> appController.validateInputGroup(randomString,"Year of foundation"));
     }
 
     @RepeatedTest(5)
-    void validateInput_NaNPlace() {
-        Assertions.assertThrows(NumberFormatException.class, () -> appController.validateInput(randomString,"Place in chart"));
+    void validateInputGroup_NaNPlace() {
+        Assertions.assertThrows(NumberFormatException.class, () -> appController.validateInputGroup(randomString,"Place in chart"));
     }
 }

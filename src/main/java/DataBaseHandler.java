@@ -33,7 +33,7 @@ public class DataBaseHandler {
 
             group.getMembers().add(member);
             member.setGroup(group);
-            em.merge(group);
+            em.persist(member);
             em.getTransaction().commit();
 
             AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Member " + member.getName() + " successfully added");
@@ -48,7 +48,7 @@ public class DataBaseHandler {
             em.getTransaction().begin();
             group.getSongs().add(song);
             song.setGroup(group);
-            em.merge(group);
+            em.persist(song);
             em.getTransaction().commit();
 
             AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Song " + song.getName() + " successfully added");
@@ -64,7 +64,7 @@ public class DataBaseHandler {
             em.getTransaction().begin();
             group.getTours().add(tour);
             tour.setGroup(group);
-            em.merge(group);
+            em.persist(tour);
             em.getTransaction().commit();
 
             AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Tour " + tour.getName() + " successfully added");

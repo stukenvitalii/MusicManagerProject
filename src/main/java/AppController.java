@@ -635,6 +635,9 @@ public class AppController {
         if (name.isEmpty() || startDate == null || endDate == null) {
             throw new IllegalArgumentException("Field is empty. Try again.");
         }
+        if (startDate.isAfter(endDate)) {
+            throw new IllegalArgumentException("Start date is after end date. Try again!");
+        }
     }
 
     private void validateInputSong(String name, String duration , String album) throws IllegalArgumentException {
