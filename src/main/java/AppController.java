@@ -58,13 +58,8 @@ public class AppController {
     private TextField searchField;
     @FXML
     private ObservableList<Group> groupsData = FXCollections.observableArrayList();
-    @FXML
-    private ObservableList<Tour> toursData = FXCollections.observableArrayList();
-    @FXML
-    private ObservableList<Song> songsData = FXCollections.observableArrayList();
+
     List<Group> groups = new ArrayList<>();
-    List<Tour> tours = new ArrayList<>();
-    List<Song> songs = new ArrayList<>();
     private static final Logger logger = LogManager.getLogger("mainLogger");
 
     @FXML
@@ -110,10 +105,9 @@ public class AppController {
                 }
             }
         });
-        DataBaseHandler.getDataFromDB("test", groupsData, toursData, songsData);
+        DataBaseHandler.getDataFromDB("test", groupsData);
         groups = groupsData;
-        tours = toursData;
-        songs = songsData;
+
         fillInTable(groupsData);
         logger.info("System initialized");
     }
@@ -163,10 +157,10 @@ public class AppController {
 
         okButton.setOnAction(event -> {
             try {
-                name[0] = validateInput(nameTextField.getText(), "Name");
-                year[0] = validateInput(yearTextField.getText(), "Year of foundation");
-                genre[0] = validateInput(genreTextField.getText(), "Genre");
-                place[0] = validateInput(placeTextField.getText(), "Place in chart");
+                name[0] = validateInputGroup(nameTextField.getText(), "Name");
+                year[0] = validateInputGroup(yearTextField.getText(), "Year of foundation");
+                genre[0] = validateInputGroup(genreTextField.getText(), "Genre");
+                place[0] = validateInputGroup(placeTextField.getText(), "Place in chart");
                 Group newGroup = new Group();
                 newGroup.setName(name[0]);
                 newGroup.setYearOfFoundation(Integer.valueOf(year[0]));
@@ -261,10 +255,10 @@ public class AppController {
             okButton.setOnAction(event -> {
 
                 try {
-                    name[0] = validateInput(nameTextField.getText(), "Name");
-                    year[0] = validateInput(yearTextField.getText(), "Year of foundation");
-                    genre[0] = validateInput(genreTextField.getText(), "Genre");
-                    place[0] = validateInput(placeTextField.getText(), "Place in chart");
+                    name[0] = validateInputGroup(nameTextField.getText(), "Name");
+                    year[0] = validateInputGroup(yearTextField.getText(), "Year of foundation");
+                    genre[0] = validateInputGroup(genreTextField.getText(), "Genre");
+                    place[0] = validateInputGroup(placeTextField.getText(), "Place in chart");
 
                     newInfo.put("name", name[0]);
                     newInfo.put("year", year[0]);
@@ -298,6 +292,10 @@ public class AppController {
 
         Stage groupDetailsStage = new Stage();
 
+        ObservableList<GroupMember> membersData = FXCollections.observableArrayList();
+        ObservableList<Tour> toursData = FXCollections.observableArrayList();
+        ObservableList<Song> songsData = FXCollections.observableArrayList();
+
         groupDetailsStage.getIcons().add(new Image("icons/info_icon.png"));
 
         GridPane gridPane = new GridPane();
@@ -312,45 +310,71 @@ public class AppController {
 
         Label membersLabel = new Label("Band Members: " + group.getMembersAsString());
 
-        TableView<Tour> concertTableView = new TableView<>();
-        TableColumn<Tour, String> nameColumn = new TableColumn<>("Name");
-        TableColumn<Tour, String> dateBeginColumn = new TableColumn<>("Begin");
-        TableColumn<Tour, String> dateEndColumn = new TableColumn<>("End");
-        concertTableView.getColumns().addAll(nameColumn, dateBeginColumn, dateEndColumn);
+        TableView<GroupMember> membersTableView = new TableView<>();
+        TableColumn<GroupMember, String> memberNameColumn = new TableColumn<>("Name");
+        TableColumn<GroupMember, String> memberRoleColumn = new TableColumn<>("Role");
+        TableColumn<GroupMember, String> memberAgeColumn = new TableColumn<>("Age");
+
+        membersTableView.getColumns().addAll(memberNameColumn,memberRoleColumn,memberAgeColumn);
+
+        Button addNewMemberButton = new Button("Add member");
+
+        memberNameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        memberRoleColumn.setCellValueFactory(cellData -> cellData.getValue().roleProperty());
+        memberAgeColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty());
+
+        memberNameColumn.prefWidthProperty().bind(membersTableView.widthProperty().multiply(0.33));
+        memberRoleColumn.prefWidthProperty().bind(membersTableView.widthProperty().multiply(0.33));
+        memberAgeColumn.prefWidthProperty().bind(membersTableView.widthProperty().multiply(0.33));
+
+        membersData.clear();
+        membersData.addAll(group.getMembers());
+        membersTableView.setItems(membersData);
+
+        TableView<Tour> toursTableView = new TableView<>();
+        TableColumn<Tour, String> tourNameColumn = new TableColumn<>("Name");
+        TableColumn<Tour, String> tourDateBeginColumn = new TableColumn<>("Begin");
+        TableColumn<Tour, String> tourDateEndColumn = new TableColumn<>("End");
+        toursTableView.getColumns().addAll(tourNameColumn, tourDateBeginColumn, tourDateEndColumn);
 
         Button addNewTourButton = new Button("Add tour");
 
-        dateBeginColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfBeginningProperty());
-        dateEndColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfEndProperty());
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        tourDateBeginColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfBeginningProperty());
+        tourDateEndColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfEndProperty());
+        tourNameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
 
-        nameColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.20));
-        dateBeginColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.40));
-        dateEndColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.40));
+        tourNameColumn.prefWidthProperty().bind(toursTableView.widthProperty().multiply(0.33));
+        tourDateBeginColumn.prefWidthProperty().bind(toursTableView.widthProperty().multiply(0.33));
+        tourDateEndColumn.prefWidthProperty().bind(toursTableView.widthProperty().multiply(0.33));
 
-        concertTableView.setItems(toursData);
+        toursData.clear();
+        toursData.addAll(group.getTours());
+        toursTableView.setItems(toursData);
 
-        TableView<Song> repertoireTableView = new TableView<>();
+        TableView<Song> songsTableView = new TableView<>();
         TableColumn<Song, String> songNameColumn = new TableColumn<>("Name");
         TableColumn<Song, String> songDurationColumn = new TableColumn<>("Duration");
         TableColumn<Song, String> songAlbumColumn = new TableColumn<>("Album");
-        repertoireTableView.getColumns().addAll(songNameColumn, songDurationColumn, songAlbumColumn);
+        songsTableView.getColumns().addAll(songNameColumn, songDurationColumn, songAlbumColumn);
 
         Button addNewSongButton = new Button("Add song");
 
-        repertoireTableView.setItems(songsData);
+        songsData.addAll(group.getSongs());
+        songsTableView.setItems(songsData);
 
         songNameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         songAlbumColumn.setCellValueFactory(cellData -> cellData.getValue().albumProperty());
         songDurationColumn.setCellValueFactory(cellData -> cellData.getValue().durationProperty());
 
-        songAlbumColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.33));
-        songNameColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.33));
-        songDurationColumn.prefWidthProperty().bind(concertTableView.widthProperty().multiply(0.33));
+        songAlbumColumn.prefWidthProperty().bind(songsTableView.widthProperty().multiply(0.33));
+        songNameColumn.prefWidthProperty().bind(songsTableView.widthProperty().multiply(0.33));
+        songDurationColumn.prefWidthProperty().bind(songsTableView.widthProperty().multiply(0.33));
 
         ColumnConstraints columnConstraints = new ColumnConstraints();
-        Separator separatorConcerts = new Separator();
-        Separator separatorRepertoire = new Separator();
+        Separator separatorMembers = new Separator();
+        Separator separatorTours = new Separator();
+        Separator separatorSongs = new Separator();
+
         columnConstraints.setPercentWidth(100);
         gridPane.getColumnConstraints().add(columnConstraints);
 
@@ -359,31 +383,96 @@ public class AppController {
         gridPane.add(genreLabel, 0, 2);
         gridPane.add(chartPositionLabel, 0, 3);
         gridPane.add(membersLabel, 0, 4);
-        gridPane.add(separatorConcerts, 0, 5);
-        gridPane.add(new Label("Tours:"), 0, 6);
-        gridPane.add(concertTableView, 0, 7);
-        gridPane.add(addNewTourButton, 0, 8);
-        gridPane.add(separatorRepertoire, 0, 9);
-        gridPane.add(new Label("Repertoire:"), 0, 10);
-        gridPane.add(repertoireTableView, 0, 11);
-        gridPane.add(addNewSongButton, 0, 12);
+        gridPane.add(separatorMembers, 0, 5);
 
-        GridPane.setColumnSpan(separatorConcerts, 2);
-        GridPane.setColumnSpan(separatorRepertoire, 2);
-        VBox.setVgrow(repertoireTableView, Priority.ALWAYS);
+        gridPane.add(new Label("Members:"), 0, 6);
+        gridPane.add(membersTableView, 0, 7);
+        gridPane.add(addNewMemberButton, 0, 8);
+        gridPane.add(separatorTours, 0, 9);
 
-        Scene scene = new Scene(gridPane, 600, 800);
+        gridPane.add(new Label("Tours:"), 0, 10);
+        gridPane.add(toursTableView, 0, 11);
+        gridPane.add(addNewTourButton, 0, 12);
+        gridPane.add(separatorSongs, 0, 13);
 
-        addNewTourButton.setOnAction(event -> openAddTourDialog(group, groupDetailsStage, toursData, concertTableView));
-        addNewSongButton.setOnAction(event -> openAddSongDialog(group, groupDetailsStage, songsData, repertoireTableView));
+        gridPane.add(new Label("Songs:"), 0, 14);
+        gridPane.add(songsTableView, 0, 15);
+        gridPane.add(addNewSongButton, 0, 16);
+
+        GridPane.setColumnSpan(separatorMembers, 2);
+        GridPane.setColumnSpan(separatorTours, 2);
+        GridPane.setColumnSpan(separatorSongs, 2);
+        VBox.setVgrow(songsTableView, Priority.ALWAYS);
+
+        Scene scene = new Scene(gridPane, 700, 900);
+
+        addNewMemberButton.setOnAction(event -> openAddMemberDialog(group, groupDetailsStage, membersData, membersTableView));
+        addNewTourButton.setOnAction(event -> openAddTourDialog(group, groupDetailsStage, toursData, toursTableView));
+        addNewSongButton.setOnAction(event -> openAddSongDialog(group, groupDetailsStage, songsData, songsTableView));
 
         groupDetailsStage.setTitle("Band Information");
         groupDetailsStage.setScene(scene);
         groupDetailsStage.show();
-
     }
 
-    private void openAddTourDialog(Group group, Stage primaryStage, ObservableList<Tour> concertList, TableView<Tour> concertTableView) {
+    private void openAddMemberDialog(Group group, Stage primaryStage, ObservableList<GroupMember> membersData, TableView<GroupMember> membersTableView) {
+        Stage dialogStage = new Stage();
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(primaryStage);
+
+        GridPane dialogGrid = new GridPane();
+        dialogGrid.setPadding(new Insets(20));
+        dialogGrid.setHgap(10);
+        dialogGrid.setVgap(10);
+
+        TextField nameField = new TextField();
+        TextField roleField = new TextField();
+        TextField ageField = new TextField();
+
+        dialogGrid.add(new Label("Member name:"), 0, 0);
+        dialogGrid.add(nameField, 1, 0);
+        dialogGrid.add(new Label("Member role:"), 0, 1);
+        dialogGrid.add(roleField, 1, 1);
+        dialogGrid.add(new Label("Member age:"), 0, 2);
+        dialogGrid.add(ageField, 1, 2);
+
+        Button addButton = new Button("Add");
+        addButton.setOnAction(e -> {
+            try {
+                validateInputMember(nameField.getText(), roleField.getText(), ageField.getText());
+                GroupMember member = new GroupMember();
+                member.setName(nameField.getText());
+                member.setRole(roleField.getText());
+                member.setAge(Integer.valueOf(ageField.getText()));
+                DataBaseHandler.saveMemberToDB(group, member);
+
+                membersData.clear();
+                membersData.addAll(group.getMembers());
+                membersTableView.setItems(membersData);
+                dialogStage.close();
+            }
+             catch (NumberFormatException nfe) {
+                 AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, nfe.getMessage());
+                 logger.warn(nfe.getMessage(),nfe);
+             }
+             catch (IllegalArgumentException lae) {
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "Fill all the fields!");
+                logger.warn("Tried to add member, but some fields are empty");
+            }
+        });
+
+        dialogGrid.add(addButton, 1, 3);
+
+        GridPane.setHalignment(new Label("Member name:"), HPos.RIGHT);
+        GridPane.setHalignment(new Label("Member role:"), HPos.RIGHT);
+        GridPane.setHalignment(new Label("Member age:"), HPos.RIGHT);
+
+        Scene dialogScene = new Scene(dialogGrid, 400, 200);
+        dialogStage.setScene(dialogScene);
+        dialogStage.showAndWait();
+    }
+
+    private void openAddTourDialog(Group group, Stage primaryStage, ObservableList<Tour> toursData, TableView<Tour> concertTableView) {
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.initOwner(primaryStage);
@@ -406,19 +495,19 @@ public class AppController {
 
         Button addButton = new Button("Add");
         addButton.setOnAction(e -> {
-
-            //TODO add validation
-            if (validateInputTour(nameField.getText(), startDatePicker.getValue(), endDatePicker.getValue())) {
+            try {
+                validateInputTour(nameField.getText(), startDatePicker.getValue(), endDatePicker.getValue());
                 Tour tour = new Tour();
                 tour.setName(nameField.getText());
                 tour.setDateOfBeginning(startDatePicker.getValue());
                 tour.setDateOfEnd(endDatePicker.getValue());
                 DataBaseHandler.saveTourToDB(group, tour);
 
-                concertList.add(tour);
-                concertTableView.setItems(concertList);
+                toursData.add(tour);
+                concertTableView.setItems(toursData);
                 dialogStage.close();
-            } else {
+            }
+            catch (IllegalArgumentException iae) {
                 AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "Fill all the fields!");
                 logger.warn("Tried to add tour, but some fields are empty");
             }
@@ -435,7 +524,7 @@ public class AppController {
         dialogStage.showAndWait();
     }
 
-    private void openAddSongDialog(Group group, Stage primaryStage, ObservableList<Song> repertoireList, TableView<Song> repertoireTableView) {
+    private void openAddSongDialog(Group group, Stage primaryStage, ObservableList<Song> songsData, TableView<Song> repertoireTableView) {
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.initOwner(primaryStage);
@@ -463,18 +552,20 @@ public class AppController {
             String album = albumField.getText();
 
             //TODO add validation
-            if (!songName.isEmpty() && !duration.isEmpty() && !album.isEmpty()) {
+            try {
+                validateInputSong(songName,duration,album);
                 Song newSong = new Song();
                 newSong.setName(songName);
                 newSong.setDuration(Integer.valueOf(duration));
                 newSong.setAlbum(album);
 
-                repertoireList.add(newSong);
+                songsData.add(newSong);
 
-                repertoireTableView.setItems(repertoireList);
+                repertoireTableView.setItems(songsData);
                 DataBaseHandler.saveSongToDB(group, newSong);
                 dialogStage.close();
-            } else {
+            }
+            catch (IllegalArgumentException iae) {
                 AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "Fill all the fields!");
                 logger.warn("Tried to add song, but some fields are empty");
             }
@@ -523,7 +614,7 @@ public class AppController {
         }
     }
 
-    public String validateInput(String input, String fieldName) throws IllegalArgumentException, NumberFormatException {
+    public String validateInputGroup(String input, String fieldName) throws IllegalArgumentException, NumberFormatException {
         if (input.isEmpty()) {
             throw new IllegalArgumentException("Field " + fieldName + " is empty. Try again.");
         }
@@ -532,8 +623,27 @@ public class AppController {
         }
         return input;
     }
-
-    private boolean validateInputTour(String name, LocalDate startDate, LocalDate endDate) {
-        return name != null && !name.isEmpty() && startDate != null && endDate != null;
+    private void validateInputMember(String name, String role, String age) throws IllegalArgumentException {
+        if (name.isEmpty() || role.isEmpty() || age.isEmpty()) {
+            throw new IllegalArgumentException("Field is empty. Try again.");
+        }
+        if ( !age.matches("-?\\d+(\\.\\d+)?")) {
+            throw new NumberFormatException("Field age should be an integer!");
+        }
     }
+    private void validateInputTour(String name, LocalDate startDate, LocalDate endDate) throws IllegalArgumentException {
+        if (name.isEmpty() || startDate == null || endDate == null) {
+            throw new IllegalArgumentException("Field is empty. Try again.");
+        }
+    }
+
+    private void validateInputSong(String name, String duration , String album) throws IllegalArgumentException {
+        if (name.isEmpty() || duration.isEmpty() || album.isEmpty()) {
+            throw new IllegalArgumentException("Field is empty. Try again.");
+        }
+        if ( !duration.matches("-?\\d+(\\.\\d+)?")) {
+            throw new NumberFormatException("Field duration should be an integer!");
+        }
+    }
+
 }

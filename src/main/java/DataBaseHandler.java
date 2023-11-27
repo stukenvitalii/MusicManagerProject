@@ -24,7 +24,22 @@ public class DataBaseHandler {
             logger.info("Group " + group.getName() + " successfully saved to DB");
         }
     }
+    public static void saveMemberToDB(Group group, GroupMember member) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        try (EntityManager em = emf.createEntityManager()) {
+            logger.info("Saving new member to DataBase");
 
+            em.getTransaction().begin();
+
+            group.getMembers().add(member);
+            member.setGroup(group);
+            em.merge(group);
+            em.getTransaction().commit();
+
+            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Member " + member.getName() + " successfully added");
+            logger.info("Member " + member.getName() + " successfully saved to DB");
+        }
+    }
     public static void saveSongToDB(Group group,Song song) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         try (EntityManager em = emf.createEntityManager()) {
@@ -57,7 +72,7 @@ public class DataBaseHandler {
         }
     }
 
-    public static void getDataFromDB(String persistenceUnitName, ObservableList<Group> groupsData,ObservableList<Tour> toursData,ObservableList<Song> songsData) {
+    public static void getDataFromDB(String persistenceUnitName, ObservableList<Group> groupsData) {
         try (EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager()) {
             logger.info("Trying to get data from DB");
             entityManager.getTransaction().begin();
@@ -65,13 +80,6 @@ public class DataBaseHandler {
             groupsData.clear();
             groupsData.addAll(groups);
 
-            List<Tour> tours = entityManager.createQuery("from Tour", Tour.class).getResultList();
-            toursData.clear();
-            toursData.addAll(tours);
-
-            List<Song> songs = entityManager.createQuery("from Song", Song.class).getResultList();
-            songsData.clear();
-            songsData.addAll(songs);
             entityManager.getTransaction().commit();
             logger.info("Fetching data from DB successful");
         }
@@ -138,4 +146,6 @@ public class DataBaseHandler {
             entityManager.getTransaction().commit();
         }
     }
+
+
 }

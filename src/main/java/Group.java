@@ -18,7 +18,7 @@ public class Group {
     @Column(name = "group_main_genre")
     private String mainGenre;
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<GroupMember> listOfMembers = new ArrayList<>();
+    private List<GroupMember> members = new ArrayList<>();
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Song> songs;
     @Column(name = "group_place_in_chart")
@@ -46,12 +46,12 @@ public class Group {
         this.yearOfFoundation = yearOfFoundation;
     }
 
-    public List<GroupMember> getListOfMembers() {
-        return listOfMembers;
+    public List<GroupMember> getMembers() {
+        return members;
     }
 
-    public void setListOfMembers(List<GroupMember> members) {
-        this.listOfMembers = members;
+    public void setMembers(List<GroupMember> members) {
+        this.members = members;
     }
 
     public List<Song> getSongs() {
@@ -96,7 +96,7 @@ public class Group {
 
     public String getMembersAsString() {
         StringBuilder membersString = new StringBuilder();
-        for (GroupMember member : listOfMembers) {
+        for (GroupMember member : members) {
             membersString.append(member.getName()).append(", ");
         }
         return membersString.toString();

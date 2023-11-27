@@ -1,4 +1,6 @@
 import jakarta.persistence.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 @Entity
 @Table(name = "members")
@@ -45,5 +47,16 @@ public class GroupMember {
     }
     public void setAge(Integer age) {
         this.age = age;
+    }
+    public StringProperty nameProperty() {
+        return new SimpleStringProperty(name);
+    }
+
+    public StringProperty roleProperty() {
+        return new SimpleStringProperty(role);
+    }
+
+    public StringProperty ageProperty() {
+        return new SimpleStringProperty(age.toString());
     }
 }
