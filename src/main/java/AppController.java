@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
@@ -40,6 +39,8 @@ public class AppController {
     private Button exportXMLbutton;
     @FXML
     private Button generateReport;
+    @FXML
+    private Button getThreeBestGroups;
     @FXML
     private TableView<Group> groupTableView;
     @FXML
@@ -66,7 +67,7 @@ public class AppController {
     public void initialize() {
         addButton.setOnAction(event -> addGroup());
         removeButton.setOnAction(event -> removeGroup());
-        editButton.setOnAction(event -> editInfo());
+        editButton.setOnAction(event -> editInfoGroup());
         searchButton.setOnAction(event -> search());
         listButton.setOnAction(event -> fillInTable(groupsData));
         removeButton.setOnAction(event -> removeGroup());
@@ -87,9 +88,20 @@ public class AppController {
             }
         });
         generateReport.setOnAction(event -> {
-            XMLtoPDFReporter.createReport("groups.xml");
+            PDFReporter.createReportGroups("groups.xml");
             AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Report file {report.pdf} created");
         });
+
+        getThreeBestGroups.setOnAction(event -> {
+            ObservableList<Group> threeBest = FXCollections.observableArrayList();
+            for (Group group: groups) {
+                if (group.getPlaceInChart() <= 3) {
+                    threeBest.add(group);
+                }
+            }
+            fillInTable(threeBest);
+        });
+
         comboBoxParameters.getItems().setAll(
                 "ID",
                 "Название",
@@ -190,15 +202,30 @@ public class AppController {
             logger.warn("Trying to delete group, but no group was selected");
         } else {
             int selectedGroupId = selectedGroup.getId();
-            DataBaseHandler.deleteGroupById(selectedGroupId, groupsData, "test");
-            AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Deleted successfully", null, "Group " + selectedGroup.getName() + " was successfully deleted from database!");
-            logger.info("Group " + selectedGroup.getName() + " deleted successfully");
-            initialize();
-        }
 
+            logger.info("Confirming deletion");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            String s = "Confirm deleting the group. This is irreversible!";
+            alert.setContentText(s);
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+                logger.info("Deleting confirmed");
+                DataBaseHandler.deleteGroupById(selectedGroupId, groupsData, "test");
+                AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Deleted successfully", null, "Group " + selectedGroup.getName() + " was successfully deleted from database!");
+                logger.info("Group " + selectedGroup.getName() + " deleted successfully");
+                initialize();
+            }
+            else {
+                AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION,"Canceled",null,"Deleting the group was canceled");
+                logger.info("Deleting the group canceled");
+            }
+        }
     }
 
-    private void editInfo() {
+    private void editInfoGroup() {
         Group selectedGroup = groupTableView.getSelectionModel().getSelectedItem();
         if (selectedGroup == null) {
             AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "You should select a group!");
@@ -270,7 +297,7 @@ public class AppController {
                     selectedGroup.setMainGenre(newInfo.get("genre"));
                     selectedGroup.setPlaceInChart(Integer.valueOf(newInfo.get("place")));
 
-                    DataBaseHandler.editData(selectedGroupId, newInfo, "test");
+                    DataBaseHandler.editDataGroup(selectedGroupId, newInfo, "test");
 
                     AlertHandler.makeAlertWindow(Alert.AlertType.INFORMATION, "Success!", null, "Data edited successfully! Group " + selectedGroup.getName() + " ");
                     logger.info("Group info successfully edited");
@@ -315,9 +342,12 @@ public class AppController {
         TableColumn<GroupMember, String> memberRoleColumn = new TableColumn<>("Role");
         TableColumn<GroupMember, String> memberAgeColumn = new TableColumn<>("Age");
 
-        membersTableView.getColumns().addAll(memberNameColumn,memberRoleColumn,memberAgeColumn);
+        membersTableView.getColumns().addAll(memberNameColumn, memberRoleColumn, memberAgeColumn);
 
         Button addNewMemberButton = new Button("Add member");
+        Button editMemberButton = new Button("Edit member");
+        Button deleteMemberButton = new Button("Delete member");
+
 
         memberNameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         memberRoleColumn.setCellValueFactory(cellData -> cellData.getValue().roleProperty());
@@ -338,6 +368,10 @@ public class AppController {
         toursTableView.getColumns().addAll(tourNameColumn, tourDateBeginColumn, tourDateEndColumn);
 
         Button addNewTourButton = new Button("Add tour");
+        Button editTourButton = new Button("Edit tour");
+        Button deleteTourButton = new Button("Delete tour");
+        Button exportToursReportButton = new Button("Export report");
+
 
         tourDateBeginColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfBeginningProperty());
         tourDateEndColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfEndProperty());
@@ -358,6 +392,8 @@ public class AppController {
         songsTableView.getColumns().addAll(songNameColumn, songDurationColumn, songAlbumColumn);
 
         Button addNewSongButton = new Button("Add song");
+        Button editSongButton = new Button("Edit song");
+        Button deleteSongButton = new Button("Delete song");
 
         songsData.addAll(group.getSongs());
         songsTableView.setItems(songsData);
@@ -388,34 +424,60 @@ public class AppController {
         gridPane.add(new Label("Members:"), 0, 6);
         gridPane.add(membersTableView, 0, 7);
         gridPane.add(addNewMemberButton, 0, 8);
-        gridPane.add(separatorTours, 0, 9);
+        gridPane.add(editMemberButton, 0, 9);
+        gridPane.add(deleteMemberButton,0,10);
+        gridPane.add(separatorTours, 0, 11);
 
-        gridPane.add(new Label("Tours:"), 0, 10);
-        gridPane.add(toursTableView, 0, 11);
-        gridPane.add(addNewTourButton, 0, 12);
-        gridPane.add(separatorSongs, 0, 13);
+        gridPane.add(new Label("Tours:"), 0, 12);
+        gridPane.add(toursTableView, 0, 13);
+        gridPane.add(addNewTourButton, 0, 14);
+        gridPane.add(exportToursReportButton, 0, 15);
+        gridPane.add(editTourButton, 0, 16);
+        gridPane.add(deleteTourButton,0,17);
+        gridPane.add(separatorSongs, 0, 18);
 
-        gridPane.add(new Label("Songs:"), 0, 14);
-        gridPane.add(songsTableView, 0, 15);
-        gridPane.add(addNewSongButton, 0, 16);
+        gridPane.add(new Label("Songs:"), 0, 19);
+        gridPane.add(songsTableView, 0, 20);
+        gridPane.add(addNewSongButton, 0, 21);
+        gridPane.add(editSongButton, 0, 22);
+        gridPane.add(deleteSongButton,0,23);
 
         GridPane.setColumnSpan(separatorMembers, 2);
         GridPane.setColumnSpan(separatorTours, 2);
         GridPane.setColumnSpan(separatorSongs, 2);
         VBox.setVgrow(songsTableView, Priority.ALWAYS);
 
-        Scene scene = new Scene(gridPane, 700, 900);
+        Scene scene = new Scene(gridPane, 700, 850);
 
         addNewMemberButton.setOnAction(event -> openAddMemberDialog(group, groupDetailsStage, membersData, membersTableView));
         addNewTourButton.setOnAction(event -> openAddTourDialog(group, groupDetailsStage, toursData, toursTableView));
         addNewSongButton.setOnAction(event -> openAddSongDialog(group, groupDetailsStage, songsData, songsTableView));
 
+        editMemberButton.setOnAction(event -> openAddMemberDialog(group, groupDetailsStage, membersData, membersTableView));
+        editTourButton.setOnAction(event -> openAddTourDialog(group, groupDetailsStage, toursData, toursTableView));
+        editSongButton.setOnAction(event -> openAddSongDialog(group, groupDetailsStage, songsData, songsTableView));
+
+        deleteMemberButton.setOnAction(event -> DataBaseHandler.deleteMember(membersTableView, membersData,"test"));
+        deleteTourButton.setOnAction(event -> DataBaseHandler.deleteTour(toursTableView, toursData,"test"));
+        deleteSongButton.setOnAction(event -> DataBaseHandler.deleteSong(songsTableView, songsData,"test"));
+
+        exportToursReportButton.setOnAction(event -> PDFReporter.createReportTours(group.getId()));
         groupDetailsStage.setTitle("Band Information");
         groupDetailsStage.setScene(scene);
         groupDetailsStage.show();
     }
 
     private void openAddMemberDialog(Group group, Stage primaryStage, ObservableList<GroupMember> membersData, TableView<GroupMember> membersTableView) {
+        GroupMember member = membersTableView.getSelectionModel().getSelectedItem();
+
+        Map<String, String> parameters = new HashMap<>();
+        if (member != null) {
+            logger.info(member.getName());
+            parameters.put("name", member.getName());
+            parameters.put("role", member.getRole());
+            parameters.put("age", member.getAge().toString());
+        }
+
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.initOwner(primaryStage);
@@ -425,9 +487,19 @@ public class AppController {
         dialogGrid.setHgap(10);
         dialogGrid.setVgap(10);
 
-        TextField nameField = new TextField();
-        TextField roleField = new TextField();
-        TextField ageField = new TextField();
+        TextField nameField;
+        TextField roleField;
+        TextField ageField;
+        if (!parameters.isEmpty()) {
+            nameField = new TextField(parameters.get("name"));
+            roleField = new TextField(parameters.get("role"));
+            ageField = new TextField(parameters.get("age"));
+        }
+        else {
+            nameField = new TextField();
+            roleField = new TextField();
+            ageField = new TextField();
+        }
 
         dialogGrid.add(new Label("Member name:"), 0, 0);
         dialogGrid.add(nameField, 1, 0);
@@ -436,15 +508,28 @@ public class AppController {
         dialogGrid.add(new Label("Member age:"), 0, 2);
         dialogGrid.add(ageField, 1, 2);
 
+
         Button addButton = new Button("Add");
         addButton.setOnAction(e -> {
             try {
                 validateInputMember(nameField.getText(), roleField.getText(), ageField.getText());
-                GroupMember member = new GroupMember();
-                member.setName(nameField.getText());
-                member.setRole(roleField.getText());
-                member.setAge(Integer.valueOf(ageField.getText()));
-                DataBaseHandler.saveMemberToDB(group, member);
+                if (member != null) {
+                    member.setName(nameField.getText());
+                    member.setRole(roleField.getText());
+                    member.setAge(Integer.valueOf(ageField.getText()));
+                    Map<String, String> newValues = new HashMap<>();
+                    newValues.put("name",nameField.getText());
+                    newValues.put("role",roleField.getText());
+                    newValues.put("age",ageField.getText());
+                    DataBaseHandler.editDataMember(member.getId(),newValues,"test");
+                }
+                else {
+                    GroupMember newMember = new GroupMember();
+                    newMember.setName(nameField.getText());
+                    newMember.setRole(roleField.getText());
+                    newMember.setAge(Integer.valueOf(ageField.getText()));
+                    DataBaseHandler.saveMemberToDB(group, newMember);
+                }
 
                 membersData.clear();
                 membersData.addAll(group.getMembers());
@@ -467,12 +552,21 @@ public class AppController {
         GridPane.setHalignment(new Label("Member role:"), HPos.RIGHT);
         GridPane.setHalignment(new Label("Member age:"), HPos.RIGHT);
 
-        Scene dialogScene = new Scene(dialogGrid, 400, 200);
+        Scene dialogScene = new Scene(dialogGrid, 300, 200);
         dialogStage.setScene(dialogScene);
         dialogStage.showAndWait();
     }
 
-    private void openAddTourDialog(Group group, Stage primaryStage, ObservableList<Tour> toursData, TableView<Tour> concertTableView) {
+    private void openAddTourDialog(Group group, Stage primaryStage, ObservableList<Tour> toursData, TableView<Tour> toursTableView) {
+        Tour tour = toursTableView.getSelectionModel().getSelectedItem();
+
+        Map<String, String> parameters = new HashMap<>();
+        if (tour != null) {
+            parameters.put("name", tour.getName());
+            parameters.put("begin", tour.getDateOfBeginning().toString());
+            parameters.put("end", tour.getDateOfEnd().toString());
+        }
+
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.initOwner(primaryStage);
@@ -482,11 +576,21 @@ public class AppController {
         dialogGrid.setHgap(10);
         dialogGrid.setVgap(10);
 
-        TextField nameField = new TextField();
-        DatePicker startDatePicker = new DatePicker();
-        DatePicker endDatePicker = new DatePicker();
+        TextField nameField;
+        DatePicker startDatePicker;
+        DatePicker endDatePicker;
 
-        dialogGrid.add(new Label("Concert Name:"), 0, 0);
+        if (!parameters.isEmpty()) {
+            nameField = new TextField(parameters.get("name"));
+            startDatePicker = new DatePicker(LocalDate.parse(parameters.get("begin")));
+            endDatePicker = new DatePicker(LocalDate.parse(parameters.get("end")));
+        }
+        else {
+            nameField = new TextField();
+            startDatePicker = new DatePicker();
+            endDatePicker = new DatePicker();
+        }
+        dialogGrid.add(new Label("Tour Name:"), 0, 0);
         dialogGrid.add(nameField, 1, 0);
         dialogGrid.add(new Label("Start Date:"), 0, 1);
         dialogGrid.add(startDatePicker, 1, 1);
@@ -497,14 +601,26 @@ public class AppController {
         addButton.setOnAction(e -> {
             try {
                 validateInputTour(nameField.getText(), startDatePicker.getValue(), endDatePicker.getValue());
-                Tour tour = new Tour();
-                tour.setName(nameField.getText());
-                tour.setDateOfBeginning(startDatePicker.getValue());
-                tour.setDateOfEnd(endDatePicker.getValue());
-                DataBaseHandler.saveTourToDB(group, tour);
-
-                toursData.add(tour);
-                concertTableView.setItems(toursData);
+                if (tour != null) {
+                    tour.setName(nameField.getText());
+                    tour.setDateOfBeginning(startDatePicker.getValue());
+                    tour.setDateOfEnd((endDatePicker.getValue()));
+                    Map<String, String> newValues = new HashMap<>();
+                    newValues.put("name",nameField.getText());
+                    newValues.put("begin",startDatePicker.getValue().toString());
+                    newValues.put("end",endDatePicker.getValue().toString());
+                    DataBaseHandler.editDataTour(tour.getTourId(),newValues,"test");
+                }
+                else {
+                    Tour newTour = new Tour();
+                    newTour.setName(nameField.getText());
+                    newTour.setDateOfBeginning(startDatePicker.getValue());
+                    newTour.setDateOfEnd(endDatePicker.getValue());
+                    DataBaseHandler.saveTourToDB(group, newTour);
+                }
+                toursData.clear();
+                toursData.addAll(group.getTours());
+                toursTableView.setItems(toursData);
                 dialogStage.close();
             }
             catch (IllegalArgumentException iae) {
@@ -519,12 +635,21 @@ public class AppController {
         GridPane.setHalignment(new Label("Start Date:"), HPos.RIGHT);
         GridPane.setHalignment(new Label("End Date:"), HPos.RIGHT);
 
-        Scene dialogScene = new Scene(dialogGrid, 400, 200);
+        Scene dialogScene = new Scene(dialogGrid, 350, 200);
         dialogStage.setScene(dialogScene);
         dialogStage.showAndWait();
     }
 
-    private void openAddSongDialog(Group group, Stage primaryStage, ObservableList<Song> songsData, TableView<Song> repertoireTableView) {
+    private void openAddSongDialog(Group group, Stage primaryStage, ObservableList<Song> songsData, TableView<Song> songsTableView) {
+        Song song = songsTableView.getSelectionModel().getSelectedItem();
+
+        Map<String, String> parameters = new HashMap<>();
+        if (song != null) {
+            parameters.put("name", song.getName());
+            parameters.put("duration", song.getDuration().toString());
+            parameters.put("album", song.getAlbum());
+        }
+
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.initOwner(primaryStage);
@@ -534,12 +659,23 @@ public class AppController {
         dialogGrid.setHgap(10);
         dialogGrid.setVgap(10);
 
-        TextField songNameField = new TextField();
-        TextField durationField = new TextField();
-        TextField albumField = new TextField();
+        TextField nameField;
+        TextField durationField;
+        TextField albumField;
+
+        if (!parameters.isEmpty()) {
+            nameField = new TextField(parameters.get("name"));
+            durationField = new TextField((parameters.get("duration")));
+            albumField = new TextField(parameters.get("album"));
+        }
+        else {
+            nameField = new TextField();
+            durationField = new TextField();
+            albumField = new TextField();
+        }
 
         dialogGrid.add(new Label("Song Name:"), 0, 0);
-        dialogGrid.add(songNameField, 1, 0);
+        dialogGrid.add(nameField, 1, 0);
         dialogGrid.add(new Label("Duration:"), 0, 1);
         dialogGrid.add(durationField, 1, 1);
         dialogGrid.add(new Label("Album:"), 0, 2);
@@ -547,27 +683,37 @@ public class AppController {
 
         Button addButton = new Button("Add");
         addButton.setOnAction(e -> {
-            String songName = songNameField.getText();
-            String duration = durationField.getText();
-            String album = albumField.getText();
-
-            //TODO add validation
             try {
-                validateInputSong(songName,duration,album);
-                Song newSong = new Song();
-                newSong.setName(songName);
-                newSong.setDuration(Integer.valueOf(duration));
-                newSong.setAlbum(album);
-
-                songsData.add(newSong);
-
-                repertoireTableView.setItems(songsData);
-                DataBaseHandler.saveSongToDB(group, newSong);
+                validateInputSong(nameField.getText(), durationField.getText(), albumField.getText());
+                if (song != null) {
+                    song.setName(nameField.getText());
+                    song.setDuration(Integer.valueOf(durationField.getText()));
+                    song.setAlbum(albumField.getText());
+                    Map<String, String> newValues = new HashMap<>();
+                    newValues.put("name",nameField.getText());
+                    newValues.put("duration",durationField.getText());
+                    newValues.put("album",albumField.getText());
+                    DataBaseHandler.editDataSong(song.getId(),newValues,"test");
+                }
+                else {
+                    Song newSong = new Song();
+                    newSong.setName(nameField.getText());
+                    newSong.setDuration(Integer.valueOf(durationField.getText()));
+                    newSong.setAlbum(albumField.getText());
+                    DataBaseHandler.saveSongToDB(group, newSong);
+                }
+                songsData.clear();
+                songsData.addAll(group.getSongs());
+                songsTableView.setItems(songsData);
                 dialogStage.close();
             }
+            catch (NumberFormatException nfe) {
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, nfe.getMessage());
+                logger.warn(nfe.getMessage());
+            }
             catch (IllegalArgumentException iae) {
-                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, "Fill all the fields!");
-                logger.warn("Tried to add song, but some fields are empty");
+                AlertHandler.makeAlertWindow(Alert.AlertType.ERROR, "Error!", null, iae.getMessage());
+                logger.warn(iae.getMessage(),iae);
             }
         });
 
@@ -577,7 +723,7 @@ public class AppController {
         GridPane.setHalignment(new Label("Duration:"), HPos.RIGHT);
         GridPane.setHalignment(new Label("Album:"), HPos.RIGHT);
 
-        Scene dialogScene = new Scene(dialogGrid, 400, 200);
+        Scene dialogScene = new Scene(dialogGrid, 300, 200);
         dialogStage.setScene(dialogScene);
         dialogStage.showAndWait();
     }
@@ -608,12 +754,6 @@ public class AppController {
         logger.info("Table filled in");
     }
 
-    public static class IllegalArgumentException extends Exception {
-        public IllegalArgumentException(String message) {
-            super(message);
-        }
-    }
-
     public String validateInputGroup(String input, String fieldName) throws IllegalArgumentException, NumberFormatException {
         if (input.isEmpty()) {
             throw new IllegalArgumentException("Field " + fieldName + " is empty. Try again.");
@@ -621,17 +761,25 @@ public class AppController {
         if ((fieldName.equals("Year of foundation") || fieldName.equals("Place in chart")) && !input.matches("-?\\d+(\\.\\d+)?")) {
             throw new NumberFormatException("Field " + fieldName + " should be an integer!");
         }
+        if ((fieldName.equals("Year of foundation") || fieldName.equals("Place in chart")) && Integer.parseInt(input) < 0) {
+            throw new IllegalArgumentException("Field " + fieldName + " should be positive. Try again.");
+        }
         return input;
     }
-    private void validateInputMember(String name, String role, String age) throws IllegalArgumentException {
+
+    public void validateInputMember(String name, String role, String age) throws IllegalArgumentException {
         if (name.isEmpty() || role.isEmpty() || age.isEmpty()) {
             throw new IllegalArgumentException("Field is empty. Try again.");
         }
         if ( !age.matches("-?\\d+(\\.\\d+)?")) {
             throw new NumberFormatException("Field age should be an integer!");
         }
+        if (Integer.parseInt(age) < 0) {
+            throw new IllegalArgumentException("Field age should be positive. Try again.");
+        }
     }
-    private void validateInputTour(String name, LocalDate startDate, LocalDate endDate) throws IllegalArgumentException {
+
+    public void validateInputTour(String name, LocalDate startDate, LocalDate endDate) throws IllegalArgumentException {
         if (name.isEmpty() || startDate == null || endDate == null) {
             throw new IllegalArgumentException("Field is empty. Try again.");
         }
@@ -640,13 +788,21 @@ public class AppController {
         }
     }
 
-    private void validateInputSong(String name, String duration , String album) throws IllegalArgumentException {
+    public void validateInputSong(String name, String duration , String album) throws IllegalArgumentException {
         if (name.isEmpty() || duration.isEmpty() || album.isEmpty()) {
             throw new IllegalArgumentException("Field is empty. Try again.");
         }
         if ( !duration.matches("-?\\d+(\\.\\d+)?")) {
             throw new NumberFormatException("Field duration should be an integer!");
         }
+        if (Integer.parseInt(duration) < 0) {
+            throw new IllegalArgumentException("Field duration should be positive integer");
+        }
     }
 
+    public static class IllegalArgumentException extends Exception {
+        public IllegalArgumentException(String message) {
+            super(message);
+        }
+    }
 }

@@ -14,21 +14,21 @@
           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
         <HBox>
-            <Button fx:id="addButton" text="Add group">
+            <Button fx:id="addButton" text="Add">
                 <graphic>
                     <ImageView>
                         <Image url="@icons/add_icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="removeButton" text="Remove band">
+            <Button fx:id="removeButton" text="Remove">
                 <graphic>
                     <ImageView>
                         <Image url="@icons/remove_icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="editButton" text="Edit info">
+            <Button fx:id="editButton" text="Edit">
                 <graphic>
                     <ImageView>
                         <Image url="@icons/edit_icon.png"/>
@@ -60,6 +60,13 @@
                 <graphic>
                     <ImageView>
                         <Image url="@icons/generate_report.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="getThreeBestGroups" text="Get Chart">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/chart_icon.png"/>
                     </ImageView>
                 </graphic>
             </Button>

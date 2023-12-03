@@ -23,7 +23,7 @@ public class App extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("test.fxml")));
         primaryStage.getIcons().add(new Image("icons/app_icon.png"));
         primaryStage.setTitle("Music Band Manager");
-        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.setScene(new Scene(root, 750, 600));
         primaryStage.show();
     }
 }
