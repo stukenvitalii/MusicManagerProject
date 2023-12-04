@@ -7,6 +7,9 @@ import javafx.scene.control.TableView;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +22,19 @@ import java.util.Map;
 public class DataBaseHandler {
     /** Logger object used for logging (Log4j2)*/
     private static final Logger logger = LogManager.getLogger("mainLogger");
+
+    /**
+     * Method to get connection to database
+     * @return Connection Connection to database with given parameters
+     * @throws SQLException Throws exception
+     */
+    public static Connection getDatabaseConnection() throws SQLException {
+        String jdbcUrl = "jdbc:mysql://localhost:3306/music_groups";
+        String username = "root";
+        String password = "123456";
+        logger.info("Connection to DB successful");
+        return DriverManager.getConnection(jdbcUrl, username, password);
+    }
     /**
      * Method used to save new group to database. Uses EntityManager to operate
     * @param group Group object that will be saved in database

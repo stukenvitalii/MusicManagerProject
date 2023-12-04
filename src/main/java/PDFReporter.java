@@ -7,7 +7,6 @@ import net.sf.jasperreports.view.JasperViewer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +50,7 @@ public class PDFReporter {
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("group_id",groupId);
 
-            Connection connection = getDatabaseConnection();
+            Connection connection = DataBaseHandler.getDatabaseConnection();
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
 
@@ -63,13 +62,5 @@ public class PDFReporter {
         } catch (JRException | SQLException e) {
             logger.error("Some problem with JR: " + e.getMessage() ,e);
         }
-    }
-
-    private static Connection getDatabaseConnection() throws SQLException {
-        String jdbcUrl = "jdbc:mysql://localhost:3306/music_groups";
-        String username = "root";
-        String password = "123456";
-        logger.info("Connection to DB successful");
-        return DriverManager.getConnection(jdbcUrl, username, password);
     }
 }
