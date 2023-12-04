@@ -334,7 +334,6 @@ public class AppController {
         Label yearLabel = new Label("Formation Year: " + group.getYearOfFoundation().toString());
         Label genreLabel = new Label("Genre: " + group.getMainGenre());
         Label chartPositionLabel = new Label("Chart Position: " + group.getPlaceInChart());
-
         Label membersLabel = new Label("Band Members: " + group.getMembersAsString());
 
         TableView<GroupMember> membersTableView = new TableView<>();
@@ -347,7 +346,6 @@ public class AppController {
         Button addNewMemberButton = new Button("Add member");
         Button editMemberButton = new Button("Edit member");
         Button deleteMemberButton = new Button("Delete member");
-
 
         memberNameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         memberRoleColumn.setCellValueFactory(cellData -> cellData.getValue().roleProperty());
@@ -371,7 +369,6 @@ public class AppController {
         Button editTourButton = new Button("Edit tour");
         Button deleteTourButton = new Button("Delete tour");
         Button exportToursReportButton = new Button("Export report");
-
 
         tourDateBeginColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfBeginningProperty());
         tourDateEndColumn.setCellValueFactory(cellData -> cellData.getValue().dateOfEndProperty());
@@ -406,11 +403,11 @@ public class AppController {
         songNameColumn.prefWidthProperty().bind(songsTableView.widthProperty().multiply(0.33));
         songDurationColumn.prefWidthProperty().bind(songsTableView.widthProperty().multiply(0.33));
 
-        ColumnConstraints columnConstraints = new ColumnConstraints();
         Separator separatorMembers = new Separator();
         Separator separatorTours = new Separator();
         Separator separatorSongs = new Separator();
 
+        ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setPercentWidth(100);
         gridPane.getColumnConstraints().add(columnConstraints);
 
@@ -457,9 +454,9 @@ public class AppController {
         editTourButton.setOnAction(event -> openAddTourDialog(group, groupDetailsStage, toursData, toursTableView));
         editSongButton.setOnAction(event -> openAddSongDialog(group, groupDetailsStage, songsData, songsTableView));
 
-        deleteMemberButton.setOnAction(event -> DataBaseHandler.deleteMember(membersTableView, membersData,"test"));
-        deleteTourButton.setOnAction(event -> DataBaseHandler.deleteTour(toursTableView, toursData,"test"));
-        deleteSongButton.setOnAction(event -> DataBaseHandler.deleteSong(songsTableView, songsData,"test"));
+        deleteMemberButton.setOnAction(event -> DataBaseHandler.deleteMember(group,membersTableView, membersData,"test"));
+        deleteTourButton.setOnAction(event -> DataBaseHandler.deleteTour(group,toursTableView, toursData,"test"));
+        deleteSongButton.setOnAction(event -> DataBaseHandler.deleteSong(group,songsTableView, songsData,"test"));
 
         exportToursReportButton.setOnAction(event -> PDFReporter.createReportTours(group.getId()));
         groupDetailsStage.setTitle("Band Information");

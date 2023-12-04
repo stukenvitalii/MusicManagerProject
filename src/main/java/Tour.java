@@ -30,9 +30,6 @@ public class Tour {
     @JoinColumn(name = "group_id")
     private Group group;
 
-
-
-
     public String getName() {
         return name;
     }
@@ -56,7 +53,6 @@ public class Tour {
     public void setDateOfEnd(LocalDate dateOfEnd) {
         this.dateOfEnd = dateOfEnd;
     }
-
 
     public Integer getTourId() {
         return tourId;
