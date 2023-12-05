@@ -18,8 +18,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class XMLfilesHandler {
-
-
     public static void importXML() throws ParserConfigurationException, IOException, SAXException {
         Stage chooseFileStage = new Stage();
         FileChooser fileChooser = new FileChooser();
