@@ -3,14 +3,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
@@ -24,7 +22,7 @@ import java.util.*;
 
 public class AppController {
     @FXML
-    public Button listButton;
+    private Button listButton;
     @FXML
     private Button searchButton;
     @FXML
@@ -60,7 +58,7 @@ public class AppController {
     @FXML
     private ObservableList<Group> groupsData = FXCollections.observableArrayList();
 
-    List<Group> groups = new ArrayList<>();
+    private List<Group> groups = new ArrayList<>();
     private static final Logger logger = LogManager.getLogger("mainLogger");
 
     @FXML
@@ -316,7 +314,6 @@ public class AppController {
     }
 
     private void showDetails(Group group) {
-
         Stage groupDetailsStage = new Stage();
 
         ObservableList<GroupMember> membersData = FXCollections.observableArrayList();
@@ -334,7 +331,6 @@ public class AppController {
         Label yearLabel = new Label("Formation Year: " + group.getYearOfFoundation().toString());
         Label genreLabel = new Label("Genre: " + group.getMainGenre());
         Label chartPositionLabel = new Label("Chart Position: " + group.getPlaceInChart());
-        Label membersLabel = new Label("Band Members: " + group.getMembersAsString());
 
         TableView<GroupMember> membersTableView = new TableView<>();
         TableColumn<GroupMember, String> memberNameColumn = new TableColumn<>("Name");
@@ -415,36 +411,36 @@ public class AppController {
         gridPane.add(yearLabel, 0, 1);
         gridPane.add(genreLabel, 0, 2);
         gridPane.add(chartPositionLabel, 0, 3);
-        gridPane.add(membersLabel, 0, 4);
-        gridPane.add(separatorMembers, 0, 5);
 
-        gridPane.add(new Label("Members:"), 0, 6);
-        gridPane.add(membersTableView, 0, 7);
-        gridPane.add(addNewMemberButton, 0, 8);
-        gridPane.add(editMemberButton, 0, 9);
-        gridPane.add(deleteMemberButton,0,10);
-        gridPane.add(separatorTours, 0, 11);
+        gridPane.add(new Label("Members:"), 0, 4);
+        gridPane.add(membersTableView, 0, 5);
 
-        gridPane.add(new Label("Tours:"), 0, 12);
-        gridPane.add(toursTableView, 0, 13);
-        gridPane.add(addNewTourButton, 0, 14);
-        gridPane.add(exportToursReportButton, 0, 15);
-        gridPane.add(editTourButton, 0, 16);
-        gridPane.add(deleteTourButton,0,17);
-        gridPane.add(separatorSongs, 0, 18);
+        HBox hboxMembers = new HBox(addNewMemberButton,editMemberButton,deleteMemberButton);
+        hboxMembers.setAlignment(Pos.CENTER);
+        gridPane.add(hboxMembers,0,6);
+        gridPane.add(separatorTours, 0, 7);
 
-        gridPane.add(new Label("Songs:"), 0, 19);
-        gridPane.add(songsTableView, 0, 20);
-        gridPane.add(addNewSongButton, 0, 21);
-        gridPane.add(editSongButton, 0, 22);
-        gridPane.add(deleteSongButton,0,23);
+        gridPane.add(new Label("Tours:"), 0, 8);
+        gridPane.add(toursTableView, 0, 9);
+
+        HBox hboxTours = new HBox(addNewTourButton,exportToursReportButton,editTourButton,deleteTourButton);
+        hboxTours.setAlignment(Pos.CENTER);
+        gridPane.add(hboxTours,0,10);
+        gridPane.add(separatorSongs, 0, 11);
+
+        gridPane.add(new Label("Songs:"), 0, 12);
+        gridPane.add(songsTableView, 0, 13);
+
+        HBox hboxSongs = new HBox(addNewSongButton,editSongButton,deleteSongButton);
+        hboxSongs.setAlignment(Pos.CENTER);
+        gridPane.add(hboxSongs,0,14);
 
         GridPane.setColumnSpan(separatorMembers, 2);
         GridPane.setColumnSpan(separatorTours, 2);
         GridPane.setColumnSpan(separatorSongs, 2);
         VBox.setVgrow(songsTableView, Priority.ALWAYS);
 
-        Scene scene = new Scene(gridPane, 700, 850);
+        Scene scene = new Scene(gridPane, 700, 800);
 
         addNewMemberButton.setOnAction(event -> openAddMemberDialog(group, groupDetailsStage, membersData, membersTableView));
         addNewTourButton.setOnAction(event -> openAddTourDialog(group, groupDetailsStage, toursData, toursTableView));

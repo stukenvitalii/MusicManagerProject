@@ -20,6 +20,7 @@ import java.util.Map;
 * @version 1.0
  */
 public class DataBaseHandler {
+
     /** Logger object used for logging (Log4j2)*/
     private static final Logger logger = LogManager.getLogger("mainLogger");
 
@@ -35,6 +36,7 @@ public class DataBaseHandler {
         logger.info("Connection to DB successful");
         return DriverManager.getConnection(jdbcUrl, username, password);
     }
+
     /**
      * Method used to save new group to database. Uses EntityManager to operate
     * @param group Group object that will be saved in database
@@ -184,17 +186,12 @@ public class DataBaseHandler {
         try (EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager()) {
             logger.info("Trying to delete group");
             entityManager.getTransaction().begin();
-            entityManager.createQuery("DELETE FROM Group WHERE id = ?1 ").setParameter(1, selectedId).executeUpdate();
 
-            Group selectedGroup = new Group();
-            for (Group g:
-                 data) {
-                if (g.getId() == selectedId) {
-                    selectedGroup = g;
-                    break;
-                }
+            Group selectedGroup = entityManager.find(Group.class,selectedId);
+            if (selectedGroup != null) {
+                entityManager.remove(selectedGroup);
+                data.remove(selectedGroup);
             }
-            data.remove(selectedGroup);
             entityManager.getTransaction().commit();
         }
     }
@@ -218,6 +215,7 @@ public class DataBaseHandler {
             entityManager.getTransaction().commit();
         }
     }
+
     /**
      * Method that updates current info about member. Uses simple UPDATE-WHERE SQL query with parameters
      * @param selectedMemberId Id of member to be edited
@@ -236,6 +234,7 @@ public class DataBaseHandler {
             entityManager.getTransaction().commit();
         }
     }
+
     /**
      * Method that updates current info about song. Uses simple UPDATE-WHERE SQL query with parameters
      * @param selectedSongId Id of song to be edited
@@ -254,6 +253,7 @@ public class DataBaseHandler {
             entityManager.getTransaction().commit();
         }
     }
+
     /**
      * Method that updates current info about tour. Uses simple UPDATE-WHERE SQL query with parameters
      * @param selectedTourId Id of tour to be edited
@@ -298,6 +298,7 @@ public class DataBaseHandler {
             logger.info("Trying to delete member, but no member was selected");
         }
     }
+
     /**
      * Method that deletes tour from database. Uses DELETE-FROM SQL query.
      * @param group Group object which is "parent" for tour to delete
@@ -324,6 +325,7 @@ public class DataBaseHandler {
         }
 
     }
+
     /**
      * Method that deletes song from database. Uses DELETE-FROM SQL query.
      * @param group Group object which is "parent" for song to delete

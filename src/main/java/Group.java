@@ -17,13 +17,13 @@ public class Group {
     private Integer yearOfFoundation;
     @Column(name = "group_main_genre")
     private String mainGenre;
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<GroupMember> members = new ArrayList<>();
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Song> songs;
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<Song> songs = new ArrayList<>();
     @Column(name = "group_place_in_chart")
     private Integer placeInChart;
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Tour> tours = new ArrayList<>();
 
     public Group() {
@@ -50,16 +50,8 @@ public class Group {
         return members;
     }
 
-    public void setMembers(List<GroupMember> members) {
-        this.members = members;
-    }
-
     public List<Song> getSongs() {
         return songs;
-    }
-
-    public void setSongs(List<Song> songs) {
-        this.songs = songs;
     }
 
     public Integer getPlaceInChart() {
@@ -72,10 +64,6 @@ public class Group {
 
     public List<Tour> getTours() {
         return tours;
-    }
-
-    public void setTours(List<Tour> upcomingTours) {
-        this.tours = upcomingTours;
     }
 
     public String getMainGenre() {
@@ -94,11 +82,4 @@ public class Group {
         this.id = id;
     }
 
-    public String getMembersAsString() {
-        StringBuilder membersString = new StringBuilder();
-        for (GroupMember member : members) {
-            membersString.append(member.getName()).append(", ");
-        }
-        return membersString.toString();
-    }
 }

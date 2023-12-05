@@ -2590,3 +2590,845 @@ AppController$IllegalArgumentException: Field duration should be positive intege
 2023-12-03 23:32:39,062 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 2023-12-03 23:32:39,064 INFO mainLogger [JavaFX Application Thread] Trying to delete tour
 2023-12-03 23:32:49,517 INFO mainLogger [main] Application closed
+2023-12-04 23:08:22,680 INFO mainLogger [main] Application started
+2023-12-04 23:09:04,496 INFO mainLogger [main] Application started
+2023-12-04 23:10:05,995 INFO mainLogger [main] Application started
+2023-12-04 23:10:06,769 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-04 23:10:06,889 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-04 23:10:06,893 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-04 23:10:07,429 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-04 23:10:07,443 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-04 23:10:07,443 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-04 23:10:07,443 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-04 23:10:07,443 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-04 23:10:07,449 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-04 23:10:08,951 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-04 23:10:10,541 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-04 23:10:10,633 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-04 23:10:11,311 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-04 23:10:11,313 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-04 23:10:11,314 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 00:28:47,441 INFO mainLogger [main] Application started
+2023-12-05 00:28:48,454 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 00:28:48,582 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 00:28:48,588 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 00:28:49,204 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 00:28:49,216 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 00:28:49,216 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 00:28:49,217 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 00:28:49,217 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 00:28:49,222 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 00:28:50,759 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 00:28:52,496 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 00:28:52,601 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 00:28:53,287 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 00:28:53,290 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 00:28:53,290 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 00:30:39,164 INFO mainLogger [main] Application started
+2023-12-05 00:30:40,256 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 00:30:40,377 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 00:30:40,382 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 00:30:41,087 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 00:30:41,102 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 00:30:41,103 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 00:30:41,103 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 00:30:41,104 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 00:30:41,114 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 00:30:42,674 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 00:30:44,538 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 00:30:44,667 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 00:30:45,519 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 00:30:45,519 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 00:30:45,519 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 00:36:01,913 INFO mainLogger [main] Application started
+2023-12-05 00:36:02,830 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 00:36:02,961 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 00:36:02,966 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 00:36:03,583 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 00:36:03,594 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 00:36:03,594 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 00:36:03,595 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 00:36:03,596 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 00:36:03,602 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 00:36:05,038 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 00:36:06,772 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 00:36:06,883 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 00:36:07,533 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 00:36:07,535 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 00:36:07,535 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 00:36:24,037 INFO mainLogger [main] Application closed
+2023-12-05 00:36:50,885 INFO mainLogger [main] Application started
+2023-12-05 00:36:51,709 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 00:36:51,812 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 00:36:51,816 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 00:36:52,396 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 00:36:52,408 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 00:36:52,408 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 00:36:52,408 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 00:36:52,408 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 00:36:52,414 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 00:36:53,779 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 00:36:55,397 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 00:36:55,484 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 00:36:56,335 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 00:36:56,337 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 00:36:56,337 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:01:27,402 INFO mainLogger [main] Application started
+2023-12-05 10:01:28,340 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:01:28,473 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 10:01:28,479 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 10:01:29,101 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:01:29,111 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:01:29,111 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:01:29,111 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:01:29,111 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:01:29,117 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:01:30,591 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:01:32,356 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:01:32,448 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:01:33,108 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:01:33,110 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:01:33,110 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:01:40,738 INFO mainLogger [JavaFX Application Thread] Started adding band
+2023-12-05 10:01:50,534 WARN mainLogger [JavaFX Application Thread] Field Place in chart should be positive. Try again.
+AppController$IllegalArgumentException: Field Place in chart should be positive. Try again.
+	at AppController.validateInputGroup(AppController.java:758) ~[classes/:?]
+	at AppController.lambda$addGroup$11(AppController.java:172) ~[classes/:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49) ~[javafx.base.jar:?]
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198) ~[javafx.base.jar:?]
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8875) ~[javafx.graphics.jar:?]
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203) ~[javafx.controls.jar:?]
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207) ~[javafx.controls.jar:?]
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274) ~[javafx.controls.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) ~[javafx.base.jar:?]
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198) ~[javafx.base.jar:?]
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3984) ~[javafx.graphics.jar:?]
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1890) ~[javafx.graphics.jar:?]
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301) ~[javafx.graphics.jar:?]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:551) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:937) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185) ~[javafx.graphics.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:1589) [?:?]
+2023-12-05 10:01:55,251 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:01:55,324 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:01:55,324 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:01:55,324 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:01:55,325 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:01:55,325 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:01:55,325 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:01:55,414 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:01:55,535 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:01:55,536 INFO mainLogger [JavaFX Application Thread] Saving new band to DataBase
+2023-12-05 10:01:56,846 INFO mainLogger [JavaFX Application Thread] Group kdjhkdfg successfully saved to DB
+2023-12-05 10:01:56,857 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:01:56,916 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:01:56,916 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:01:56,916 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:01:56,916 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:01:56,916 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:01:56,916 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:01:56,983 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:01:57,098 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:01:57,099 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:01:57,234 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:01:57,234 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:01:57,235 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:02:06,819 WARN mainLogger [JavaFX Application Thread] Field Place in chart should be positive. Try again.
+AppController$IllegalArgumentException: Field Place in chart should be positive. Try again.
+	at AppController.validateInputGroup(AppController.java:758) ~[classes/:?]
+	at AppController.lambda$editInfoGroup$12(AppController.java:285) ~[classes/:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49) ~[javafx.base.jar:?]
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198) ~[javafx.base.jar:?]
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8875) ~[javafx.graphics.jar:?]
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203) ~[javafx.controls.jar:?]
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207) ~[javafx.controls.jar:?]
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274) ~[javafx.controls.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) ~[javafx.base.jar:?]
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198) ~[javafx.base.jar:?]
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3984) ~[javafx.graphics.jar:?]
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1890) ~[javafx.graphics.jar:?]
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301) ~[javafx.graphics.jar:?]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:551) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:937) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185) ~[javafx.graphics.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:1589) [?:?]
+2023-12-05 10:02:09,314 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:02:09,390 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:02:09,390 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:02:09,390 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:02:09,390 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:02:09,390 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:02:09,390 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:02:09,461 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:02:09,557 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:02:10,674 INFO mainLogger [JavaFX Application Thread] Group info successfully edited
+2023-12-05 10:02:10,722 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:02:10,773 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:02:10,773 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:02:10,773 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:02:10,774 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:02:10,774 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:02:10,774 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:02:10,833 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:02:10,920 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:02:10,921 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:02:11,055 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:02:11,056 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:02:11,056 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:02:13,092 INFO mainLogger [JavaFX Application Thread] Confirming deletion
+2023-12-05 10:02:15,971 INFO mainLogger [JavaFX Application Thread] Deleting confirmed
+2023-12-05 10:02:15,983 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:02:16,036 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:02:16,037 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:02:16,037 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:02:16,037 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:02:16,037 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:02:16,037 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:02:16,114 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:02:16,196 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:02:16,197 INFO mainLogger [JavaFX Application Thread] Trying to delete group
+2023-12-05 10:02:17,648 INFO mainLogger [JavaFX Application Thread] Group kdjhkdfg deleted successfully
+2023-12-05 10:02:17,663 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:02:17,708 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:02:17,708 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:02:17,709 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:02:17,709 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:02:17,709 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:02:17,709 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:02:17,773 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:02:17,853 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:02:17,854 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:02:17,966 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:02:17,966 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:02:17,967 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:02:36,701 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:02:36,766 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:02:36,766 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:02:36,767 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:02:36,767 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:02:36,767 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:02:36,768 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:02:36,864 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:02:36,933 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:02:36,935 INFO mainLogger [JavaFX Application Thread] Saving new member to DataBase
+2023-12-05 10:02:38,209 INFO mainLogger [JavaFX Application Thread] Member fdgfg successfully saved to DB
+2023-12-05 10:02:53,488 INFO mainLogger [main] Application closed
+2023-12-05 10:04:06,937 INFO mainLogger [main] Application started
+2023-12-05 10:04:07,950 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:04:08,078 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 10:04:08,083 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 10:04:08,682 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:04:08,693 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:04:08,693 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:04:08,693 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:04:08,693 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:04:08,699 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:04:10,144 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:04:11,852 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:04:11,952 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:04:12,636 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:04:12,638 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:04:12,639 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:04:32,522 INFO mainLogger [main] Application closed
+2023-12-05 10:05:42,068 INFO mainLogger [main] Application started
+2023-12-05 10:05:43,003 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:05:43,103 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 10:05:43,108 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 10:05:43,694 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:05:43,704 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:05:43,705 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:05:43,705 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:05:43,705 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:05:43,711 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:05:45,049 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:05:46,569 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:05:46,672 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:05:47,381 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:05:47,383 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:05:47,383 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:06:02,418 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:06:02,476 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:06:02,476 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:06:02,476 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:06:02,477 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:06:02,477 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:06:02,477 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:06:02,566 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:06:02,694 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:06:02,695 INFO mainLogger [JavaFX Application Thread] Saving new member to DataBase
+2023-12-05 10:06:03,851 INFO mainLogger [JavaFX Application Thread] Member lkdgjldkfgjd successfully saved to DB
+2023-12-05 10:06:35,064 INFO mainLogger [main] Application closed
+2023-12-05 10:11:02,757 INFO mainLogger [main] Application started
+2023-12-05 10:11:03,762 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:11:03,887 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 10:11:03,892 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 10:11:04,562 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:11:04,576 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:11:04,577 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:11:04,577 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:11:04,577 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:11:04,584 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:11:06,095 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:11:07,991 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:11:08,119 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:11:08,797 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:11:08,799 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:11:08,799 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:14:28,654 INFO mainLogger [main] Application started
+2023-12-05 10:14:29,525 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:14:29,620 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 10:14:29,625 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 10:14:30,198 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:14:30,207 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:14:30,208 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:14:30,208 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:14:30,208 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:14:30,212 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:14:31,567 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:14:33,159 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:14:33,276 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:14:33,994 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:14:33,996 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:14:33,996 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:14:53,953 INFO mainLogger [main] Application closed
+2023-12-05 10:19:23,360 INFO mainLogger [main] Application started
+2023-12-05 10:19:24,224 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:19:24,316 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 10:19:24,321 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 10:19:24,883 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:19:24,892 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:19:24,892 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:19:24,893 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:19:24,893 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:19:24,898 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:19:26,291 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:19:27,940 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:19:28,056 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:19:28,726 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:19:28,728 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:19:28,728 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:20:15,822 INFO mainLogger [main] Application started
+2023-12-05 10:20:16,680 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:20:16,773 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 10:20:16,777 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 10:20:17,408 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:20:17,421 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:20:17,421 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:20:17,421 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:20:17,421 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:20:17,428 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:20:18,796 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:20:20,437 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:20:20,573 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:20:21,264 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:20:21,266 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:20:21,266 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:21:57,514 INFO mainLogger [main] Application started
+2023-12-05 10:21:58,359 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:21:58,454 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 10:21:58,459 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 10:21:59,040 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:21:59,052 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:21:59,052 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:21:59,052 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:21:59,052 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:21:59,057 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:22:00,410 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:22:02,062 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:22:02,167 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:22:02,818 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:22:02,821 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:22:02,821 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:23:30,478 INFO mainLogger [main] Application started
+2023-12-05 10:23:31,317 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:23:31,413 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 10:23:31,418 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 10:23:32,001 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:23:32,011 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:23:32,012 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:23:32,012 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:23:32,012 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:23:32,017 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:23:33,328 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:23:34,924 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:23:35,028 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:23:35,707 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:23:35,709 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:23:35,710 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:25:13,060 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:25:13,132 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:25:13,132 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:25:13,132 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:25:13,132 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:25:13,132 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:25:13,133 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:25:13,242 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:25:13,370 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:25:13,380 INFO mainLogger [JavaFX Application Thread] Saving new member to DataBase
+2023-12-05 10:25:14,705 INFO mainLogger [JavaFX Application Thread] Member Jonas Renkse successfully saved to DB
+2023-12-05 10:26:00,908 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:26:00,986 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:26:00,987 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:26:00,987 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:26:00,987 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:26:00,987 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:26:00,987 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:26:01,071 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:26:01,196 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:26:01,196 INFO mainLogger [JavaFX Application Thread] Saving new member to DataBase
+2023-12-05 10:26:02,377 INFO mainLogger [JavaFX Application Thread] Member Anders Nystrom successfully saved to DB
+2023-12-05 10:26:56,731 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:26:56,801 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:26:56,802 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:26:56,802 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:26:56,802 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:26:56,802 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:26:56,802 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:26:56,871 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:26:56,962 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:26:56,963 INFO mainLogger [JavaFX Application Thread] Saving new member to DataBase
+2023-12-05 10:26:58,028 INFO mainLogger [JavaFX Application Thread] Member Niklas Sandin successfully saved to DB
+2023-12-05 10:28:12,829 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:28:12,893 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:28:12,893 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:28:12,893 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:28:12,893 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:28:12,894 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:28:12,894 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:28:12,974 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:28:13,059 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:28:13,060 INFO mainLogger [JavaFX Application Thread] Saving new member to DataBase
+2023-12-05 10:28:14,145 INFO mainLogger [JavaFX Application Thread] Member Daniel Moilanen successfully saved to DB
+2023-12-05 10:29:13,196 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:29:13,250 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:29:13,250 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:29:13,250 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:29:13,251 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:29:13,251 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:29:13,251 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:29:13,321 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:29:13,398 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:29:13,398 INFO mainLogger [JavaFX Application Thread] Saving new song to DataBase
+2023-12-05 10:29:13,412 WARN o.h.e.j.s.SqlExceptionHelper [JavaFX Application Thread] SQL Error: 1406, SQLState: 22001
+2023-12-05 10:29:13,413 ERROR o.h.e.j.s.SqlExceptionHelper [JavaFX Application Thread] Data truncation: Data too long for column 'song_album' at row 1
+2023-12-05 10:46:01,261 INFO mainLogger [main] Application started
+2023-12-05 10:46:02,171 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:46:02,293 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 10:46:02,297 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 10:46:02,875 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:46:02,883 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:46:02,884 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:46:02,884 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:46:02,884 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:46:02,889 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:46:04,383 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:46:06,165 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:46:06,267 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:46:06,940 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:46:06,942 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:46:06,942 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:46:12,785 INFO mainLogger [JavaFX Application Thread] Started adding band
+2023-12-05 10:46:32,493 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:46:32,550 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:46:32,550 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:46:32,550 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:46:32,550 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:46:32,550 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:46:32,551 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:46:32,643 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:46:32,754 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:46:32,755 INFO mainLogger [JavaFX Application Thread] Saving new band to DataBase
+2023-12-05 10:46:34,171 INFO mainLogger [JavaFX Application Thread] Group test successfully saved to DB
+2023-12-05 10:46:34,180 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:46:34,246 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:46:34,246 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:46:34,246 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:46:34,247 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:46:34,247 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:46:34,247 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:46:34,331 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:46:34,462 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:46:34,463 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:46:34,596 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:46:34,596 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:46:34,596 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:46:48,510 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:46:48,579 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:46:48,579 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:46:48,579 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:46:48,580 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:46:48,580 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:46:48,580 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:46:48,678 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:46:48,770 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:46:48,770 INFO mainLogger [JavaFX Application Thread] Saving new member to DataBase
+2023-12-05 10:46:49,949 INFO mainLogger [JavaFX Application Thread] Member testmember successfully saved to DB
+2023-12-05 10:46:56,776 INFO mainLogger [JavaFX Application Thread] Confirming deletion
+2023-12-05 10:46:58,115 INFO mainLogger [JavaFX Application Thread] Deleting confirmed
+2023-12-05 10:46:58,129 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:46:58,180 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:46:58,181 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:46:58,181 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:46:58,181 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:46:58,181 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:46:58,181 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:46:58,247 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:46:58,336 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:46:58,337 INFO mainLogger [JavaFX Application Thread] Trying to delete group
+2023-12-05 10:46:59,598 INFO mainLogger [JavaFX Application Thread] Group test deleted successfully
+2023-12-05 10:46:59,610 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:46:59,658 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:46:59,658 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:46:59,658 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:46:59,659 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:46:59,659 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:46:59,659 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:46:59,725 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:46:59,816 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:46:59,817 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:46:59,926 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:46:59,926 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:46:59,926 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:47:39,010 INFO mainLogger [main] Application closed
+2023-12-05 10:52:27,824 INFO mainLogger [main] Application started
+2023-12-05 10:52:28,710 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:52:28,834 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 10:52:28,838 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 10:52:29,443 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:52:29,452 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:52:29,452 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:52:29,452 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:52:29,452 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:52:29,458 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:52:30,782 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:52:32,380 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:52:32,471 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:52:33,122 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:52:33,124 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:52:33,124 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:52:41,508 INFO mainLogger [JavaFX Application Thread] Started adding band
+2023-12-05 10:52:54,923 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:52:54,997 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:52:54,997 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:52:54,997 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:52:54,997 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:52:54,997 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:52:54,998 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:52:55,076 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:52:55,193 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:52:55,193 INFO mainLogger [JavaFX Application Thread] Saving new band to DataBase
+2023-12-05 10:52:57,035 INFO mainLogger [JavaFX Application Thread] Group ertfgdfgdf successfully saved to DB
+2023-12-05 10:52:57,048 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:52:57,105 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:52:57,106 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:52:57,106 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:52:57,106 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:52:57,106 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:52:57,106 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:52:57,178 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:52:57,295 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:52:57,296 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:52:57,416 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:52:57,417 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:52:57,417 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 10:53:13,652 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:53:13,706 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:53:13,706 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:53:13,707 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:53:13,707 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:53:13,707 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:53:13,707 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:53:13,792 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:53:13,895 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:53:13,896 INFO mainLogger [JavaFX Application Thread] Saving new member to DataBase
+2023-12-05 10:53:14,883 INFO mainLogger [JavaFX Application Thread] Member ewwt successfully saved to DB
+2023-12-05 10:53:18,818 INFO mainLogger [JavaFX Application Thread] Confirming deletion
+2023-12-05 10:53:20,144 INFO mainLogger [JavaFX Application Thread] Deleting confirmed
+2023-12-05 10:53:20,156 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:53:20,206 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:53:20,206 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:53:20,206 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:53:20,206 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:53:20,206 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:53:20,206 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:53:20,268 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:53:20,355 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:53:20,356 INFO mainLogger [JavaFX Application Thread] Trying to delete group
+2023-12-05 10:53:21,658 INFO mainLogger [JavaFX Application Thread] Group ertfgdfgdf deleted successfully
+2023-12-05 10:53:21,667 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 10:53:21,708 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 10:53:21,708 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 10:53:21,709 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 10:53:21,709 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 10:53:21,709 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 10:53:21,709 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 10:53:21,780 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 10:53:21,867 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 10:53:21,868 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 10:53:21,976 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 10:53:21,977 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 10:53:21,977 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 11:03:58,813 INFO mainLogger [main] Application started
+2023-12-05 11:03:59,744 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:03:59,859 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 11:03:59,865 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 11:04:00,506 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:04:00,519 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:04:00,519 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:04:00,519 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:04:00,519 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:04:00,525 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:04:01,965 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:04:03,690 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:04:03,784 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 11:04:04,405 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 11:04:04,407 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 11:04:04,408 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 11:04:07,085 INFO mainLogger [JavaFX Application Thread] Started adding band
+2023-12-05 11:04:15,548 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:04:15,629 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:04:15,629 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:04:15,629 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:04:15,629 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:04:15,629 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:04:15,630 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:04:15,715 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:04:15,828 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:04:15,828 INFO mainLogger [JavaFX Application Thread] Saving new band to DataBase
+2023-12-05 11:04:16,888 INFO mainLogger [JavaFX Application Thread] Group ldkfjgdlkg successfully saved to DB
+2023-12-05 11:04:16,900 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:04:16,963 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:04:16,963 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:04:16,963 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:04:16,964 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:04:16,964 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:04:16,964 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:04:17,047 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:04:17,178 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:04:17,179 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 11:04:17,329 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 11:04:17,329 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 11:04:17,329 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 11:04:20,332 INFO mainLogger [JavaFX Application Thread] Confirming deletion
+2023-12-05 11:04:21,721 INFO mainLogger [JavaFX Application Thread] Deleting confirmed
+2023-12-05 11:04:21,732 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:04:21,787 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:04:21,787 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:04:21,787 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:04:21,787 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:04:21,787 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:04:21,788 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:04:21,857 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:04:21,970 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:04:21,971 INFO mainLogger [JavaFX Application Thread] Trying to delete group
+2023-12-05 11:04:23,731 INFO mainLogger [JavaFX Application Thread] Group ldkfjgdlkg deleted successfully
+2023-12-05 11:04:23,743 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:04:23,791 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:04:23,791 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:04:23,791 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:04:23,792 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:04:23,792 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:04:23,792 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:04:23,862 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:04:23,941 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:04:23,942 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 11:04:24,056 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 11:04:24,057 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 11:04:24,057 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 11:04:25,823 INFO mainLogger [JavaFX Application Thread] Started adding band
+2023-12-05 11:04:35,170 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:04:35,219 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:04:35,219 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:04:35,219 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:04:35,219 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:04:35,220 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:04:35,220 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:04:35,290 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:04:35,377 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:04:35,378 INFO mainLogger [JavaFX Application Thread] Saving new band to DataBase
+2023-12-05 11:04:36,275 INFO mainLogger [JavaFX Application Thread] Group erterte successfully saved to DB
+2023-12-05 11:04:36,285 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:04:36,329 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:04:36,329 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:04:36,329 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:04:36,329 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:04:36,330 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:04:36,330 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:04:36,412 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:04:36,491 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:04:36,492 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 11:04:36,610 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 11:04:36,610 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 11:04:36,610 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 11:04:45,434 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:04:45,482 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:04:45,483 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:04:45,483 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:04:45,483 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:04:45,483 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:04:45,483 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:04:45,543 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:04:45,609 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:04:45,610 INFO mainLogger [JavaFX Application Thread] Saving new member to DataBase
+2023-12-05 11:04:46,680 INFO mainLogger [JavaFX Application Thread] Member ertert successfully saved to DB
+2023-12-05 11:04:52,537 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:04:52,587 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:04:52,587 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:04:52,587 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:04:52,588 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:04:52,588 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:04:52,588 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:04:52,645 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:04:52,711 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:04:52,711 INFO mainLogger [JavaFX Application Thread] Saving new member to DataBase
+2023-12-05 11:04:53,800 INFO mainLogger [JavaFX Application Thread] Member ertert successfully saved to DB
+2023-12-05 11:05:17,672 INFO mainLogger [JavaFX Application Thread] Confirming deletion
+2023-12-05 11:05:18,790 INFO mainLogger [JavaFX Application Thread] Deleting confirmed
+2023-12-05 11:05:18,802 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:05:18,849 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:05:18,850 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:05:18,850 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:05:18,850 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:05:18,850 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:05:18,850 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:05:18,905 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:05:18,976 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:05:18,977 INFO mainLogger [JavaFX Application Thread] Trying to delete group
+2023-12-05 11:05:20,270 INFO mainLogger [JavaFX Application Thread] Group erterte deleted successfully
+2023-12-05 11:05:20,282 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:05:20,325 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:05:20,326 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:05:20,326 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:05:20,326 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:05:20,326 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:05:20,326 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:05:20,393 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:05:20,466 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:05:20,466 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 11:05:20,579 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 11:05:20,579 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 11:05:20,579 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 11:06:50,276 INFO mainLogger [main] Application started
+2023-12-05 11:06:51,158 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:06:51,275 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 11:06:51,281 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 11:06:51,907 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:06:51,918 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:06:51,918 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:06:51,919 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:06:51,919 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:06:51,926 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:06:53,370 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:06:55,074 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:06:55,176 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 11:06:55,869 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 11:06:55,871 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 11:06:55,872 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 11:07:06,440 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:07:06,505 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:07:06,505 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:07:06,505 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:07:06,506 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:07:06,506 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:07:06,506 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:07:06,613 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:07:06,762 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:07:06,763 INFO mainLogger [JavaFX Application Thread] Saving new member to DataBase
+2023-12-05 11:07:07,851 INFO mainLogger [JavaFX Application Thread] Member dfgdfg successfully saved to DB
+2023-12-05 11:07:09,683 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:07:09,732 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:07:09,733 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:07:09,733 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:07:09,733 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:07:09,733 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:07:09,733 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:07:09,813 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:07:09,943 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:07:09,945 INFO mainLogger [JavaFX Application Thread] Trying to delete member
+2023-12-05 11:07:45,210 INFO mainLogger [main] Application started
+2023-12-05 11:07:46,085 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:07:46,173 INFO o.h.Version [JavaFX Application Thread] HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-12-05 11:07:46,178 INFO o.h.c.Environment [JavaFX Application Thread] HHH000406: Using bytecode reflection optimizer
+2023-12-05 11:07:46,801 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:07:46,811 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:07:46,811 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:07:46,811 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:07:46,812 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:07:46,819 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:07:48,126 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:07:49,756 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:07:49,873 INFO mainLogger [JavaFX Application Thread] Trying to get data from DB
+2023-12-05 11:07:50,546 INFO mainLogger [JavaFX Application Thread] Fetching data from DB successful
+2023-12-05 11:07:50,548 INFO mainLogger [JavaFX Application Thread] Table filled in
+2023-12-05 11:07:50,548 INFO mainLogger [JavaFX Application Thread] System initialized
+2023-12-05 11:07:57,208 INFO o.h.j.i.u.LogHelper [JavaFX Application Thread] HHH000204: Processing PersistenceUnitInfo [name: test]
+2023-12-05 11:07:57,258 WARN o.h.o.c.pooling [JavaFX Application Thread] HHH10001002: Using built-in connection pool (not intended for production use)
+2023-12-05 11:07:57,258 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+2023-12-05 11:07:57,259 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/music_groups]
+2023-12-05 11:07:57,259 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001001: Connection properties: {password=****, user=root}
+2023-12-05 11:07:57,259 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001003: Autocommit mode: false
+2023-12-05 11:07:57,259 INFO o.h.o.c.pooling [JavaFX Application Thread] HHH10001115: Connection pool size: 20 (min=1)
+2023-12-05 11:07:57,353 INFO o.h.b.i.BytecodeProviderInitiator [JavaFX Application Thread] HHH000021: Bytecode provider name : bytebuddy
+2023-12-05 11:07:57,492 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX Application Thread] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-05 11:07:57,493 INFO mainLogger [JavaFX Application Thread] Trying to delete member
+2023-12-05 11:08:19,546 INFO mainLogger [main] Application closed
