@@ -13,6 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.controlsfx.control.SearchableComboBox;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -59,6 +60,36 @@ public class AppController {
     private ObservableList<Group> groupsData = FXCollections.observableArrayList();
 
     private List<Group> groups = new ArrayList<>();
+
+    private final List<String> availableGenres = Arrays.asList(
+            "Rock",
+            "Alternative Rock",
+            "Alternative Metal",
+            "Doom Metal",
+            "Progressive Rock",
+            "Hard Rock",
+            "Industrial Metal",
+            "Thrash Metal",
+            "Ambient",
+            "Doom Metal",
+            "Black Metal",
+            "Heavy Metal",
+            "Punk Rock",
+            "Psychedelic Rock",
+            "Rock-n-Roll",
+            "Symphonic Rock",
+            "Jazz Rock",
+            "Neue Deutsche Härte",
+            "Gothic Rock",
+            "Folk Rock",
+            "Post Rock",
+            "Pop",
+            "Rap",
+            "Hip-Hop",
+            "Classic",
+            "Disco"
+    );
+    private final ObservableList<String> observableListGenres = FXCollections.observableArrayList();
     private static final Logger logger = LogManager.getLogger("mainLogger");
 
     @FXML
@@ -102,11 +133,12 @@ public class AppController {
 
         comboBoxParameters.getItems().setAll(
                 "ID",
-                "Название",
-                "Год",
-                "Жанр",
-                "Место"
+                "Name",
+                "Year",
+                "Genre",
+                "Place"
         );
+        comboBoxParameters.setValue("Name");
         groupTableView.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 Group selectedGroup = groupTableView.getSelectionModel().getSelectedItem();
@@ -118,7 +150,13 @@ public class AppController {
         DataBaseHandler.getDataFromDB("test", groupsData);
         groups = groupsData;
 
+        groupTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        groupTableView.setColumnResizePolicy((param) -> true);
+
+        observableListGenres.addAll(availableGenres);
+
         fillInTable(groupsData);
+
         logger.info("System initialized");
     }
 
@@ -145,7 +183,9 @@ public class AppController {
         TextField yearTextField = new TextField();
 
         Label genreLabel = new Label("Genre:");
-        TextField genreTextField = new TextField();
+        SearchableComboBox<String> comboBoxGenres = new SearchableComboBox<>();
+
+        comboBoxGenres.setItems(observableListGenres);
 
         Label placeLabel = new Label("Place in chart:");
         TextField placeTextField = new TextField();
@@ -158,7 +198,7 @@ public class AppController {
         gridPane.add(yearTextField, 1, 1);
 
         gridPane.add(genreLabel, 0, 2);
-        gridPane.add(genreTextField, 1, 2);
+        gridPane.add(comboBoxGenres, 1, 2);
 
         gridPane.add(placeLabel, 0, 3);
         gridPane.add(placeTextField, 1, 3);
@@ -169,7 +209,7 @@ public class AppController {
             try {
                 name[0] = validateInputGroup(nameTextField.getText(), "Name");
                 year[0] = validateInputGroup(yearTextField.getText(), "Year of foundation");
-                genre[0] = validateInputGroup(genreTextField.getText(), "Genre");
+                genre[0] = validateInputGroup(comboBoxGenres.getSelectionModel().getSelectedItem(), "Genre");
                 place[0] = validateInputGroup(placeTextField.getText(), "Place in chart");
                 Group newGroup = new Group();
                 newGroup.setName(name[0]);
@@ -253,7 +293,10 @@ public class AppController {
             TextField yearTextField = new TextField(selectedGroup.getYearOfFoundation().toString());
 
             Label genreLabel = new Label("Genre:");
-            TextField genreTextField = new TextField(selectedGroup.getMainGenre());
+            SearchableComboBox<String> comboBoxGenres = new SearchableComboBox<>();
+
+            comboBoxGenres.setItems(observableListGenres);
+            comboBoxGenres.setValue(selectedGroup.getMainGenre());
 
             Label placeLabel = new Label("Place in chart:");
             TextField placeTextField = new TextField(selectedGroup.getPlaceInChart().toString());
@@ -266,7 +309,7 @@ public class AppController {
             gridPane.add(yearTextField, 1, 1);
 
             gridPane.add(genreLabel, 0, 2);
-            gridPane.add(genreTextField, 1, 2);
+            gridPane.add(comboBoxGenres, 1, 2);
 
             gridPane.add(placeLabel, 0, 3);
             gridPane.add(placeTextField, 1, 3);
@@ -282,7 +325,7 @@ public class AppController {
                 try {
                     name[0] = validateInputGroup(nameTextField.getText(), "Name");
                     year[0] = validateInputGroup(yearTextField.getText(), "Year of foundation");
-                    genre[0] = validateInputGroup(genreTextField.getText(), "Genre");
+                    genre[0] = validateInputGroup(comboBoxGenres.getSelectionModel().getSelectedItem(), "Genre");
                     place[0] = validateInputGroup(placeTextField.getText(), "Place in chart");
 
                     newInfo.put("name", name[0]);

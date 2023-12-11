@@ -1,42 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
-<VBox fx:controller="AppController" xmlns:fx="http://javafx.com/fxml">
-    <HBox>
-        <Button fx:id="addButton" text="Add band">
+
+<AnchorPane fx:controller="AppController"
+             xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <VBox  AnchorPane.bottomAnchor="0.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+        <HBox HBox.hgrow="ALWAYS">
+            <Button fx:id="addButton" text="Add">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/add_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="removeButton" text="Remove">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/remove_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="editButton" text="Edit">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/edit_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="listButton" text="List">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/list_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="importXMLbutton" text="Import XML">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/import_xml_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="exportXMLbutton" text="Export XML">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/export_xml_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="generateReport" text="Report">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/generate_report.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="getThreeBestGroups" text="Get Chart">
+                <graphic>
+                    <ImageView>
+                        <Image url="@icons/chart_icon.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+
+        <ScrollPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <AnchorPane >
+                <TableView fx:id="groupTableView" AnchorPane.bottomAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                           AnchorPane.topAnchor="0.0">
+                    <columns>
+                        <TableColumn fx:id="groupId"  text="ID"/>
+                        <TableColumn fx:id="groupNameColumn"  text="GroupName"/>
+                        <TableColumn fx:id="groupYearOfFoundationColumn"  text="YearOfFoundation"/>
+                        <TableColumn fx:id="groupMainGenreColumn"  text="Genre"/>
+                        <TableColumn fx:id="groupPlaceInChartColumn"  text="Place in chart"/>
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </ScrollPane>
+
+        <HBox>
+            <ComboBox fx:id="comboBoxParameters" onAction="#getSelectedFromComboBox" prefWidth="100.0"/>
+            <TextField fx:id="searchField" promptText="Let's search..." prefWidth="700.0"/>
+        </HBox>
+        <Button fx:id="searchButton" text="Search" prefWidth="100.0">
             <graphic>
                 <ImageView>
-                    <Image url="icons/add_icon.png"/>
+                    <Image url="icons/search_icon.png"/>
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="removeButton" text="Remove band">
-            <graphic>
-                <ImageView>
-                    <Image url="icons/remove_icon.png"/>
-                </ImageView>
-            </graphic>
-        </Button>
-        <Button fx:id="listButton" text="List all bands">
-            <graphic>
-                <ImageView>
-                    <Image url="icons/list_icon.png"/>
-                </ImageView>
-            </graphic>
-        </Button>
-    </HBox>
-
-    <TextField fx:id="searchField" promptText="Search band"/>
-    <Button fx:id="searchButton" text="Search">
-        <graphic>
-            <ImageView>
-                <Image url="icons/search_icon.png"/>
-            </ImageView>
-        </graphic>
-    </Button>
-
-
-</VBox>
+    </VBox>
+</AnchorPane>
